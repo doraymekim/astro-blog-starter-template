@@ -9,6 +9,10 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 <html lang="en">
 	<head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		
+		<!-- 1. LOAD FONT AWESOME FOR THE ICONS -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
 		<style>
 			/* Import the Paperlogy font family */
 			@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
@@ -36,7 +40,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				width: 100%;
 				height: 100vh;
 				display: flex;
-				flex-direction: column; /* Stack logo top, box center */
+				flex-direction: column;
 				justify-content: center;
 				align-items: center;
 				background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('/Ray Conduct.JPG');
@@ -44,22 +48,19 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				background-position: center;
 				background-repeat: no-repeat;
 			}
-			/* NEW: Position the logo independently at the top center */
 			.logo-wrapper {
 				position: absolute;
-				top: 8vh; /* Adjust this to move it higher or lower on the screen */
+				top: 8vh;
 				left: 50%;
 				transform: translateX(-50%);
 				z-index: 10;
 			}
-			/* Logo sizing (increased to be prominently larger) */
 			.site-logo {
 				width: 110px; 
 				height: auto;
 				object-fit: contain;
 				filter: drop-shadow(0px 4px 12px rgba(0, 0, 0, 0.5));
 			}
-			/* The frosted glass container remains perfectly centered */
 			.text-overlay {
 				background: rgba(0, 0, 0, 0.25);
 				padding: 2.5rem 4rem;
@@ -69,7 +70,11 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				border: 1px solid rgba(255, 255, 255, 0.1);
 				text-align: center;
 				max-width: 80%;
-				margin-top: 10vh; /* Keeps space clear below the high logo */
+				margin-top: 10vh;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				gap: 1.5rem; /* Spacing between title and icons */
 			}
 			.site-title {
 				color: white;
@@ -81,6 +86,25 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				padding: 0;
 				text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
 			}
+			
+			/* 2. STYLE THE SOCIAL ICONS CONTAINER */
+			.social-icons {
+				display: flex;
+				gap: 2rem; /* Clean layout spacing between each icon */
+				margin-top: 0.5rem;
+			}
+			.social-link {
+				color: rgba(255, 255, 255, 0.7); /* Starts off slightly semi-transparent white */
+				font-size: 1.8rem; /* Sets icon sizes cleanly */
+				transition: color 0.3s ease, transform 0.3s ease;
+				text-decoration: none;
+			}
+			/* Sleek glow/hover effects */
+			.social-link:hover {
+				color: #ffffff;
+				transform: scale(1.1); 
+			}
+
 			@media (max-width: 768px) {
 				.logo-wrapper {
 					top: 6vh;
@@ -96,19 +120,29 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 					font-size: 2.2rem;
 					letter-spacing: 4px;
 				}
+				.social-link {
+					font-size: 1.5rem;
+				}
 			}
 		</style>
 	</head>
 	<body>
 		<main class="hero-container">
-			<!-- Logo is now independent at the top -->
 			<div class="logo-wrapper">
 				<img src="/iTunesArtwork@2x.png" alt="Superrray Productions Logo" class="site-logo" />
 			</div>
 			
-			<!-- Text overlay stays focused purely on the title text blur -->
 			<div class="text-overlay">
 				<h1 class="site-title">Superrray Productions</h1>
+				
+				<!-- 3. ADDING THE SOCIAL LINKS ROW HERE -->
+				<div class="social-icons">
+					<!-- Replace '#' with your actual profile links later -->
+					<a href="#" target="_blank" class="social-link" aria-label="IMDb"><i class="fa-brands fa-imdb"></i></a>
+					<a href="#" target="_blank" class="social-link" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+					<a href="#" target="_blank" class="social-link" aria-label="Apple Music"><i class="fa-brands fa-apple"></i></a>
+					<a href="#" target="_blank" class="social-link" aria-label="Spotify"><i class="fa-brands fa-spotify"></i></a>
+				</div>
 			</div>
 		</main>
 	</body>
