@@ -107,7 +107,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				transform: scale(1.1); 
 			}
 
-			/* 3. STYLE THE SCROLLABLE SECOND PAGE (VIDEO PLACEMENT) */
+			/* 3. STYLE THE SCROLLABLE SECOND PAGE (VIDEO PLACEMENT WITH GAUSSIAN OVERLAY) */
 			.video-section {
 				width: 100%;
 				height: 100vh;
@@ -119,8 +119,8 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				box-sizing: border-box;
 			}
 			.video-wrapper {
+				position: relative; /* Context layout for centering overlay on top of video */
 				width: 100%;
-				/* BUMPED SIZE UP BY 25% (From 1000px max-width to 1250px) */
 				max-width: 1250px;
 				aspect-ratio: 16 / 9;
 				box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.7);
@@ -134,6 +134,36 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				display: block;
 				object-fit: cover;
 				background: #000000;
+			}
+
+			/* NEW: Frosted Glass Overlay floating on top of the video container */
+			.video-blur-overlay {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				background: rgba(0, 0, 0, 0.35); /* Grounded background overlay tint */
+				padding: 2rem 4rem;
+				border-radius: 12px;
+				backdrop-filter: blur(10px);
+				-webkit-backdrop-filter: blur(10px);
+				border: 1px solid rgba(255, 255, 255, 0.1);
+				text-align: center;
+				pointer-events: none; /* Allows click-through interaction straight to video buttons underneath */
+				z-index: 5;
+				transition: opacity 0.4s ease;
+			}
+			.video-subtitle {
+				color: white;
+				font-family: 'Paperlogy', sans-serif;
+				font-size: 3.15rem; /* Exactly 10% smaller than 3.5rem */
+				font-weight: 300;
+				text-transform: uppercase;
+				letter-spacing: 6px;
+				margin: 0;
+				padding: 0;
+				text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.4);
+				white-space: nowrap;
 			}
 
 			@media (max-width: 768px) {
@@ -158,6 +188,13 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 					height: auto;
 					padding: 60px 20px;
 				}
+				.video-blur-overlay {
+					padding: 1rem 2rem;
+				}
+				.video-subtitle {
+					font-size: 1.98rem; /* Scaled cleanly for mobile dimensions too */
+					letter-spacing: 4px;
+				}
 			}
 		</style>
 	</head>
@@ -179,11 +216,15 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 			</div>
 		</main>
 
-		<!-- SECOND PAGE: SCROLLABLE VIDEO PLACEMENT -->
+		<!-- SECOND PAGE: SCROLLABLE VIDEO PLACEMENT WITH GAUSSIAN BLUR CARD -->
 		<section class="video-section">
 			<div class="video-wrapper">
+				<!-- Gaussian Blur Box -->
+				<div class="video-blur-overlay">
+					<h2 class="video-subtitle">Film Reel</h2>
+				</div>
+
 				<video controls preload="metadata" class="main-video" poster="/Ray Conduct.JPG">
-					<!-- Spaces are converted to %20 so browsers handle the exact filename correctly -->
 					<source src="/Film%20Reel%20250705%2024%20rf23.mp4" type="video/mp4" />
 					Your browser does not support the video tag.
 				</video>
