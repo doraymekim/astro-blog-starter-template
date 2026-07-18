@@ -90,15 +90,15 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
 			}
 
-			/* 2. STYLE THE SOCIAL ICONS CONTAINER (15% Larger & Closer) */
+			/* 2. STYLE THE SOCIAL ICONS CONTAINER */
 			.social-icons {
 				display: flex;
-				gap: 1.4rem; /* Tighter spacing */
+				gap: 1.4rem; 
 				margin-top: 0.5rem;
 			}
 			.social-link {
 				color: rgba(255, 255, 255, 0.7);
-				font-size: 2.1rem; /* 15% larger */
+				font-size: 2.1rem; 
 				transition: color 0.3s ease, transform 0.3s ease;
 				text-decoration: none;
 			}
@@ -120,7 +120,8 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 			}
 			.video-wrapper {
 				width: 100%;
-				max-width: 1000px;
+				/* BUMPED SIZE UP BY 25% (From 1000px max-width to 1250px) */
+				max-width: 1250px;
 				aspect-ratio: 16 / 9;
 				box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.7);
 				border-radius: 8px;
@@ -151,7 +152,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 					letter-spacing: 4px;
 				}
 				.social-link {
-					font-size: 1.7rem; /* Adjusted for mobile balancing */
+					font-size: 1.7rem; 
 				}
 				.video-section {
 					height: auto;
@@ -181,9 +182,9 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 		<!-- SECOND PAGE: SCROLLABLE VIDEO PLACEMENT -->
 		<section class="video-section">
 			<div class="video-wrapper">
-				<!-- When you get your Cloudflare ID or URL link, this video container is ready to swap over -->
 				<video controls preload="metadata" class="main-video" poster="/Ray Conduct.JPG">
-					<source src="/images/your-reel.mp4" type="video/mp4" />
+					<!-- Spaces are converted to %20 so browsers handle the exact filename correctly -->
+					<source src="/Film%20Reel%20250705%2024%20rf23.mp4" type="video/mp4" />
 					Your browser does not support the video tag.
 				</video>
 			</div>
