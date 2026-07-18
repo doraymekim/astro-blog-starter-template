@@ -43,16 +43,27 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				background-position: center;
 				background-repeat: no-repeat;
 			}
-			/* The frosted glass container behind your text */
+			/* The frosted glass container behind your text and logo */
 			.text-overlay {
-				background: rgba(0, 0, 0, 0.25); /* Subtle dark tint */
-				padding: 2rem 4rem;
+				background: rgba(0, 0, 0, 0.25);
+				padding: 3rem 4rem;
 				border-radius: 12px;
-				backdrop-filter: blur(8px); /* This creates the Gaussian blur behind the element */
-				-webkit-backdrop-filter: blur(8px); /* Safari support */
-				border: 1px solid rgba(255, 255, 255, 0.1); /* Elegant faint border */
+				backdrop-filter: blur(8px);
+				-webkit-backdrop-filter: blur(8px);
+				border: 1px solid rgba(255, 255, 255, 0.1);
 				text-align: center;
 				max-width: 80%;
+				display: flex;
+				flex-direction: column;
+				align-items: center; /* Centers everything horizontally inside */
+				gap: 1.5rem; /* Creates clean spacing between the logo and title */
+			}
+			/* Logo styling */
+			.site-logo {
+				width: 80px; /* Adjust the size of your logo here */
+				height: auto;
+				object-fit: contain;
+				filter: drop-shadow(0px 2px 8px rgba(0, 0, 0, 0.3)); /* Soft shadow for readability */
 			}
 			.site-title {
 				color: white;
@@ -66,7 +77,11 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 			}
 			@media (max-width: 768px) {
 				.text-overlay {
-					padding: 1.5rem 2rem;
+					padding: 2rem 2rem;
+					gap: 1rem;
+				}
+				.site-logo {
+					width: 60px; /* Slightly smaller logo on mobile screens */
 				}
 				.site-title {
 					font-size: 2.2rem;
@@ -78,6 +93,8 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 	<body>
 		<main class="hero-container">
 			<div class="text-overlay">
+				<!-- Your logo added here right above the title -->
+				<img src="/images/iTunesArtwork@2x.png" alt="Superrray Productions Logo" class="site-logo" />
 				<h1 class="site-title">Superrray Productions</h1>
 			</div>
 		</main>
