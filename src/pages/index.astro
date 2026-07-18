@@ -32,12 +32,11 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				padding: 0;
 				width: 100%;
 				height: 100%;
-				/* CHANGED: Allow smooth scrolling vertically instead of locking it hidden */
 				overflow-x: hidden;
 				overflow-y: auto;
 				scroll-behavior: smooth;
 				font-family: 'Paperlogy', 'Pretendard', sans-serif;
-				background-color: #000000; /* Rich black backdrop when scrolling down */
+				background-color: #000000;
 			}
 			.hero-container {
 				position: relative;
@@ -90,14 +89,16 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				padding: 0;
 				text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
 			}
+
+			/* 2. STYLE THE SOCIAL ICONS CONTAINER (15% Larger & Closer) */
 			.social-icons {
 				display: flex;
-				gap: 2rem;
+				gap: 1.4rem; /* Tighter spacing */
 				margin-top: 0.5rem;
 			}
 			.social-link {
 				color: rgba(255, 255, 255, 0.7);
-				font-size: 1.8rem;
+				font-size: 2.1rem; /* 15% larger */
 				transition: color 0.3s ease, transform 0.3s ease;
 				text-decoration: none;
 			}
@@ -106,21 +107,21 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				transform: scale(1.1); 
 			}
 
-			/* 2. STYLE THE SCROLLABLE SECOND PAGE (VIDEO PLACEMENT) */
+			/* 3. STYLE THE SCROLLABLE SECOND PAGE (VIDEO PLACEMENT) */
 			.video-section {
 				width: 100%;
-				height: 100vh; /* Keeps it exactly one full viewport high */
+				height: 100vh;
 				display: flex;
 				justify-content: center;
 				align-items: center;
-				background: #0d0d0d; /* Slightly offset deep gray background */
+				background: #0d0d0d;
 				padding: 20px;
 				box-sizing: border-box;
 			}
 			.video-wrapper {
 				width: 100%;
-				max-width: 1000px; /* Gives the player a widescreen cinema boundary */
-				aspect-ratio: 16 / 9; /* Guarantees standard landscape layout */
+				max-width: 1000px;
+				aspect-ratio: 16 / 9;
 				box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.7);
 				border-radius: 8px;
 				overflow: hidden;
@@ -150,7 +151,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 					letter-spacing: 4px;
 				}
 				.social-link {
-					font-size: 1.5rem;
+					font-size: 1.7rem; /* Adjusted for mobile balancing */
 				}
 				.video-section {
 					height: auto;
@@ -180,7 +181,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 		<!-- SECOND PAGE: SCROLLABLE VIDEO PLACEMENT -->
 		<section class="video-section">
 			<div class="video-wrapper">
-				<!-- The 'controls' attribute automatically renders the native play button, volume slider, and timeline tracker -->
+				<!-- When you get your Cloudflare ID or URL link, this video container is ready to swap over -->
 				<video controls preload="metadata" class="main-video" poster="/Ray Conduct.JPG">
 					<source src="/images/your-reel.mp4" type="video/mp4" />
 					Your browser does not support the video tag.
