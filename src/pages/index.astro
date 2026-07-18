@@ -181,6 +181,13 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				background-repeat: no-repeat;
 				box-sizing: border-box;
 			}
+			
+			/* UNIQUE BANNER ASSET FOR ORCHESTRATION */
+			.carousel-header-bg.orch-banner {
+				background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(5, 5, 5, 1)), url('/home is a hotel ray kim.jpeg');
+				background-position: center 50%;
+			}
+
 			.carousel-title-box {
 				background: rgba(0, 0, 0, 0.4);
 				padding: 1.2rem 3rem;
@@ -236,7 +243,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				display: flex;
 				width: max-content;
 				gap: 2.5rem;
-				animation: scroll 110s linear infinite; 
+				animation: scroll 110s linear infinite; /* SLOWED DOWN BY 15% FOR COMFORTABLE PACING */
 				will-change: transform;
 			}
 			.carousel-container:hover .carousel-track {
@@ -544,8 +551,8 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 			</div>
 		</section>
 
-		<!-- HEADER IMAGE HERO: SECTION 2 (ORCHESTRATION, PROGRAMMING & SCORE SUPERVISION) -->
-		<div class="carousel-header-bg">
+		<!-- HEADER IMAGE HERO: SECTION 2 (WITH HOME IS A HOTEL BACKGROUND IMAGE) -->
+		<div class="carousel-header-bg orch-banner">
 			<div class="carousel-title-box">
 				<h2 class="carousel-section-title">Orchestration, Programming & Score Supervision</h2>
 			</div>
