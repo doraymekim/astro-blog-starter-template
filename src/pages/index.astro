@@ -11,98 +11,103 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
 		<style>
 			/* Import the Paperlogy font family */
-  @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
-  @font-face {
-    font-family: 'Paperlogy';
-    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2411-3@1.0/Paperlogy-Thin.woff2') format('woff2');
-    font-weight: 300;
-  }
-  @font-face {
-    font-family: 'Paperlogy';
-    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2411-3@1.0/Paperlogy-Medium.woff2') format('woff2');
-    font-weight: 500;
-  }
+			@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+			@font-face {
+				font-family: 'Paperlogy';
+				src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2411-3@1.0/Paperlogy-Thin.woff2') format('woff2');
+				font-weight: 300;
+			}
+			@font-face {
+				font-family: 'Paperlogy';
+				src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2411-3@1.0/Paperlogy-Medium.woff2') format('woff2');
+				font-weight: 500;
+			}
 
-  html, body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    font-family: 'Paperlogy', 'Pretendard', sans-serif;
-  }
-  .hero-container {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('/Ray Conduct.JPG');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-  }
-  /* The frosted glass container behind your text and logo */
-  .text-overlay {
-    background: rgba(0, 0, 0, 0.25);
-    /* 1. INCREASED TOP PADDING to move content lower inside the box (looks balanced) */
-    padding: 6rem 4rem 3rem 4rem; 
-    border-radius: 12px;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    text-align: center;
-    max-width: 80%;
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Centers everything horizontally inside */
-    /* 2. GAP between logo and title can stay same or slight decrease if needed */
-    gap: 1.5rem; 
-    /* 3. NEW: Position the box closer to the top by adding negative top margin */
-    margin-top: -15vh;
-  }
-  /* Logo styling */
-  .site-logo {
-    /* 4. INCREASED SIZE by 10% from 80px to 88px */
-    width: 88px; 
-    height: auto;
-    object-fit: contain;
-    filter: drop-shadow(0px 2px 8px rgba(0, 0, 0, 0.3)); /* Soft shadow for readability */
-  }
-  .site-title {
-    color: white;
-    font-size: 3.5rem;
-    font-weight: 300;
-    text-transform: uppercase;
-    letter-spacing: 6px;
-    margin: 0;
-    padding: 0;
-    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
-  }
-  @media (max-width: 768px) {
-    .text-overlay {
-      padding: 4rem 2rem 2rem 2rem;
-      gap: 1rem;
-      /* 5. ADJUST MOBILE POSITION: Keep box relatively lower on mobile */
-      margin-top: 0; 
-    }
-    .site-logo {
-      /* 6. MOBILE LOGO: Also increase by ~10% from 60px to 66px */
-      width: 66px; 
-    }
-    .site-title {
-      font-size: 2.2rem;
-      letter-spacing: 4px;
-    }
-  }
+			html, body {
+				margin: 0;
+				padding: 0;
+				width: 100%;
+				height: 100%;
+				overflow: hidden;
+				font-family: 'Paperlogy', 'Pretendard', sans-serif;
+			}
+			.hero-container {
+				position: relative;
+				width: 100%;
+				height: 100vh;
+				display: flex;
+				flex-direction: column; /* Stack logo top, box center */
+				justify-content: center;
+				align-items: center;
+				background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('/Ray Conduct.JPG');
+				background-size: cover;
+				background-position: center;
+				background-repeat: no-repeat;
+			}
+			/* NEW: Position the logo independently at the top center */
+			.logo-wrapper {
+				position: absolute;
+				top: 8vh; /* Adjust this to move it higher or lower on the screen */
+				left: 50%;
+				transform: translateX(-50%);
+				z-index: 10;
+			}
+			/* Logo sizing (increased to be prominently larger) */
+			.site-logo {
+				width: 110px; 
+				height: auto;
+				object-fit: contain;
+				filter: drop-shadow(0px 4px 12px rgba(0, 0, 0, 0.5));
+			}
+			/* The frosted glass container remains perfectly centered */
+			.text-overlay {
+				background: rgba(0, 0, 0, 0.25);
+				padding: 2.5rem 4rem;
+				border-radius: 12px;
+				backdrop-filter: blur(8px);
+				-webkit-backdrop-filter: blur(8px);
+				border: 1px solid rgba(255, 255, 255, 0.1);
+				text-align: center;
+				max-width: 80%;
+				margin-top: 10vh; /* Keeps space clear below the high logo */
+			}
+			.site-title {
+				color: white;
+				font-size: 3.5rem;
+				font-weight: 300;
+				text-transform: uppercase;
+				letter-spacing: 6px;
+				margin: 0;
+				padding: 0;
+				text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+			}
+			@media (max-width: 768px) {
+				.logo-wrapper {
+					top: 6vh;
+				}
+				.site-logo {
+					width: 80px; 
+				}
+				.text-overlay {
+					padding: 1.5rem 2rem;
+					margin-top: 8vh;
+				}
+				.site-title {
+					font-size: 2.2rem;
+					letter-spacing: 4px;
+				}
+			}
 		</style>
 	</head>
 	<body>
 		<main class="hero-container">
-			<div class="text-overlay">
-				<!-- Your logo added here right above the title -->
+			<!-- Logo is now independent at the top -->
+			<div class="logo-wrapper">
 				<img src="/iTunesArtwork@2x.png" alt="Superrray Productions Logo" class="site-logo" />
+			</div>
+			
+			<!-- Text overlay stays focused purely on the title text blur -->
+			<div class="text-overlay">
 				<h1 class="site-title">Superrray Productions</h1>
 			</div>
 		</main>
