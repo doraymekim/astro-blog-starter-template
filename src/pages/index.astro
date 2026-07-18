@@ -32,8 +32,12 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				padding: 0;
 				width: 100%;
 				height: 100%;
-				overflow: hidden;
+				/* CHANGED: Allow smooth scrolling vertically instead of locking it hidden */
+				overflow-x: hidden;
+				overflow-y: auto;
+				scroll-behavior: smooth;
 				font-family: 'Paperlogy', 'Pretendard', sans-serif;
+				background-color: #000000; /* Rich black backdrop when scrolling down */
 			}
 			.hero-container {
 				position: relative;
@@ -74,7 +78,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				display: flex;
 				flex-direction: column;
 				align-items: center;
-				gap: 1.5rem; /* Spacing between title and icons */
+				gap: 1.5rem;
 			}
 			.site-title {
 				color: white;
@@ -86,23 +90,48 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				padding: 0;
 				text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
 			}
-			
-			/* 2. STYLE THE SOCIAL ICONS CONTAINER */
 			.social-icons {
 				display: flex;
-				gap: 2rem; /* Clean layout spacing between each icon */
+				gap: 2rem;
 				margin-top: 0.5rem;
 			}
 			.social-link {
-				color: rgba(255, 255, 255, 0.7); /* Starts off slightly semi-transparent white */
-				font-size: 1.8rem; /* Sets icon sizes cleanly */
+				color: rgba(255, 255, 255, 0.7);
+				font-size: 1.8rem;
 				transition: color 0.3s ease, transform 0.3s ease;
 				text-decoration: none;
 			}
-			/* Sleek glow/hover effects */
 			.social-link:hover {
 				color: #ffffff;
 				transform: scale(1.1); 
+			}
+
+			/* 2. STYLE THE SCROLLABLE SECOND PAGE (VIDEO PLACEMENT) */
+			.video-section {
+				width: 100%;
+				height: 100vh; /* Keeps it exactly one full viewport high */
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				background: #0d0d0d; /* Slightly offset deep gray background */
+				padding: 20px;
+				box-sizing: border-box;
+			}
+			.video-wrapper {
+				width: 100%;
+				max-width: 1000px; /* Gives the player a widescreen cinema boundary */
+				aspect-ratio: 16 / 9; /* Guarantees standard landscape layout */
+				box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.7);
+				border-radius: 8px;
+				overflow: hidden;
+				border: 1px solid rgba(255, 255, 255, 0.05);
+			}
+			.main-video {
+				width: 100%;
+				height: 100%;
+				display: block;
+				object-fit: cover;
+				background: #000000;
 			}
 
 			@media (max-width: 768px) {
@@ -123,10 +152,15 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				.social-link {
 					font-size: 1.5rem;
 				}
+				.video-section {
+					height: auto;
+					padding: 60px 20px;
+				}
 			}
 		</style>
 	</head>
 	<body>
+		<!-- FIRST PAGE: LANDING HERO -->
 		<main class="hero-container">
 			<div class="logo-wrapper">
 				<img src="/iTunesArtwork@2x.png" alt="Superrray Productions Logo" class="site-logo" />
@@ -134,10 +168,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 			
 			<div class="text-overlay">
 				<h1 class="site-title">Superrray Productions</h1>
-				
-				<!-- 3. ADDING THE SOCIAL LINKS ROW HERE -->
 				<div class="social-icons">
-					<!-- Replace '#' with your actual profile links later -->
 					<a href="https://www.imdb.com/name/nm8105113/" target="_blank" class="social-link" aria-label="IMDb"><i class="fa-brands fa-imdb"></i></a>
 					<a href="https://www.instagram.com/doraymekim/" target="_blank" class="social-link" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
 					<a href="https://music.apple.com/us/artist/ray-d-kim/780192649" target="_blank" class="social-link" aria-label="Apple Music"><i class="fa-brands fa-apple"></i></a>
@@ -145,5 +176,16 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				</div>
 			</div>
 		</main>
+
+		<!-- SECOND PAGE: SCROLLABLE VIDEO PLACEMENT -->
+		<section class="video-section">
+			<div class="video-wrapper">
+				<!-- The 'controls' attribute automatically renders the native play button, volume slider, and timeline tracker -->
+				<video controls preload="metadata" class="main-video" poster="/Ray Conduct.JPG">
+					<source src="/images/your-reel.mp4" type="video/mp4" />
+					Your browser does not support the video tag.
+				</video>
+			</div>
+		</section>
 	</body>
 </html>
