@@ -5,46 +5,106 @@ import Footer from '../components/Footer.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 ---
 
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header />
-		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
-				template serves as a lightweight, minimally-styled starting point for anyone looking to build
-				a personal website, blog, or portfolio with Astro. test test
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to <a href="https://docs.astro.build/"
-					>read the docs
-				</a> or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out <a
-					href="https://github.com/Charca/astro-blog-template"
-					>astro-blog-template
-				</a> by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
-		</main>
-		<Footer />
-	</body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Superrray Productions | Portfolio Layout</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header>
+        <nav class="nav-container">
+            <a href="#film-games" class="nav-link">Film & Video Games</a>
+            <a href="#bio" class="nav-link">Bio</a>
+            <a href="#contact" class="nav-link">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Main Hero / Branding Section -->
+    <main class="hero-section">
+        <h1 class="site-title">SUPERRRAY PRODUCTIONS</h1>
+        <h2 class="artist-name">RAY D. KIM</h2>
+        
+        <div class="social-icons">
+            <!-- Icons placeholders -->
+            <a href="#" class="icon-link"></a>
+            <a href="#" class="icon-link"></a>
+            <a href="#" class="icon-link"></a>
+        </div>
+    </main>
+
+    <hr class="section-divider">
+
+    <!-- Film Reel Showcase -->
+    <section class="reel-section">
+        <h3 class="section-heading">FILM REEL</h3>
+        <div class="video-container">
+            <!-- Embedded Video Placeholder -->
+            <div class="video-player-mock">[ Film Reel Video Player ]</div>
+        </div>
+    </section>
+
+    <!-- Features & Series Grid -->
+    <section id="film-games" class="portfolio-grid-section">
+        <h3 class="section-heading">Features & Series</h3>
+        <div class="portfolio-grid">
+            <!-- Project Cards -->
+            <div class="project-card">
+                <div class="thumbnail-placeholder"></div>
+                <p class="project-title">HBO Max - Hacks S5 (2026) | Additional Music</p>
+            </div>
+            <div class="project-card">
+                <div class="thumbnail-placeholder"></div>
+                <p class="project-title">Netflix - Dept. Q (2025) | Additional Music</p>
+            </div>
+            <div class="project-card">
+                <div class="thumbnail-placeholder"></div>
+                <p class="project-title">Netflix - Griselda (2024) | Additional Music</p>
+            </div>
+            <div class="project-card">
+                <div class="thumbnail-placeholder"></div>
+                <p class="project-title">Apple TV - Lessons in Chemistry (2023) | Additional Music</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Orchestration & Score Supervision Grid -->
+    <section class="portfolio-grid-section">
+        <h3 class="section-heading">Orchestration, Programming & Score Supervision</h3>
+        <div class="portfolio-grid">
+            <div class="project-card">
+                <div class="thumbnail-placeholder"></div>
+                <p class="project-title">A24 - The Debut (2026) | Orchestrator</p>
+            </div>
+            <div class="project-card">
+                <div class="thumbnail-placeholder"></div>
+                <p class="project-title">Apple - Presumed Innocent (2024) | Orchestrator</p>
+            </div>
+            <div class="project-card">
+                <div class="thumbnail-placeholder"></div>
+                <p class="project-title">Netflix - Terminator Zero (2024) | Orchestrator</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Audio / Spotify Audio Reels Section -->
+    <section class="listen-section">
+        <h3 class="section-heading">Listen</h3>
+        <div class="audio-reels-container">
+            <div class="audio-reel-mock">[ Spotify / Audio Playlist Embed - Emotional ]</div>
+            <div class="audio-reel-mock">[ Spotify / Audio Playlist Embed - Peaceful ]</div>
+            <div class="audio-reel-mock">[ Spotify / Audio Playlist Embed - Suspense ]</div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p class="copyright">© 2026 Ray D. Kim. All Rights Reserved.</p>
+    </footer>
+
+</body>
 </html>
