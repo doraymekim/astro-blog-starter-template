@@ -151,7 +151,6 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				z-index: 5;
 				transition: opacity 0.4s ease, visibility 0.4s ease;
 			}
-			/* Class to hide the overlay cleanly */
 			.video-blur-overlay.hidden {
 				opacity: 0;
 				visibility: hidden;
@@ -169,28 +168,28 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				white-space: nowrap;
 			}
 
-			/* 4. STYLE THE THIRD PAGE (FEATURES & SERIES CAROUSEL) */
-			.carousel-section {
+			/* 4. BANNER IMAGE HERO */
+			.carousel-header-bg {
 				width: 100%;
-				height: 100vh;
+				height: 36vh; 
 				display: flex;
-				flex-direction: column;
 				justify-content: center;
 				align-items: center;
-				background: #050505; 
-				overflow: hidden;
+				background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(5, 5, 5, 1)), url('/ray orch.jpeg');
+				background-size: cover;
+				background-position: center 80%; 
+				background-repeat: no-repeat;
 				box-sizing: border-box;
-				padding: 40px 0;
 			}
 			.carousel-title-box {
-				background: rgba(255, 255, 255, 0.03);
+				background: rgba(0, 0, 0, 0.4);
 				padding: 1.2rem 3rem;
 				border-radius: 8px;
 				backdrop-filter: blur(6px);
 				-webkit-backdrop-filter: blur(6px);
-				border: 1px solid rgba(255, 255, 255, 0.05);
-				margin-bottom: 4vh;
+				border: 1px solid rgba(255, 255, 255, 0.1);
 				text-align: center;
+				margin-top: 2vh;
 			}
 			.carousel-section-title {
 				color: white;
@@ -200,7 +199,16 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				text-transform: uppercase;
 				letter-spacing: 5px;
 				margin: 0;
-				text-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+				text-shadow: 0px 4px 12px rgba(0, 0, 0, 0.9);
+			}
+
+			/* 5. STYLE THE LOWER CAROUSEL BLOCK */
+			.carousel-section {
+				width: 100%;
+				background: #050505; 
+				box-sizing: border-box;
+				padding: 10px 0 60px 0;
+				position: relative;
 			}
 			.carousel-container {
 				width: 100%;
@@ -208,6 +216,8 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				position: relative;
 				padding: 20px 0;
 			}
+			
+			/* Soft edge gradients covering background items */
 			.carousel-container::before,
 			.carousel-container::after {
 				background: linear-gradient(to right, #050505 0%, rgba(5, 5, 5, 0) 100%);
@@ -226,22 +236,32 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				display: flex;
 				width: max-content;
 				gap: 2.5rem;
-				animation: scroll 65s linear infinite; 
+				animation: scroll 110s linear infinite; 
+				will-change: transform;
 			}
 			.carousel-container:hover .carousel-track {
 				animation-play-state: paused;
 			}
 			
+			/* POSTER CARD LOGIC WITH INTEGRATED MEMO STRIP */
 			.poster-card {
 				width: 240px;
-				aspect-ratio: 2 / 3;
+				display: flex;
+				flex-direction: column;
+				position: relative;
 				border-radius: 6px;
 				overflow: hidden;
-				box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+				box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7);
 				border: 1px solid rgba(255, 255, 255, 0.08);
 				transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s ease, filter 0.4s ease;
 				cursor: pointer;
 				background-color: #111111;
+				text-decoration: none; /* Keeps text decoration clean */
+			}
+			.image-wrapper {
+				width: 100%;
+				aspect-ratio: 2 / 3;
+				overflow: hidden;
 			}
 			.poster-card img {
 				width: 100%;
@@ -249,14 +269,60 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				object-fit: cover;
 				display: block;
 			}
+			
+			/* CLEAN OVERLAY CARD POSITIONING */
+			.poster-memo {
+				background: rgba(13, 13, 13, 0.9);
+				color: rgba(255, 255, 255, 0.85);
+				font-size: 0.72rem;
+				font-weight: 300;
+				text-align: center;
+				padding: 0.6rem 0.4rem;
+				border-top: 1px solid rgba(255, 255, 255, 0.05);
+				letter-spacing: 0.5px;
+				line-height: 1.3;
+				white-space: normal;
+				word-break: keep-all;
+			}
+
 			.poster-card:hover {
 				transform: scale(1.08);
-				box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8), 0 0 15px rgba(255, 255, 255, 0.15);
+				box-shadow: 0 15px 35px rgba(0, 0, 0, 0.9), 0 0 15px rgba(255, 255, 255, 0.2);
 				z-index: 10;
 			}
 			.carousel-track:hover .poster-card:not(:hover) {
-				filter: brightness(0.5) contrast(0.85);
+				filter: brightness(0.4) contrast(0.85);
 			}
+
+			/* NAVIGATION ARROWS FOR MANUAL SCROLLING */
+			.carousel-arrow {
+				position: absolute;
+				top: 50%;
+				transform: translateY(-50%);
+				background: rgba(0, 0, 0, 0.45);
+				border: 1px solid rgba(255, 255, 255, 0.15);
+				color: rgba(255, 255, 255, 0.7);
+				width: 50px;
+				height: 50px;
+				border-radius: 50%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 1.25rem;
+				cursor: pointer;
+				z-index: 15;
+				transition: all 0.3s ease;
+				backdrop-filter: blur(4px);
+				-webkit-backdrop-filter: blur(4px);
+			}
+			.carousel-arrow:hover {
+				background: rgba(255, 255, 255, 0.9);
+				color: #000000;
+				border-color: #ffffff;
+				box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+			}
+			.carousel-arrow.left { left: 25px; }
+			.carousel-arrow.right { right: 25px; }
 
 			@keyframes scroll {
 				0% { transform: translateX(0); }
@@ -273,14 +339,15 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				.video-blur-overlay { padding: 1rem 2rem; }
 				.video-subtitle { font-size: 1.98rem; letter-spacing: 4px; }
 				
-				.carousel-section { height: auto; padding: 60px 0; }
+				.carousel-header-bg { height: 24vh; background-position: center 75%; }
+				.carousel-section { padding-bottom: 40px; }
 				.carousel-section-title { font-size: 1.8rem; letter-spacing: 3px; }
 				.carousel-title-box { padding: 0.8rem 1.5rem; }
 				.poster-card { width: 160px; }
-				@keyframes scroll {
-					0% { transform: translateX(0); }
-					100% { transform: translateX(calc(-50% - 1.25rem)); }
-				}
+				.poster-memo { font-size: 0.6rem; padding: 0.4rem 0.2rem; }
+				.carousel-arrow { width: 40px; height: 40px; font-size: 1rem; }
+				.carousel-arrow.left { left: 10px; }
+				.carousel-arrow.right { right: 10px; }
 			}
 		</style>
 	</head>
@@ -315,69 +382,473 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 			</div>
 		</section>
 
-		<!-- THIRD PAGE: SCROLLABLE "FEATURES & SERIES" AUTO-PLAY CAROUSEL -->
-		<section class="carousel-section">
+		<!-- HEADER IMAGE HERO: SECTION 1 -->
+		<div class="carousel-header-bg">
 			<div class="carousel-title-box">
 				<h2 class="carousel-section-title">Features & Series</h2>
 			</div>
+		</div>
 
-			<div class="carousel-container">
-				<div class="carousel-track">
-					<!-- Set A: Active Movie Posters from your public directory -->
-					<div class="poster-card"><img src="/Lessons%20in%20Chemistry.png" alt="Lessons in Chemistry" /></div>
-					<div class="poster-card"><img src="/They%20Will%20Kill%20You.png" alt="They Will Kill You" /></div>
-					<div class="poster-card"><img src="/Hacks%20Season%205.png" alt="Hacks Season 5" /></div>
-					<div class="poster-card"><img src="/dept%20q.png" alt="Dept Q" /></div>
-					<div class="poster-card"><img src="/griselda%202.jpeg" alt="Griselda 2" /></div>
-					<div class="poster-card"><img src="/ezra.jpeg" alt="Ezra" /></div>
-					<div class="poster-card"><img src="/la%20reina%20del%20sur.png" alt="La Reina Del Sur" /></div>
-					<div class="poster-card"><img src="/Hacks%20season%204.png" alt="Hacks Season 4" /></div>
-					<div class="poster-card"><img src="/Heals.png" alt="Heals" /></div>
-					<div class="poster-card"><img src="/ILNY_PostersBlack.jpg" alt="ILNY Posters Black" /></div>
-					<div class="poster-card"><img src="/chupa.jpg" alt="Chupa" /></div>
-					<div class="poster-card"><img src="/death%20and%20other%20details.png" alt="Death and Other Details" /></div>
-					<div class="poster-card"><img src="/hacks%203.jpeg" alt="Hacks 3" /></div>
-					<div class="poster-card"><img src="/hacks%20season%201.png" alt="Hacks Season 1" /></div>
-					<div class="poster-card"><img src="/hacks%20season%202.png" alt="Hacks Season 2" /></div>
-					<div class="poster-card"><img src="/just%20beyond.png" alt="Just Beyond" /></div>
-					<div class="poster-card"><img src="/monsieur%20spade%202.png" alt="Monsieur Spade 2" /></div>
+		<!-- THIRD PAGE: SCROLLABLE AUTO-PLAY CAROUSEL WITH MANUAL NAVIGATION ARROWS -->
+		<section class="carousel-section">
+			<!-- Navigation Buttons -->
+			<button class="carousel-arrow left" id="prevBtn" aria-label="Scroll Left">
+				<i class="fa-solid fa-chevron-left"></i>
+			</button>
+			<button class="carousel-arrow right" id="nextBtn" aria-label="Scroll Right">
+				<i class="fa-solid fa-chevron-right"></i>
+			</button>
+
+			<div class="carousel-container" id="carouselContainer">
+				<div class="carousel-track" id="carouselTrack">
+					<!-- Set A: Active Movie Posters with Customizeable Position Memos & IMDb Links -->
+					<a href="https://www.imdb.com/title/tt15671712/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/Lessons%20in%20Chemistry.png" alt="Lessons in Chemistry" /></div>
+						<div class="poster-memo">Apple TV+ - Lessons in Chemistry (2023) | Additional Music</div>
+					</a>
+					<a href="https://www.imdb.com/title/tt31871239/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/They%20Will%20Kill%20You.png" alt="They Will Kill You" /></div>
+						<div class="poster-memo">Feature Film - They Will Kill You | Additional Music</div>
+					</a>
+					<a href="https://www.imdb.com/title/tt11815650/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/hacks%20season%205.png" alt="Hacks Season 5" /></div>
+						<div class="poster-memo">Max - Hacks Season 5 | Additional Music</div>
+					</a>
+					<a href="https://www.imdb.com/title/tt31053169/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/dept%20q.png" alt="Dept Q" /></div>
+						<div class="poster-memo">Netflix - Dept Q | Additional Music</div>
+					</a>
+					<a href="https://www.imdb.com/title/tt15837600/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/griselda%202.jpeg" alt="Griselda 2" /></div>
+						<div class="poster-memo">Netflix - Griselda (2024) | Additional Music</div>
+					</a>
+					<a href="https://www.imdb.com/title/tt14620024/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/ezra.jpeg" alt="Ezra" /></div>
+						<div class="poster-memo">Feature Film - Ezra (2023) | Additional Music</div>
+					</a>
+					<a href="https://www.imdb.com/title/tt1847610/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/la%20reina%20del%20sur.png" alt="La Reina Del Sur" /></div>
+						<div class="poster-memo">Telemundo - La Reina Del Sur | Additional Music</div>
+					</a>
+					<a href="https://www.imdb.com/title/tt11815650/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/hacks%20season%204.png" alt="Hacks Season 4" /></div>
+						<div class="poster-memo">Max - Hacks Season 4 | Additional Music</div>
+					</a>
+					<a href="https://www.imdb.com/title/tt12745190/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/heals.png" alt="Heals" /></div>
+						<div class="poster-memo">Series - Heals | Additional Music</div>
+					</a>
+					<a href="https://www.imdb.com/title/tt0942618/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/ILNY_PostersBlack.jpg" alt="ILNY Posters Black" /></div>
+						<div class="poster-memo">Series - I Love New York | Additional Music</div>
+					</a>
+					<a href="https://www.imdb.com/title/tt13054178/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/chupa.jpg" alt="Chupa" /></div>
+						<div class="poster-memo">Netflix - Chupa (2023) | Additional Music</div>
+					</a>
+					<a href="https://www.imdb.com/title/tt15367622/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/death%20and%20other%20details.png" alt="Death and Other Details" /></div>
+						<div class="poster-memo">Hulu - Death and Other Details | Additional Music</div>
+					</a>
+					<a href="https://www.imdb.com/title/tt11815650/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/hacks%203.jpeg" alt="Hacks 3" /></div>
+						<div class="poster-memo">Max - Hacks Season 3 | Additional Music</div>
+					</a>
+					<a href="https://www.imdb.com/title/tt11815650/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/hacks%20season%201.png" alt="Hacks Season 1" /></div>
+						<div class="poster-memo">Max - Hacks Season 1 | Additional Music</div>
+					</a>
+					<a href="https://www.imdb.com/title/tt11815650/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/hacks%20season%202.png" alt="Hacks Season 2" /></div>
+						<div class="poster-memo">Max - Hacks Season 2 | Additional Music</div>
+					</a>
+					<a href="https://www.imdb.com/title/tt13243916/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/just%20beyond.png" alt="Just Beyond" /></div>
+						<div class="poster-memo">Disney+ - Just Beyond (2021) | Additional Music</div>
+					</a>
+					<a href="https://www.imdb.com/title/tt18306126/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/monsieur%20spade%202.png" alt="Monsieur Spade 2" /></div>
+						<div class="poster-memo">AMC - Monsieur Spade | Additional Music</div>
+					</a>
 
 					<!-- Set B: Duplicate set for seamless looping -->
-					<div class="poster-card"><img src="/Lessons%20in%20Chemistry.png" alt="Lessons in Chemistry Duplicate" /></div>
-					<div class="poster-card"><img src="/They%20Will%20Kill%20You.png" alt="They Will Kill You Duplicate" /></div>
-					<div class="poster-card"><img src="/Hacks%20Season%205.png" alt="Hacks Season 5 Duplicate" /></div>
-					<div class="poster-card"><img src="/dept%20q.png" alt="Dept Q Duplicate" /></div>
-					<div class="poster-card"><img src="/griselda%202.jpeg" alt="Griselda 2 Duplicate" /></div>
-					<div class="poster-card"><img src="/ezra.jpeg" alt="Ezra Duplicate" /></div>
-					<div class="poster-card"><img src="/la%20reina%20del%20sur.png" alt="La Reina Del Sur Duplicate" /></div>
-					<div class="poster-card"><img src="/Hacks%20season%204.png" alt="Hacks Season 4 Duplicate" /></div>
-					<div class="poster-card"><img src="/Heals.png" alt="Heals Duplicate" /></div>
-					<div class="poster-card"><img src="/ILNY_PostersBlack.jpg" alt="ILNY Posters Black Duplicate" /></div>
-					<div class="poster-card"><img src="/chupa.jpg" alt="Chupa Duplicate" /></div>
-					<div class="poster-card"><img src="/death%20and%20other%20details.png" alt="Death and Other Details Duplicate" /></div>
-					<div class="poster-card"><img src="/hacks%203.jpeg" alt="Hacks 3 Duplicate" /></div>
-					<div class="poster-card"><img src="/hacks%20season%201.png" alt="Hacks Season 1 Duplicate" /></div>
-					<div class="poster-card"><img src="/hacks%20season%202.png" alt="Hacks Season 2 Duplicate" /></div>
-					<div class="poster-card"><img src="/just%20beyond.png" alt="Just Beyond Duplicate" /></div>
-					<div class="poster-card"><img src="/monsieur%20spade%202.png" alt="Monsieur Spade 2 Duplicate" /></div>
+					<a href="https://www.imdb.com/title/tt15671712/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/Lessons%20in%20Chemistry.png" alt="Lessons in Chemistry Duplicate" /></div>
+						<div class="poster-memo">Apple TV+ - Lessons in Chemistry (2023) | Additional Music</div>
+					</a>
+					<a href="https://www.imdb.com/title/tt31871239/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/They%20Will%20Kill%20You.png" alt="They Will Kill You Duplicate" /></div>
+						<div class="poster-memo">Feature Film - They Will Kill You | Additional Music</div>
+					</a>
+					<a href="https://www.imdb.com/title/tt11815650/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/hacks%20season%205.png" alt="Hacks Season 5 Duplicate" /></div>
+						<div class="poster-memo">Max - Hacks Season 5 | Additional Music</div>
+					</a>
+					<a href="https://www.imdb.com/title/tt31053169/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/dept%20q.png" alt="Dept Q Duplicate" /></div>
+						<div class="poster-memo">Netflix - Dept Q | Additional Music</div>
+					</a>
+					<a href="https://www.imdb.com/title/tt15837600/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/griselda%202.jpeg" alt="Griselda 2 Duplicate" /></div>
+						<div class="poster-memo">Netflix - Griselda (2024) | Additional Music</div>
+					</a>
+					<a href="https://www.imdb.com/title/tt14620024/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/ezra.jpeg" alt="Ezra Duplicate" /></div>
+						<div class="poster-memo">Feature Film - Ezra (2023) | Additional Music</div>
+					</a>
+					<a href="https://www.imdb.com/title/tt1847610/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/la%20reina%20del%20sur.png" alt="La Reina Del Sur Duplicate" /></div>
+						<div class="poster-memo">Telemundo - La Reina Del Sur | Additional Music</div>
+					</a>
+					<a href="https://www.imdb.com/title/tt11815650/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/hacks%20season%204.png" alt="Hacks Season 4 Duplicate" /></div>
+						<div class="poster-memo">Max - Hacks Season 4 | Additional Music</div>
+					</a>
+					<a href="https://www.imdb.com/title/tt12745190/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/heals.png" alt="Heals Duplicate" /></div>
+						<div class="poster-memo">Series - Heals | Additional Music</div>
+					</a>
+					<a href="https://www.imdb.com/title/tt0942618/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/ILNY_PostersBlack.jpg" alt="ILNY Posters Black Duplicate" /></div>
+						<div class="poster-memo">Series - I Love New York | Additional Music</div>
+					</a>
+					<a href="https://www.imdb.com/title/tt13054178/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/chupa.jpg" alt="Chupa Duplicate" /></div>
+						<div class="poster-memo">Netflix - Chupa (2023) | Additional Music</div>
+					</a>
+					<a href="https://www.imdb.com/title/tt15367622/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/death%20and%20other%20details.png" alt="Death and Other Details Duplicate" /></div>
+						<div class="poster-memo">Hulu - Death and Other Details | Additional Music</div>
+					</a>
+					<a href="https://www.imdb.com/title/tt11815650/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/hacks%203.jpeg" alt="Hacks 3 Duplicate" /></div>
+						<div class="poster-memo">Max - Hacks Season 3 | Additional Music</div>
+					</a>
+					<a href="https://www.imdb.com/title/tt11815650/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/hacks%20season%201.png" alt="Hacks Season 1 Duplicate" /></div>
+						<div class="poster-memo">Max - Hacks Season 1 | Additional Music</div>
+					</a>
+					<a href="https://www.imdb.com/title/tt11815650/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/hacks%20season%202.png" alt="Hacks Season 2 Duplicate" /></div>
+						<div class="poster-memo">Max - Hacks Season 2 | Additional Music</div>
+					</a>
+					<a href="https://www.imdb.com/title/tt13243916/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/just%20beyond.png" alt="Just Beyond Duplicate" /></div>
+						<div class="poster-memo">Disney+ - Just Beyond (2021) | Additional Music</div>
+					</a>
+					<a href="https://www.imdb.com/title/tt18306126/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/monsieur%20spade%202.png" alt="Monsieur Spade 2 Duplicate" /></div>
+						<div class="poster-memo">AMC - Monsieur Spade | Additional Music</div>
+					</a>
 				</div>
 			</div>
 		</section>
 
-		<!-- JAVASCRIPT TO HIDE BLUR OVERLAY ON PLAY -->
+		<!-- HEADER IMAGE HERO: SECTION 2 (ORCHESTRATION, PROGRAMMING & SCORE SUPERVISION) -->
+		<div class="carousel-header-bg">
+			<div class="carousel-title-box">
+				<h2 class="carousel-section-title">Orchestration, Programming & Score Supervision</h2>
+			</div>
+		</div>
+
+		<!-- FOURTH PAGE: IDENTICAL SCROLLABLE CAROUSEL FOR ORCHESTRATION -->
+		<section class="carousel-section">
+			<!-- Navigation Buttons with unique IDs for Section 2 -->
+			<button class="carousel-arrow left" id="orchPrevBtn" aria-label="Scroll Left">
+				<i class="fa-solid fa-chevron-left"></i>
+			</button>
+			<button class="carousel-arrow right" id="orchNextBtn" aria-label="Scroll Right">
+				<i class="fa-solid fa-chevron-right"></i>
+			</button>
+
+			<div class="carousel-container" id="orchCarouselContainer">
+				<div class="carousel-track" id="orchCarouselTrack">
+					<!-- Set A: Active Project Posters -->
+					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/america's team.png" alt="America's Team" /></div>
+						<div class="poster-memo">America's Team</div>
+					</a>
+					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/an almost christmas story.png" alt="An Almost Christmas Story" /></div>
+						<div class="poster-memo">An Almost Christmas Story</div>
+					</a>
+					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/being mary tyler moore.jpg" alt="Being Mary Tyler Moore" /></div>
+						<div class="poster-memo">Being Mary Tyler Moore</div>
+					</a>
+					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/bob trevino likes it.png" alt="Bob Trevino Likes It" /></div>
+						<div class="poster-memo">Bob Trevino Likes It</div>
+					</a>
+					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/canary black.png" alt="Canary Black" /></div>
+						<div class="poster-memo">Canary Black</div>
+					</a>
+					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/commitment to life.jpg" alt="Commitment to Life" /></div>
+						<div class="poster-memo">Commitment to Life</div>
+					</a>
+					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/dead whisper.png" alt="Dead Whisper" /></div>
+						<div class="poster-memo">Dead Whisper</div>
+					</a>
+					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/donn of tiki.png" alt="Donn of Tiki" /></div>
+						<div class="poster-memo">Donn of Tiki</div>
+					</a>
+					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/elizabeth taylor.png" alt="Elizabeth Taylor" /></div>
+						<div class="poster-memo">Elizabeth Taylor</div>
+					</a>
+					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/excorcist 2.png" alt="Exorcist 2" /></div>
+						<div class="poster-memo">Exorcist 2</div>
+					</a>
+					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/final girl halloween 2.png" alt="Final Girl Halloween 2" /></div>
+						<div class="poster-memo">Final Girl Halloween 2</div>
+					</a>
+					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/forked.jpg" alt="Forked" /></div>
+						<div class="poster-memo">Forked</div>
+					</a>
+					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/home is a hotel.jpg" alt="Home is a Hotel" /></div>
+						<div class="poster-memo">Home is a Hotel</div>
+					</a>
+					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/how to make a killing.png" alt="How to Make a Killing" /></div>
+						<div class="poster-memo">How to Make a Killing</div>
+					</a>
+					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/John Candy I like Me.png" alt="John Candy I Like Me" /></div>
+						<div class="poster-memo">John Candy I Like Me</div>
+					</a>
+					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/kings of tupelo.png" alt="Kings of Tupelo" /></div>
+						<div class="poster-memo">Kings of Tupelo</div>
+					</a>
+					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/miranda's victim.jpg" alt="Miranda's Victim" /></div>
+						<div class="poster-memo">Miranda's Victim</div>
+					</a>
+					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/octopus.png" alt="Octopus" /></div>
+						<div class="poster-memo">Octopus</div>
+					</a>
+					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/playing to survive.png" alt="Playing to Survive" /></div>
+						<div class="poster-memo">Playing to Survive</div>
+					</a>
+					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/presumed innocent.png" alt="Presumed Innocent" /></div>
+						<div class="poster-memo">Presumed Innocent</div>
+					</a>
+					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/red white royal blue.jpg" alt="Red White & Royal Blue" /></div>
+						<div class="poster-memo">Red White & Royal Blue</div>
+					</a>
+					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/scouts honor.jpeg" alt="Scouts Honor" /></div>
+						<div class="poster-memo">Scouts Honor</div>
+					</a>
+					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/secret lives of animals.png" alt="Secret Lives of Animals" /></div>
+						<div class="poster-memo">Secret Lives of Animals</div>
+					</a>
+					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/speak no evil 2.png" alt="Speak No Evil 2" /></div>
+						<div class="poster-memo">Speak No Evil 2</div>
+					</a>
+					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/terminator zero.png" alt="Terminator Zero" /></div>
+						<div class="poster-memo">Terminator Zero</div>
+					</a>
+					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/the debut.png" alt="The Debut" /></div>
+						<div class="poster-memo">The Debut</div>
+					</a>
+					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/the island between tides.png" alt="The Island Between Tides" /></div>
+						<div class="poster-memo">The Island Between Tides</div>
+					</a>
+					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/the problem with people.png" alt="The Problem with People" /></div>
+						<div class="poster-memo">The Problem with People</div>
+					</a>
+					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/Turning point cold war.jpeg" alt="Turning Point: Cold War" /></div>
+						<div class="poster-memo">Turning Point: Cold War</div>
+					</a>
+					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/turtles all the way down.png" alt="Turtles All the Way Down" /></div>
+						<div class="poster-memo">Turtles All the Way Down</div>
+					</a>
+
+					<!-- Set B: Duplicate set for seamless looping -->
+					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/america's team.png" alt="America's Team Duplicate" /></div>
+						<div class="poster-memo">America's Team</div>
+					</a>
+					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/an almost christmas story.png" alt="An Almost Christmas Story Duplicate" /></div>
+						<div class="poster-memo">An Almost Christmas Story</div>
+					</a>
+					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/being mary tyler moore.jpg" alt="Being Mary Tyler Moore Duplicate" /></div>
+						<div class="poster-memo">Being Mary Tyler Moore</div>
+					</a>
+					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/bob trevino likes it.png" alt="Bob Trevino Likes It Duplicate" /></div>
+						<div class="poster-memo">Bob Trevino Likes It</div>
+					</a>
+					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/canary black.png" alt="Canary Black Duplicate" /></div>
+						<div class="poster-memo">Canary Black</div>
+					</a>
+					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/commitment to life.jpg" alt="Commitment to Life Duplicate" /></div>
+						<div class="poster-memo">Commitment to Life</div>
+					</a>
+					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/dead whisper.png" alt="Dead Whisper Duplicate" /></div>
+						<div class="poster-memo">Dead Whisper</div>
+					</a>
+					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/donn of tiki.png" alt="Donn of Tiki Duplicate" /></div>
+						<div class="poster-memo">Donn of Tiki</div>
+					</a>
+					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/elizabeth taylor.png" alt="Elizabeth Taylor Duplicate" /></div>
+						<div class="poster-memo">Elizabeth Taylor</div>
+					</a>
+					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/excorcist 2.png" alt="Exorcist 2 Duplicate" /></div>
+						<div class="poster-memo">Exorcist 2</div>
+					</a>
+					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/final girl halloween 2.png" alt="Final Girl Halloween 2 Duplicate" /></div>
+						<div class="poster-memo">Final Girl Halloween 2</div>
+					</a>
+					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/forked.jpg" alt="Forked Duplicate" /></div>
+						<div class="poster-memo">Forked</div>
+					</a>
+					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/home is a hotel.jpg" alt="Home is a Hotel Duplicate" /></div>
+						<div class="poster-memo">Home is a Hotel</div>
+					</a>
+					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/how to make a killing.png" alt="How to Make a Killing Duplicate" /></div>
+						<div class="poster-memo">How to Make a Killing</div>
+					</a>
+					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/John Candy I like Me.png" alt="John Candy I Like Me Duplicate" /></div>
+						<div class="poster-memo">John Candy I Like Me</div>
+					</a>
+					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/kings of tupelo.png" alt="Kings of Tupelo Duplicate" /></div>
+						<div class="poster-memo">Kings of Tupelo</div>
+					</a>
+					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/miranda's victim.jpg" alt="Miranda's Victim Duplicate" /></div>
+						<div class="poster-memo">Miranda's Victim</div>
+					</a>
+					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/octopus.png" alt="Octopus Duplicate" /></div>
+						<div class="poster-memo">Octopus</div>
+					</a>
+					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/playing to survive.png" alt="Playing to Survive Duplicate" /></div>
+						<div class="poster-memo">Playing to Survive</div>
+					</a>
+					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/presumed innocent.png" alt="Presumed Innocent Duplicate" /></div>
+						<div class="poster-memo">Presumed Innocent</div>
+					</a>
+					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/red white royal blue.jpg" alt="Red White & Royal Blue Duplicate" /></div>
+						<div class="poster-memo">Red White & Royal Blue</div>
+					</a>
+					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/scouts honor.jpeg" alt="Scouts Honor Duplicate" /></div>
+						<div class="poster-memo">Scouts Honor</div>
+					</a>
+					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/secret lives of animals.png" alt="Secret Lives of Animals Duplicate" /></div>
+						<div class="poster-memo">Secret Lives of Animals</div>
+					</a>
+					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/speak no evil 2.png" alt="Speak No Evil 2 Duplicate" /></div>
+						<div class="poster-memo">Speak No Evil 2</div>
+					</a>
+					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/terminator zero.png" alt="Terminator Zero Duplicate" /></div>
+						<div class="poster-memo">Terminator Zero</div>
+					</a>
+					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/the debut.png" alt="The Debut Duplicate" /></div>
+						<div class="poster-memo">The Debut</div>
+					</a>
+					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/the island between tides.png" alt="The Island Between Tides Duplicate" /></div>
+						<div class="poster-memo">The Island Between Tides</div>
+					</a>
+					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/the problem with people.png" alt="The Problem with People Duplicate" /></div>
+						<div class="poster-memo">The Problem with People</div>
+					</a>
+					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/Turning point cold war.jpeg" alt="Turning Point: Cold War Duplicate" /></div>
+						<div class="poster-memo">Turning Point: Cold War</div>
+					</a>
+					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/turtles all the way down.png" alt="Turtles All the Way Down Duplicate" /></div>
+						<div class="poster-memo">Turtles All the Way Down</div>
+					</a>
+				</div>
+			</div>
+		</section>
+
+		<!-- SCRIPT TO HANDLE VIDEO BLUR & MANUAL ARROW CLICK TIMING -->
 		<script>
+			// Video overlay management
 			const video = document.getElementById('filmReelVideo');
 			const overlay = document.getElementById('videoOverlay');
 
 			if (video && overlay) {
-				// Hide overlay when video begins playing
-				video.addEventListener('play', () => {
-					overlay.classList.add('hidden');
-				});
+				video.addEventListener('play', () => overlay.classList.add('hidden'));
+				video.addEventListener('pause', () => overlay.classList.remove('hidden'));
+			}
 
-				// Optional: Bring overlay back if they pause it
-				video.addEventListener('pause', () => {
-					overlay.classList.remove('hidden');
+			// Manual arrow controls for Section 1 (Features & Series)
+			const container = document.getElementById('carouselContainer');
+			const prevBtn = document.getElementById('prevBtn');
+			const nextBtn = document.getElementById('nextBtn');
+			const scrollAmount = 400; // Pixels to bump layout horizontally per click
+
+			if (container && prevBtn && nextBtn) {
+				prevBtn.addEventListener('click', () => {
+					container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+				});
+				
+				nextBtn.addEventListener('click', () => {
+					container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+				});
+			}
+
+			// Manual arrow controls for Section 2 (Orchestration, Programming & Score Supervision)
+			const orchContainer = document.getElementById('orchCarouselContainer');
+			const orchPrevBtn = document.getElementById('orchPrevBtn');
+			const orchNextBtn = document.getElementById('orchNextBtn');
+
+			if (orchContainer && orchPrevBtn && orchNextBtn) {
+				orchPrevBtn.addEventListener('click', () => {
+					orchContainer.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+				});
+				
+				orchNextBtn.addEventListener('click', () => {
+					orchContainer.scrollBy({ left: scrollAmount, behavior: 'smooth' });
 				});
 			}
 		</script>
