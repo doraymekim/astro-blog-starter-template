@@ -164,7 +164,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				white-space: nowrap;
 			}
 
-			/* 4. NEW: STYLE THE THIRD PAGE (FEATURES & SERIES CAROUSEL) */
+			/* 4. STYLE THE THIRD PAGE (FEATURES & SERIES CAROUSEL) */
 			.carousel-section {
 				width: 100%;
 				height: 100vh;
@@ -172,7 +172,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				flex-direction: column;
 				justify-content: center;
 				align-items: center;
-				background: #050505; /* Deep luxury backdrop */
+				background: #050505; 
 				overflow: hidden;
 				box-sizing: border-box;
 				padding: 40px 0;
@@ -197,14 +197,12 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				margin: 0;
 				text-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
 			}
-			/* Carousel structural viewport container */
 			.carousel-container {
 				width: 100%;
 				overflow: hidden;
 				position: relative;
 				padding: 20px 0;
 			}
-			/* Linear gradient fade out caps on left and right edges */
 			.carousel-container::before,
 			.carousel-container::after {
 				background: linear-gradient(to right, #050505 0%, rgba(5, 5, 5, 0) 100%);
@@ -219,19 +217,17 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 			.carousel-container::before { left: 0; }
 			.carousel-container::after { right: 0; transform: rotateZ(180deg); }
 
-			/* Moving infinite layout wrapper track */
 			.carousel-track {
 				display: flex;
 				width: max-content;
 				gap: 2.5rem;
-				animation: scroll 35s linear infinite; /* Smooth slow transition timing */
+				/* Adjusted timing slightly for 17 posters to keep the scrolling fluid and comfortable */
+				animation: scroll 65s linear infinite; 
 			}
-			/* Pause the track timeline instantly when hovered */
 			.carousel-container:hover .carousel-track {
 				animation-play-state: paused;
 			}
 			
-			/* Individual poster node styles */
 			.poster-card {
 				width: 240px;
 				aspect-ratio: 2 / 3;
@@ -249,21 +245,18 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				object-fit: cover;
 				display: block;
 			}
-			/* Pop out and highlight single item focus behaviors */
 			.poster-card:hover {
 				transform: scale(1.08);
 				box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8), 0 0 15px rgba(255, 255, 255, 0.15);
 				z-index: 10;
 			}
-			/* Dim adjacent posters slightly when carousel track container is hovered */
 			.carousel-track:hover .poster-card:not(:hover) {
 				filter: brightness(0.5) contrast(0.85);
 			}
 
-			/* Infinite Horizontal Scroll Animation Frame Matrix */
 			@keyframes scroll {
 				0% { transform: translateX(0); }
-				100% { transform: translateX(calc(-50% - 1.25rem)); } /* Accounts for half width tracking loop break points */
+				100% { transform: translateX(calc(-50% - 1.25rem)); } 
 			}
 
 			@media (max-width: 768px) {
@@ -326,19 +319,43 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 
 			<div class="carousel-container">
 				<div class="carousel-track">
-					<!-- Set A: Your Main Movie Posters (Replace image paths with your actual project assets) -->
-					<div class="poster-card"><img src="/public/blog-placeholder-1.jpg" alt="Project 1" /></div>
-					<div class="poster-card"><img src="/public/blog-placeholder-2.jpg" alt="Project 2" /></div>
-					<div class="poster-card"><img src="/public/blog-placeholder-3.jpg" alt="Project 3" /></div>
-					<div class="poster-card"><img src="/public/blog-placeholder-4.jpg" alt="Project 4" /></div>
-					<div class="poster-card"><img src="/public/blog-placeholder-5.jpg" alt="Project 5" /></div>
+					<!-- Set A: Active Movie Posters from your public directory -->
+					<div class="poster-card"><img src="/hacks%20season%205.png" alt="Hacks Season 5" /></div>
+					<div class="poster-card"><img src="/hacks%20season%204.png" alt="Hacks Season 4" /></div>
+					<div class="poster-card"><img src="/heals.png" alt="Heals" /></div>
+					<div class="poster-card"><img src="/ILNY_PostersBlack.jpg" alt="ILNY Posters Black" /></div>
+					<div class="poster-card"><img src="/Lessons%20in%20Chemistry.png" alt="Lessons in Chemistry" /></div>
+					<div class="poster-card"><img src="/They%20Will%20Kill%20You.png" alt="They Will Kill You" /></div>
+					<div class="poster-card"><img src="/chupa.jpg" alt="Chupa" /></div>
+					<div class="poster-card"><img src="/death%20and%20other%20details.png" alt="Death and Other Details" /></div>
+					<div class="poster-card"><img src="/dept%20q.png" alt="Dept Q" /></div>
+					<div class="poster-card"><img src="/ezra.jpeg" alt="Ezra" /></div>
+					<div class="poster-card"><img src="/griselda%202.jpeg" alt="Griselda 2" /></div>
+					<div class="poster-card"><img src="/hacks%203.jpeg" alt="Hacks 3" /></div>
+					<div class="poster-card"><img src="/hacks%20season%201.png" alt="Hacks Season 1" /></div>
+					<div class="poster-card"><img src="/hacks%20season%202.png" alt="Hacks Season 2" /></div>
+					<div class="poster-card"><img src="/just%20beyond.png" alt="Just Beyond" /></div>
+					<div class="poster-card"><img src="/la%20reina%20del%20sur.png" alt="La Reina Del Sur" /></div>
+					<div class="poster-card"><img src="/monsieur%20spade%202.png" alt="Monsieur Spade 2" /></div>
 
-					<!-- Set B: Identical Duplicate Set (Ensures a clean infinite track loop seamlessly) -->
-					<div class="poster-card"><img src="/public/blog-placeholder-1.jpg" alt="Project 1 Duplicate" /></div>
-					<div class="poster-card"><img src="/public/blog-placeholder-2.jpg" alt="Project 2 Duplicate" /></div>
-					<div class="poster-card"><img src="/public/blog-placeholder-3.jpg" alt="Project 3 Duplicate" /></div>
-					<div class="poster-card"><img src="/public/blog-placeholder-4.jpg" alt="Project 4 Duplicate" /></div>
-					<div class="poster-card"><img src="/public/blog-placeholder-5.jpg" alt="Project 5 Duplicate" /></div>
+					<!-- Set B: Duplicate set for seamless looping -->
+					<div class="poster-card"><img src="/hacks%20season%205.png" alt="Hacks Season 5 Duplicate" /></div>
+					<div class="poster-card"><img src="/hacks%20season%204.png" alt="Hacks Season 4 Duplicate" /></div>
+					<div class="poster-card"><img src="/heals.png" alt="Heals Duplicate" /></div>
+					<div class="poster-card"><img src="/ILNY_PostersBlack.jpg" alt="ILNY Posters Black Duplicate" /></div>
+					<div class="poster-card"><img src="/Lessons%20in%20Chemistry.png" alt="Lessons in Chemistry Duplicate" /></div>
+					<div class="poster-card"><img src="/They%20Will%20Kill%20You.png" alt="They Will Kill You Duplicate" /></div>
+					<div class="poster-card"><img src="/chupa.jpg" alt="Chupa Duplicate" /></div>
+					<div class="poster-card"><img src="/death%20and%20other%20details.png" alt="Death and Other Details Duplicate" /></div>
+					<div class="poster-card"><img src="/dept%20q.png" alt="Dept Q Duplicate" /></div>
+					<div class="poster-card"><img src="/ezra.jpeg" alt="Ezra Duplicate" /></div>
+					<div class="poster-card"><img src="/griselda%202.jpeg" alt="Griselda 2 Duplicate" /></div>
+					<div class="poster-card"><img src="/hacks%203.jpeg" alt="Hacks 3 Duplicate" /></div>
+					<div class="poster-card"><img src="/hacks%20season%201.png" alt="Hacks Season 1 Duplicate" /></div>
+					<div class="poster-card"><img src="/hacks%20season%202.png" alt="Hacks Season 2 Duplicate" /></div>
+					<div class="poster-card"><img src="/just%20beyond.png" alt="Just Beyond Duplicate" /></div>
+					<div class="poster-card"><img src="/la%20reina%20del%20sur.png" alt="La Reina Del Sur Duplicate" /></div>
+					<div class="poster-card"><img src="/monsieur%20spade%202.png" alt="Monsieur Spade 2 Duplicate" /></div>
 				</div>
 			</div>
 		</section>
