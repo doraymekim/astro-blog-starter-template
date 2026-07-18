@@ -149,7 +149,12 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				text-align: center;
 				pointer-events: none; 
 				z-index: 5;
-				transition: opacity 0.4s ease;
+				transition: opacity 0.4s ease, visibility 0.4s ease;
+			}
+			/* Class to hide the overlay cleanly */
+			.video-blur-overlay.hidden {
+				opacity: 0;
+				visibility: hidden;
 			}
 			.video-subtitle {
 				color: white;
@@ -300,10 +305,10 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 		<!-- SECOND PAGE: SCROLLABLE VIDEO PLACEMENT WITH GAUSSIAN BLUR CARD -->
 		<section class="video-section">
 			<div class="video-wrapper">
-				<div class="video-blur-overlay">
+				<div id="videoOverlay" class="video-blur-overlay">
 					<h2 class="video-subtitle">Film Reel</h2>
 				</div>
-				<video controls preload="metadata" class="main-video" poster="/Ray Conduct.JPG">
+				<video id="filmReelVideo" controls preload="metadata" class="main-video" poster="/Ray Conduct.JPG">
 					<source src="https://www.dropbox.com/scl/fi/99aszddtu6zz9e2v2yrmr/Film-Reel-250705-24-rf23.mp4?rlkey=gbv08rw12a2w8r72eowok3hpt&st=6hj8hsfb&raw=1" type="video/mp4" />
 					Your browser does not support the video tag.
 				</video>
@@ -358,5 +363,23 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				</div>
 			</div>
 		</section>
+
+		<!-- JAVASCRIPT TO HIDE BLUR OVERLAY ON PLAY -->
+		<script>
+			const video = document.getElementById('filmReelVideo');
+			const overlay = document.getElementById('videoOverlay');
+
+			if (video && overlay) {
+				// Hide overlay when video begins playing
+				video.addEventListener('play', () => {
+					overlay.classList.add('hidden');
+				});
+
+				// Optional: Bring overlay back if they pause it
+				video.addEventListener('pause', () => {
+					overlay.classList.remove('hidden');
+				});
+			}
+		</script>
 	</body>
 </html>
