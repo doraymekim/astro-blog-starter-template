@@ -107,7 +107,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				transform: scale(1.1); 
 			}
 
-			/* 3. STYLE THE SCROLLABLE SECOND PAGE (VIDEO PLACEMENT WITH GAUSSIAN OVERLAY) */
+			/* 3. STYLE THE SCROLLABLE SECOND PAGE (VIDEO PLACEMENT) */
 			.video-section {
 				width: 100%;
 				height: 100vh;
@@ -119,7 +119,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				box-sizing: border-box;
 			}
 			.video-wrapper {
-				position: relative; /* Context layout for centering overlay on top of video */
+				position: relative; 
 				width: 100%;
 				max-width: 1250px;
 				aspect-ratio: 16 / 9;
@@ -135,28 +135,26 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				object-fit: cover;
 				background: #000000;
 			}
-
-			/* NEW: Frosted Glass Overlay floating on top of the video container */
 			.video-blur-overlay {
 				position: absolute;
 				top: 50%;
 				left: 50%;
 				transform: translate(-50%, -50%);
-				background: rgba(0, 0, 0, 0.35); /* Grounded background overlay tint */
+				background: rgba(0, 0, 0, 0.35); 
 				padding: 2rem 4rem;
 				border-radius: 12px;
 				backdrop-filter: blur(10px);
 				-webkit-backdrop-filter: blur(10px);
 				border: 1px solid rgba(255, 255, 255, 0.1);
 				text-align: center;
-				pointer-events: none; /* Allows click-through interaction straight to video buttons underneath */
+				pointer-events: none; 
 				z-index: 5;
 				transition: opacity 0.4s ease;
 			}
 			.video-subtitle {
 				color: white;
 				font-family: 'Paperlogy', sans-serif;
-				font-size: 3.15rem; /* Exactly 10% smaller than 3.5rem */
+				font-size: 3.15rem; 
 				font-weight: 300;
 				text-transform: uppercase;
 				letter-spacing: 6px;
@@ -166,34 +164,125 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				white-space: nowrap;
 			}
 
+			/* 4. NEW: STYLE THE THIRD PAGE (FEATURES & SERIES CAROUSEL) */
+			.carousel-section {
+				width: 100%;
+				height: 100vh;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				background: #050505; /* Deep luxury backdrop */
+				overflow: hidden;
+				box-sizing: border-box;
+				padding: 40px 0;
+			}
+			.carousel-title-box {
+				background: rgba(255, 255, 255, 0.03);
+				padding: 1.2rem 3rem;
+				border-radius: 8px;
+				backdrop-filter: blur(6px);
+				-webkit-backdrop-filter: blur(6px);
+				border: 1px solid rgba(255, 255, 255, 0.05);
+				margin-bottom: 4vh;
+				text-align: center;
+			}
+			.carousel-section-title {
+				color: white;
+				font-family: 'Paperlogy', sans-serif;
+				font-size: 2.5rem;
+				font-weight: 300;
+				text-transform: uppercase;
+				letter-spacing: 5px;
+				margin: 0;
+				text-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+			}
+			/* Carousel structural viewport container */
+			.carousel-container {
+				width: 100%;
+				overflow: hidden;
+				position: relative;
+				padding: 20px 0;
+			}
+			/* Linear gradient fade out caps on left and right edges */
+			.carousel-container::before,
+			.carousel-container::after {
+				background: linear-gradient(to right, #050505 0%, rgba(5, 5, 5, 0) 100%);
+				content: "";
+				height: 100%;
+				position: absolute;
+				width: 150px;
+				z-index: 2;
+				top: 0;
+				pointer-events: none;
+			}
+			.carousel-container::before { left: 0; }
+			.carousel-container::after { right: 0; transform: rotateZ(180deg); }
+
+			/* Moving infinite layout wrapper track */
+			.carousel-track {
+				display: flex;
+				width: max-content;
+				gap: 2.5rem;
+				animation: scroll 35s linear infinite; /* Smooth slow transition timing */
+			}
+			/* Pause the track timeline instantly when hovered */
+			.carousel-container:hover .carousel-track {
+				animation-play-state: paused;
+			}
+			
+			/* Individual poster node styles */
+			.poster-card {
+				width: 240px;
+				aspect-ratio: 2 / 3;
+				border-radius: 6px;
+				overflow: hidden;
+				box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+				border: 1px solid rgba(255, 255, 255, 0.08);
+				transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s ease, filter 0.4s ease;
+				cursor: pointer;
+				background-color: #111111;
+			}
+			.poster-card img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				display: block;
+			}
+			/* Pop out and highlight single item focus behaviors */
+			.poster-card:hover {
+				transform: scale(1.08);
+				box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8), 0 0 15px rgba(255, 255, 255, 0.15);
+				z-index: 10;
+			}
+			/* Dim adjacent posters slightly when carousel track container is hovered */
+			.carousel-track:hover .poster-card:not(:hover) {
+				filter: brightness(0.5) contrast(0.85);
+			}
+
+			/* Infinite Horizontal Scroll Animation Frame Matrix */
+			@keyframes scroll {
+				0% { transform: translateX(0); }
+				100% { transform: translateX(calc(-50% - 1.25rem)); } /* Accounts for half width tracking loop break points */
+			}
+
 			@media (max-width: 768px) {
-				.logo-wrapper {
-					top: 6vh;
-				}
-				.site-logo {
-					width: 80px; 
-				}
-				.text-overlay {
-					padding: 1.5rem 2rem;
-					margin-top: 8vh;
-				}
-				.site-title {
-					font-size: 2.2rem;
-					letter-spacing: 4px;
-				}
-				.social-link {
-					font-size: 1.7rem; 
-				}
-				.video-section {
-					height: auto;
-					padding: 60px 20px;
-				}
-				.video-blur-overlay {
-					padding: 1rem 2rem;
-				}
-				.video-subtitle {
-					font-size: 1.98rem; /* Scaled cleanly for mobile dimensions too */
-					letter-spacing: 4px;
+				.logo-wrapper { top: 6vh; }
+				.site-logo { width: 80px; }
+				.text-overlay { padding: 1.5rem 2rem; margin-top: 8vh; }
+				.site-title { font-size: 2.2rem; letter-spacing: 4px; }
+				.social-link { font-size: 1.7rem; }
+				.video-section { height: auto; padding: 60px 20px; }
+				.video-blur-overlay { padding: 1rem 2rem; }
+				.video-subtitle { font-size: 1.98rem; letter-spacing: 4px; }
+				
+				.carousel-section { height: auto; padding: 60px 0; }
+				.carousel-section-title { font-size: 1.8rem; letter-spacing: 3px; }
+				.carousel-title-box { padding: 0.8rem 1.5rem; }
+				.poster-card { width: 160px; }
+				@keyframes scroll {
+					0% { transform: translateX(0); }
+					100% { transform: translateX(calc(-50% - 1.25rem)); }
 				}
 			}
 		</style>
@@ -219,15 +308,38 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 		<!-- SECOND PAGE: SCROLLABLE VIDEO PLACEMENT WITH GAUSSIAN BLUR CARD -->
 		<section class="video-section">
 			<div class="video-wrapper">
-				<!-- Gaussian Blur Box -->
 				<div class="video-blur-overlay">
 					<h2 class="video-subtitle">Film Reel</h2>
 				</div>
-
 				<video controls preload="metadata" class="main-video" poster="/Ray Conduct.JPG">
 					<source src="/Film%20Reel%20250705%2024%20rf23.mp4" type="video/mp4" />
 					Your browser does not support the video tag.
 				</video>
+			</div>
+		</section>
+
+		<!-- THIRD PAGE: SCROLLABLE "FEATURES & SERIES" AUTO-PLAY CAROUSEL -->
+		<section class="carousel-section">
+			<div class="carousel-title-box">
+				<h2 class="carousel-section-title">Features & Series</h2>
+			</div>
+
+			<div class="carousel-container">
+				<div class="carousel-track">
+					<!-- Set A: Your Main Movie Posters (Replace image paths with your actual project assets) -->
+					<div class="poster-card"><img src="/public/blog-placeholder-1.jpg" alt="Project 1" /></div>
+					<div class="poster-card"><img src="/public/blog-placeholder-2.jpg" alt="Project 2" /></div>
+					<div class="poster-card"><img src="/public/blog-placeholder-3.jpg" alt="Project 3" /></div>
+					<div class="poster-card"><img src="/public/blog-placeholder-4.jpg" alt="Project 4" /></div>
+					<div class="poster-card"><img src="/public/blog-placeholder-5.jpg" alt="Project 5" /></div>
+
+					<!-- Set B: Identical Duplicate Set (Ensures a clean infinite track loop seamlessly) -->
+					<div class="poster-card"><img src="/public/blog-placeholder-1.jpg" alt="Project 1 Duplicate" /></div>
+					<div class="poster-card"><img src="/public/blog-placeholder-2.jpg" alt="Project 2 Duplicate" /></div>
+					<div class="poster-card"><img src="/public/blog-placeholder-3.jpg" alt="Project 3 Duplicate" /></div>
+					<div class="poster-card"><img src="/public/blog-placeholder-4.jpg" alt="Project 4 Duplicate" /></div>
+					<div class="poster-card"><img src="/public/blog-placeholder-5.jpg" alt="Project 5 Duplicate" /></div>
+				</div>
 			</div>
 		</section>
 	</body>
