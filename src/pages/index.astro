@@ -62,11 +62,35 @@ const SITE_DESCRIPTION = "Composer & Score Supervisor Portfolio";
 			.navbar-brand {
 				color: white;
 				font-size: 1.3rem;
-				font-weight: 500;
+				font-weight: 300;
 				text-transform: uppercase;
 				letter-spacing: 2px;
 				text-decoration: none;
 			}
+			.nav-left {
+				display: flex;
+				align-items: center;
+			}
+			
+			/* subtle floating animation for top-left nav items */
+			.nav-left {
+				animation: navFloat 6s ease-in-out infinite alternate;
+			}
+			@keyframes navFloat {
+				from { transform: translateY(0); }
+				to { transform: translateY(-4px); }
+			}
+			.nav-link:hover { transform: translateY(-6px) scale(1.02); }
+			.nav-link {
+				color: white;
+				font-size: 1rem;
+				text-decoration: none;
+				margin-right: 1rem;
+				padding: 0.35rem 0.65rem;
+				border-radius: 6px;
+				transition: background 180ms ease;
+			}
+			.nav-link:hover { background: rgba(255,255,255,0.06); }
 
 			/* HERO LAYER BACKGROUND */
 			.hero-container {
@@ -82,19 +106,15 @@ const SITE_DESCRIPTION = "Composer & Score Supervisor Portfolio";
 				background-position: center;
 				background-repeat: no-repeat;
 			}
-			.logo-wrapper {
-				position: absolute;
-				top: 12vh;
-				left: 50%;
-				transform: translateX(-50%);
-				z-index: 10;
-			}
+			.logo-wrapper { display: none; }
 			.site-logo {
-				width: 110px; 
+				width: auto;
+				max-height: 44px;
 				height: auto;
 				object-fit: contain;
 				filter: drop-shadow(0px 4px 12px rgba(0, 0, 0, 0.5));
 			}
+			.nav-right { display: flex; align-items: center; gap: 0.75rem; }
 			
 			/* HERO TEXT OVERLAY & FROSTED GLASS ADJUSTMENT */
 			.text-overlay {
@@ -122,6 +142,14 @@ const SITE_DESCRIPTION = "Composer & Score Supervisor Portfolio";
 				margin: 0;
 				padding: 0;
 				text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+			}
+			.hero-name {
+				color: white;
+				font-size: 3.6rem;
+				font-weight: 400;
+				margin: 0;
+				letter-spacing: 1px;
+				text-transform: uppercase;
 			}
 
 			.social-icons {
@@ -185,13 +213,14 @@ const SITE_DESCRIPTION = "Composer & Score Supervisor Portfolio";
 				backdrop-filter: blur(12px);
 				-webkit-backdrop-filter: blur(12px);
 				text-align: center;
-				pointer-events: none; 
+				pointer-events: auto;
 				z-index: 5;
 				transition: opacity 0.4s ease, visibility 0.4s ease;
 			}
 			.video-blur-overlay.hidden {
 				opacity: 0;
 				visibility: hidden;
+				pointer-events: none;
 			}
 			
 			.overlay-logo {
@@ -273,6 +302,19 @@ const SITE_DESCRIPTION = "Composer & Score Supervisor Portfolio";
 				line-height: 1.4; 
 			}
 
+			/* Hover animation for carousel banner titles */
+			.carousel-section-title {
+				transition: transform 320ms cubic-bezier(.2,.9,.3,1), letter-spacing 260ms ease, text-shadow 320ms ease, color 260ms ease;
+			}
+			.carousel-header-bg:hover .carousel-section-title,
+			.carousel-title-box:hover .carousel-section-title,
+			.carousel-section-title:hover {
+				transform: translateY(-6px) scale(1.02);
+				letter-spacing: 7px;
+				text-shadow: 0 8px 28px rgba(255,255,255,0.06), 0 6px 18px rgba(0,0,0,0.9);
+				color: #ffffff;
+			}
+
 			.carousel-section {
 				width: 100%;
 				background: #050505; 
@@ -305,18 +347,16 @@ const SITE_DESCRIPTION = "Composer & Score Supervisor Portfolio";
 				display: flex;
 				width: max-content;
 				gap: 2.5rem;
-				animation: scroll 82.2s linear infinite; 
+				animation: scroll 192.2s linear infinite;
 				will-change: transform;
-				transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
 			}
 			
 			#orchCarouselTrack {
-				animation: scroll 98.6s linear infinite;
-				transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+				animation: scroll 250s linear infinite;
 			}
 
-			.carousel-track:hover,
-			#orchCarouselTrack:hover {
+			.carousel-container:hover .carousel-track,
+			.carousel-container:hover #orchCarouselTrack {
 				animation-play-state: paused;
 			}
 			
@@ -334,10 +374,36 @@ const SITE_DESCRIPTION = "Composer & Score Supervisor Portfolio";
 				background-color: #111111;
 				text-decoration: none;
 			}
+			.poster-number-badge {
+				display: none !important;
+			}
 			.image-wrapper {
 				width: 100%;
 				aspect-ratio: 2 / 3;
 				overflow: hidden;
+				position: relative;
+			}
+			.poster-card::before {
+				content: '';
+				position: absolute;
+				inset: 0;
+				pointer-events: none;
+				border-radius: 6px;
+				box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.15);
+				transition: box-shadow 0.25s ease, transform 0.25s ease;
+				z-index: 2;
+			}
+			.poster-card:hover::before {
+				box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.95), 0 0 45px rgba(255, 255, 255, 0.55), 0 0 30px rgba(102, 192, 244, 0.85);
+				transform: scale(1.03);
+			}
+			.poster-card img,
+			.poster-card .poster-memo {
+				position: relative;
+				z-index: 1;
+			}
+			.poster-card:hover .image-wrapper {
+				box-shadow: 0 0 24px rgba(102, 192, 244, 0.22);
 			}
 			.poster-card img {
 				width: 100%;
@@ -369,46 +435,39 @@ const SITE_DESCRIPTION = "Composer & Score Supervisor Portfolio";
 				filter: brightness(0.4) contrast(0.85);
 			}
 
-			.carousel-arrow {
-				position: absolute;
-				top: 50%;
-				transform: translateY(-50%);
-				background: rgba(0, 0, 0, 0.65);
-				border: 1px solid rgba(255, 255, 255, 0.2);
-				color: rgba(255, 255, 255, 0.7);
-				width: 50px;
-				height: 50px;
-				border-radius: 50%;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				font-size: 1.25rem;
-				cursor: pointer;
-				z-index: 25; 
-				transition: all 0.3s ease;
-				backdrop-filter: blur(4px);
-				-webkit-backdrop-filter: blur(4px);
+			.carousel-container:hover .carousel-track {
+				animation-play-state: paused;
 			}
-			.carousel-arrow:hover {
-				background: rgba(255, 255, 255, 0.9);
-				color: #000000;
-				border-color: #ffffff;
-				box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
-			}
-			.carousel-arrow.left { left: 25px; }
-			.carousel-arrow.right { right: 25px; }
+
 
 			/* BRAND COLORIZATION TILES (DARK GREEN SLATE THEME) */
 			.listen-section {
 				width: 100%;
-				background: #030604;
+				/* background handled by pseudo-element for blurred image */
+				background: none;
 				padding: 80px 40px;
 				box-sizing: border-box;
-				border-top: 1px solid rgba(255, 255, 255, 0.05);
+				position: relative;
+				overflow: hidden;
+				border-top: none; /* removed thin line below orchestration carousel */
+			}
+			.listen-section::before {
+				content: "";
+				position: absolute;
+				inset: 0;
+				background-image: url('/blog-placeholder-2.jpg');
+				background-size: cover;
+				background-position: center;
+				filter: blur(8px) brightness(0.6) saturate(0.95);
+				transform: scaleY(-1) scale(1.03); /* flip image vertically so bright area appears at top */
+				transform-origin: center;
+				z-index: 0;
 			}
 			.listen-container {
 				max-width: 1400px;
 				margin: 0 auto;
+				position: relative;
+				z-index: 1;
 			}
 			.listen-title-wrapper {
 				text-align: center;
@@ -459,7 +518,44 @@ const SITE_DESCRIPTION = "Composer & Score Supervisor Portfolio";
 				padding: 90px 40px;
 				box-sizing: border-box;
 				border-top: 1px solid rgba(255, 255, 255, 0.03);
+				position: relative;
+				overflow: hidden;
 			}
+
+			/* Pale Cachexia section: use a blurred background via a pseudo-element */
+			.project-content-section.pale-cachexia-section {
+				/* keep section layout but rely on ::before for the image + blur */
+				background: none;
+				padding: 90px 40px;
+				box-sizing: border-box;
+				border-top: none;
+			}
+			.project-content-section.pale-cachexia-section::before {
+				content: "";
+				position: absolute;
+				inset: 0;
+				background-image: url('/blog-placeholder-5.jpg');
+				background-size: cover;
+				background-position: center;
+				filter: blur(8px) brightness(0.65) saturate(0.9);
+				transform: scale(1.05);
+				z-index: 0;
+			}
+			.project-content-section.pale-cachexia-section > .project-grid-container { position: relative; z-index: 1; }
+			/* Combined Prometheus + Anoldor section background */
+			.project-content-section.prometheus-anoldor-section { background: none; padding: 40px 40px 90px 40px; }
+			.project-content-section.prometheus-anoldor-section::before {
+				content: "";
+				position: absolute;
+				inset: 0;
+				background-image: url('/blog-placeholder-4.jpg');
+				background-size: cover;
+				background-position: center;
+				filter: blur(8px) brightness(0.6) saturate(0.9);
+				transform: scale(1.05);
+				z-index: 0;
+			}
+			.project-content-section.prometheus-anoldor-section > .project-grid-container { position: relative; z-index: 1; }
 			.project-grid-container {
 				max-width: 1250px;
 				margin: 0 auto;
@@ -475,24 +571,29 @@ const SITE_DESCRIPTION = "Composer & Score Supervisor Portfolio";
 			}
 			.project-image-frame {
 				width: 100%;
-				max-width: 370px;
-				aspect-ratio: 2 / 3;
+				/* increased max-width by 25% (370 * 1.25 = 462.5) */
+				max-width: 463px;
+				/* removed fixed portrait aspect-ratio so horizontal banners keep their shape */
 				border-radius: 10px;
 				overflow: hidden;
+				position: relative;
 				box-shadow: 0 12px 35px rgba(0, 0, 0, 0.85);
 				border: 1px solid rgba(255, 255, 255, 0.08);
 				transition: transform 0.45s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.45s ease;
 			}
+
 			.project-image-frame:hover {
 				transform: scale(1.05) translateY(-5px);
 				box-shadow: 0 20px 45px rgba(0, 0, 0, 0.95), 0 0 15px rgba(255, 255, 255, 0.1);
 			}
 			.project-image-frame img {
 				width: 100%;
-				height: 100%;
-				object-fit: cover;
+				height: auto;
 				display: block;
 			}
+
+			/* specific background for the Pale Cachexia banner container */
+			/* removed individual frame background for pale cachexia; section-level background handles it */
 			.project-right-col {
 				display: flex;
 				flex-direction: column;
@@ -614,26 +715,27 @@ const SITE_DESCRIPTION = "Composer & Score Supervisor Portfolio";
 			}
 		</style>
 	</head>
-	<body>
-		<!-- TOP RIGHT BAR SHOWS CORE PORTFOLIO HEADER -->
+	<body id="top">
+		<!-- TOP BAR: contact on left, logo on right -->
 		<nav class="site-navbar">
-			<a href="/" class="navbar-brand">Ray D. Kim</a>
+			<div class="nav-left">
+				<a href="/bio.html" class="nav-link">Bio</a>
+				<a href="/contact.html" class="nav-link">Contact</a>
+			</div>
+			<div class="nav-right">
+				<a href="/" aria-label="Home">
+					<img src="/iTunesArtwork@2x.png" alt="Superrray Productions Logo" class="site-logo" />
+				</a>
+			</div>
 		</nav>
 
 		<!-- FIRST PAGE: MAIN BRANDING HERO BLOCK -->
 		<main class="hero-container">
-			<div class="logo-wrapper">
-				<img src="/iTunesArtwork@2x.png" alt="Superrray Productions Logo" class="site-logo" />
-			</div>
 			
 			<div class="text-overlay">
+				<h2 class="hero-name">RAY D. KIM</h2>
 				<h1 class="site-title">Superrray Productions</h1>
-				<div class="social-icons">
-					<a href="https://www.imdb.com/name/nm8105113/" target="_blank" class="social-link" aria-label="IMDb"><i class="fa-brands fa-imdb"></i></a>
-					<a href="https://www.instagram.com/doraymekim/" target="_blank" class="social-link" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-					<a href="https://music.apple.com/us/artist/ray-d-kim/780192649" target="_blank" class="social-link" aria-label="Apple Music"><i class="fa-brands fa-apple"></i></a>
-					<a href="https://open.spotify.com/artist/1JHFQv8E0HG7mmKpuftPLB?trackId=6DDJvEGIgYBg4oO6kdh1AF" target="_blank" class="social-link" aria-label="Spotify"><i class="fa-brands fa-spotify"></i></a>
-				</div>
+				
 			</div>
 		</main>
 
@@ -646,7 +748,7 @@ const SITE_DESCRIPTION = "Composer & Score Supervisor Portfolio";
 					<h2 class="video-subtitle">Film Reel</h2>
 				</div>
 				<video id="filmReelVideo" controls preload="auto" class="main-video" poster="/la session2.jpeg">
-					<source src="https://www.dropbox.com/scl/fi/99aszddtu6zz9e2v2yrmr/Film-Reel-250705-24-rf23.mp4?rlkey=gbv08rw12a2w8r72eowok3hpt&st=6hj8hsfb&raw=1" type="video/mp4" />
+					<source src="https://www.dropbox.com/scl/fi/h7s2jyihjzqkoia25blru/Film-Reel-250705-30.mov?rlkey=snobv0d7o1e1n67bcaxbttjek&raw=1" type="video/mp4" />
 					Your browser does not support the video tag.
 				</video>
 			</div>
@@ -661,154 +763,80 @@ const SITE_DESCRIPTION = "Composer & Score Supervisor Portfolio";
 
 		<!-- THIRD PAGE: SCROLLABLE FILM REEL CAROUSEL -->
 		<section class="carousel-section">
-			<button class="carousel-arrow left" id="prevBtn" aria-label="Scroll Left">
-				<i class="fa-solid fa-chevron-left"></i>
-			</button>
-			<button class="carousel-arrow right" id="nextBtn" aria-label="Scroll Right">
-				<i class="fa-solid fa-chevron-right"></i>
-			</button>
 
 			<div class="carousel-container">
 				<div class="carousel-track" id="carouselTrack">
 					<!-- Set A -->
-					<a href="https://www.imdb.com/title/tt15671712/" target="_blank" class="poster-card">
+					<a href="https://www.imdb.com/title/tt11815682/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/hacks%20season%202.png" alt="Hacks Season 2" /></div>
+						<div class="poster-memo">HBO Max - Hacks Season 2 (2022) | Additional Music</div>
+					</a>
+					<a href="https://www.imdb.com/title/tt14923260/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/chupa.jpg" alt="Chupa" /></div>
+						<div class="poster-memo">Netflix - Chupa (2023) | Additional Music</div>
+					</a>
+					<a href="https://www.imdb.com/title/tt13911628/" target="_blank" class="poster-card">
 						<div class="image-wrapper"><img src="/Lessons%20in%20Chemistry.png" alt="Lessons in Chemistry" /></div>
 						<div class="poster-memo">Apple TV+ - Lessons in Chemistry (2023) | Additional Music</div>
 					</a>
-					<a href="https://www.imdb.com/title/tt31871239/" target="_blank" class="poster-card">
+					<a href="https://www.imdb.com/title/tt31728330" target="_blank" class="poster-card">
 						<div class="image-wrapper"><img src="/They%20Will%20Kill%20You.png" alt="They Will Kill You" /></div>
-						<div class="poster-memo">Feature Film - They Will Kill You | Additional Music</div>
+						<div class="poster-memo">Warner Bros. - They Will Kill You (2026) | Additional Music</div>
 					</a>
-					<a href="https://www.imdb.com/title/tt11815650/" target="_blank" class="poster-card">
+					<a href="https://www.imdb.com/title/tt11815682/" target="_blank" class="poster-card">
 						<div class="image-wrapper"><img src="/hacks%20season%205.png" alt="Hacks Season 5" /></div>
-						<div class="poster-memo">Max - Hacks Season 5 | Additional Music</div>
+						<div class="poster-memo">HBO Max - Hacks Season 5 (2026) | Additional Music</div>
 					</a>
-					<a href="https://www.imdb.com/title/tt31053169/" target="_blank" class="poster-card">
+					<a href="https://www.imdb.com/title/tt27995114/" target="_blank" class="poster-card">
 						<div class="image-wrapper"><img src="/dept%20q.png" alt="Dept Q" /></div>
-						<div class="poster-memo">Netflix - Dept Q | Additional Music</div>
+						<div class="poster-memo">Netflix - Dept Q (2025) | Additional Music</div>
 					</a>
 					<a href="https://www.imdb.com/title/tt15837600/" target="_blank" class="poster-card">
 						<div class="image-wrapper"><img src="/griselda%202.jpeg" alt="Griselda 2" /></div>
 						<div class="poster-memo">Netflix - Griselda (2024) | Additional Music</div>
 					</a>
-					<a href="https://www.imdb.com/title/tt14620024/" target="_blank" class="poster-card">
+					<a href="https://www.imdb.com/title/tt20315818/" target="_blank" class="poster-card">
 						<div class="image-wrapper"><img src="/ezra.jpeg" alt="Ezra" /></div>
 						<div class="poster-memo">Feature Film - Ezra (2023) | Additional Music</div>
 					</a>
-					<a href="https://www.imdb.com/title/tt1847610/" target="_blank" class="poster-card">
+					<a href="https://www.imdb.com/title/tt1704637/" target="_blank" class="poster-card">
 						<div class="image-wrapper"><img src="/la%20reina%20del%20sur.png" alt="La Reina Del Sur" /></div>
-						<div class="poster-memo">Telemundo - La Reina Del Sur | Additional Music</div>
+						<div class="poster-memo">NBCTelemundo - La Reina Del Sur (2022)| Additional Music</div>
 					</a>
-					<a href="https://www.imdb.com/title/tt11815650/" target="_blank" class="poster-card">
+					<a href="https://www.imdb.com/title/tt11815682/" target="_blank" class="poster-card">
 						<div class="image-wrapper"><img src="/hacks%20season%204.png" alt="Hacks Season 4" /></div>
-						<div class="poster-memo">Max - Hacks Season 4 | Additional Music</div>
+						<div class="poster-memo">HBO Max - Hacks Season 4 (2024) | Additional Music</div>
 					</a>
-					<a href="https://www.imdb.com/title/tt12745190/" target="_blank" class="poster-card">
+					<a href="https://www.imdb.com/title/tt29085018/" target="_blank" class="poster-card">
 						<div class="image-wrapper"><img src="/heals.png" alt="Heals" /></div>
-						<div class="poster-memo">Series - Heals | Additional Music</div>
+						<div class="poster-memo">N8Films - Heals (2026) | Additional Music</div>
 					</a>
-					<a href="https://www.imdb.com/title/tt0942618/" target="_blank" class="poster-card">
-						<div class="image-wrapper"><img src="/ILNY_PostersBlack.jpg" alt="ILNY Posters Black" /></div>
-						<div class="poster-memo">Series - I Love New York | Additional Music</div>
-					</a>
-					<a href="https://www.imdb.com/title/tt13054178/" target="_blank" class="poster-card">
-						<div class="image-wrapper"><img src="/chupa.jpg" alt="Chupa" /></div>
-						<div class="poster-memo">Netflix - Chupa (2023) | Additional Music</div>
-					</a>
-					<a href="https://www.imdb.com/title/tt15367622/" target="_blank" class="poster-card">
+					<a href="https://www.imdb.com/title/tt15439048/" target="_blank" class="poster-card">
 						<div class="image-wrapper"><img src="/death%20and%20other%20details.png" alt="Death and Other Details" /></div>
-						<div class="poster-memo">Hulu - Death and Other Details | Additional Music</div>
+						<div class="poster-memo">Hulu - Death and Other Details (2024) | Additional Music</div>
 					</a>
-					<a href="https://www.imdb.com/title/tt11815650/" target="_blank" class="poster-card">
+					<a href="https://www.imdb.com/title/tt11815682/" target="_blank" class="poster-card">
 						<div class="image-wrapper"><img src="/hacks%203.jpeg" alt="Hacks 3" /></div>
-						<div class="poster-memo">Max - Hacks Season 3 | Additional Music</div>
+						<div class="poster-memo">HBO Max - Hacks Season 3 (2023) | Additional Music</div>
 					</a>
-					<a href="https://www.imdb.com/title/tt11815650/" target="_blank" class="poster-card">
-						<div class="image-wrapper"><img src="/hacks%20season%201.png" alt="Hacks Season 1" /></div>
-						<div class="poster-memo">Max - Hacks Season 1 | Additional Music</div>
-					</a>
-					<a href="https://www.imdb.com/title/tt11815650/" target="_blank" class="poster-card">
-						<div class="image-wrapper"><img src="/hacks%20season%202.png" alt="Hacks Season 2" /></div>
-						<div class="poster-memo">Max - Hacks Season 2 | Additional Music</div>
-					</a>
-					<a href="https://www.imdb.com/title/tt13243916/" target="_blank" class="poster-card">
+					<a href="https://www.imdb.com/title/tt12286434/" target="_blank" class="poster-card">
 						<div class="image-wrapper"><img src="/just%20beyond.png" alt="Just Beyond" /></div>
 						<div class="poster-memo">Disney+ - Just Beyond (2021) | Additional Music</div>
 					</a>
-					<a href="https://www.imdb.com/title/tt18306126/" target="_blank" class="poster-card">
+					<a href="https://www.imdb.com/title/tt14203572/" target="_blank" class="poster-card">
 						<div class="image-wrapper"><img src="/monsieur%20spade%202.png" alt="Monsieur Spade 2" /></div>
-						<div class="poster-memo">AMC - Monsieur Spade | Additional Music</div>
+						<div class="poster-memo">AMC - Monsieur Spade (2024) | Additional Music</div>
+					</a>
+					<a href="https://www.imdb.com/title/tt11815682/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/hacks%20season%201.png" alt="Hacks Season 1" /></div>
+						<div class="poster-memo">HBO Max - Hacks Season 1 (2021) | Additional Music</div>
+					</a>
+					<a href="https://www.therookies.co/entries/40994" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/ILNY_PostersBlack.jpg" alt="ILNY Posters Black" /></div>
+						<div class="poster-memo">I Love New York (2026) | Composer</div>
 					</a>
 
-					<!-- Set B -->
-					<a href="https://www.imdb.com/title/tt15671712/" target="_blank" class="poster-card">
-						<div class="image-wrapper"><img src="/Lessons%20in%20Chemistry.png" alt="Lessons in Chemistry Duplicate" /></div>
-						<div class="poster-memo">Apple TV+ - Lessons in Chemistry (2023) | Additional Music</div>
-					</a>
-					<a href="https://www.imdb.com/title/tt31871239/" target="_blank" class="poster-card">
-						<div class="image-wrapper"><img src="/They%20Will%20Kill%20You.png" alt="They Will Kill You Duplicate" /></div>
-						<div class="poster-memo">Feature Film - They Will Kill You | Additional Music</div>
-					</a>
-					<a href="https://www.imdb.com/title/tt11815650/" target="_blank" class="poster-card">
-						<div class="image-wrapper"><img src="/hacks%20season%205.png" alt="Hacks Season 5 Duplicate" /></div>
-						<div class="poster-memo">Max - Hacks Season 5 | Additional Music</div>
-					</a>
-					<a href="https://www.imdb.com/title/tt31053169/" target="_blank" class="poster-card">
-						<div class="image-wrapper"><img src="/dept%20q.png" alt="Dept Q Duplicate" /></div>
-						<div class="poster-memo">Netflix - Dept Q | Additional Music</div>
-					</a>
-					<a href="https://www.imdb.com/title/tt15837600/" target="_blank" class="poster-card">
-						<div class="image-wrapper"><img src="/griselda%202.jpeg" alt="Griselda 2 Duplicate" /></div>
-						<div class="poster-memo">Netflix - Griselda (2024) | Additional Music</div>
-					</a>
-					<a href="https://www.imdb.com/title/tt14620024/" target="_blank" class="poster-card">
-						<div class="image-wrapper"><img src="/ezra.jpeg" alt="Ezra Duplicate" /></div>
-						<div class="poster-memo">Feature Film - Ezra (2023) | Additional Music</div>
-					</a>
-					<a href="https://www.imdb.com/title/tt1847610/" target="_blank" class="poster-card">
-						<div class="image-wrapper"><img src="/la%20reina%20del%20sur.png" alt="La Reina Del Sur Duplicate" /></div>
-						<div class="poster-memo">Telemundo - La Reina Del Sur | Additional Music</div>
-					</a>
-					<a href="https://www.imdb.com/title/tt11815650/" target="_blank" class="poster-card">
-						<div class="image-wrapper"><img src="/hacks%20season%204.png" alt="Hacks Season 4 Duplicate" /></div>
-						<div class="poster-memo">Max - Hacks Season 4 | Additional Music</div>
-					</a>
-					<a href="https://www.imdb.com/title/tt12745190/" target="_blank" class="poster-card">
-						<div class="image-wrapper"><img src="/heals.png" alt="Heals Duplicate" /></div>
-						<div class="poster-memo">Series - Heals | Additional Music</div>
-					</a>
-					<a href="https://www.imdb.com/title/tt0942618/" target="_blank" class="poster-card">
-						<div class="image-wrapper"><img src="/ILNY_PostersBlack.jpg" alt="ILNY Posters Black Duplicate" /></div>
-						<div class="poster-memo">Series - I Love New York | Additional Music</div>
-					</a>
-					<a href="https://www.imdb.com/title/tt13054178/" target="_blank" class="poster-card">
-						<div class="image-wrapper"><img src="/chupa.jpg" alt="Chupa Duplicate" /></div>
-						<div class="poster-memo">Netflix - Chupa (2023) | Additional Music</div>
-					</a>
-					<a href="https://www.imdb.com/title/tt15367622/" target="_blank" class="poster-card">
-						<div class="image-wrapper"><img src="/death%20and%20other%20details.png" alt="Death and Other Details Duplicate" /></div>
-						<div class="poster-memo">Hulu - Death and Other Details | Additional Music</div>
-					</a>
-					<a href="https://www.imdb.com/title/tt11815650/" target="_blank" class="poster-card">
-						<div class="image-wrapper"><img src="/hacks%203.jpeg" alt="Hacks 3 Duplicate" /></div>
-						<div class="poster-memo">Max - Hacks Season 3 | Additional Music</div>
-					</a>
-					<a href="https://www.imdb.com/title/tt11815650/" target="_blank" class="poster-card">
-						<div class="image-wrapper"><img src="/hacks%20season%201.png" alt="Hacks Season 1 Duplicate" /></div>
-						<div class="poster-memo">Max - Hacks Season 1 | Additional Music</div>
-					</a>
-					<a href="https://www.imdb.com/title/tt11815650/" target="_blank" class="poster-card">
-						<div class="image-wrapper"><img src="/hacks%20season%202.png" alt="Hacks Season 2 Duplicate" /></div>
-						<div class="poster-memo">Max - Hacks Season 2 | Additional Music</div>
-					</a>
-					<a href="https://www.imdb.com/title/tt13243916/" target="_blank" class="poster-card">
-						<div class="image-wrapper"><img src="/just%20beyond.png" alt="Just Beyond Duplicate" /></div>
-						<div class="poster-memo">Disney+ - Just Beyond (2021) | Additional Music</div>
-					</a>
-					<a href="https://www.imdb.com/title/tt18306126/" target="_blank" class="poster-card">
-						<div class="image-wrapper"><img src="/monsieur%20spade%202.png" alt="Monsieur Spade 2 Duplicate" /></div>
-						<div class="poster-memo">AMC - Monsieur Spade | Additional Music</div>
-					</a>
+					
 				</div>
 			</div>
 		</section>
@@ -822,258 +850,130 @@ const SITE_DESCRIPTION = "Composer & Score Supervisor Portfolio";
 
 		<!-- FOURTH PAGE: CAROUSEL FOR ORCHESTRATION -->
 		<section class="carousel-section">
-			<button class="carousel-arrow left" id="orchPrevBtn" aria-label="Scroll Left">
-				<i class="fa-solid fa-chevron-left"></i>
-			</button>
-			<button class="carousel-arrow right" id="orchNextBtn" aria-label="Scroll Right">
-				<i class="fa-solid fa-chevron-right"></i>
-			</button>
-
 			<div class="carousel-container">
 				<div class="carousel-track" id="orchCarouselTrack">
 					<!-- Set A -->
-					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
-						<div class="image-wrapper"><img src="/america's team.png" alt="America's Team" /></div>
-						<div class="poster-memo">America's Team</div>
-					</a>
-					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
-						<div class="image-wrapper"><img src="/an almost christmas story.png" alt="An Almost Christmas Story" /></div>
-						<div class="poster-memo">An Almost Christmas Story</div>
-					</a>
-					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
-						<div class="image-wrapper"><img src="/being mary tyler moore.jpg" alt="Being Mary Tyler Moore" /></div>
-						<div class="poster-memo">Being Mary Tyler Moore</div>
-					</a>
-					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
-						<div class="image-wrapper"><img src="/bob trevino likes it.png" alt="Bob Trevino Likes It" /></div>
-						<div class="poster-memo">Bob Trevino Likes It</div>
-					</a>
-					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
-						<div class="image-wrapper"><img src="/canary black.png" alt="Canary Black" /></div>
-						<div class="poster-memo">Canary Black</div>
-					</a>
-					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
-						<div class="image-wrapper"><img src="/commitment to life.jpg" alt="Commitment to Life" /></div>
-						<div class="poster-memo">Commitment to Life</div>
-					</a>
-					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
-						<div class="image-wrapper"><img src="/dead whisper.png" alt="Dead Whisper" /></div>
-						<div class="poster-memo">Dead Whisper</div>
-					</a>
-					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
-						<div class="image-wrapper"><img src="/donn of tiki.png" alt="Donn of Tiki" /></div>
-						<div class="poster-memo">Donn of Tiki</div>
-					</a>
-					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
-						<div class="image-wrapper"><img src="/elizabeth taylor.png" alt="Elizabeth Taylor" /></div>
-						<div class="poster-memo">Elizabeth Taylor</div>
-					</a>
-					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
-						<div class="image-wrapper"><img src="/excorcist 2.png" alt="Exorcist 2" /></div>
-						<div class="poster-memo">Exorcist 2</div>
-					</a>
-					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
-						<div class="image-wrapper"><img src="/final girl halloween 2.png" alt="Final Girl Halloween 2" /></div>
-						<div class="poster-memo">Final Girl Halloween 2</div>
-					</a>
-					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
-						<div class="image-wrapper"><img src="/forked.jpg" alt="Forked" /></div>
-						<div class="poster-memo">Forked</div>
-					</a>
-					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
-						<div class="image-wrapper"><img src="/home is a hotel.jpg" alt="Home is a Hotel" /></div>
-						<div class="poster-memo">Home is a Hotel</div>
-					</a>
-					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
-						<div class="image-wrapper"><img src="/how to make a killing.png" alt="How to Make a Killing" /></div>
-						<div class="poster-memo">How to Make a Killing</div>
-					</a>
-					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
-						<div class="image-wrapper"><img src="/John Candy I like Me.png" alt="John Candy I Like Me" /></div>
-						<div class="poster-memo">John Candy I Like Me</div>
-					</a>
-					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
-						<div class="image-wrapper"><img src="/kings of tupelo.png" alt="Kings of Tupelo" /></div>
-						<div class="poster-memo">Kings of Tupelo</div>
-					</a>
-					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
+					<a href="https://www.imdb.com/title/tt14866108/" target="_blank" class="poster-card">
 						<div class="image-wrapper"><img src="/miranda's victim.jpg" alt="Miranda's Victim" /></div>
-						<div class="poster-memo">Miranda's Victim</div>
+						<div class="poster-memo">Miranda's Victim (2023) | Orchestration</div>
 					</a>
-					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
+					<a href="https://www.imdb.com/title/tt4357198/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/how to make a killing.png" alt="How to Make a Killing" /></div>
+						<div class="poster-memo">A24 - How to Make a Killing (2026) | Orchestration</div>
+					</a>										 
+					<a href="https://www.imdb.com/title/tt32376299" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/america's team.png" alt="America's Team" /></div>
+						<div class="poster-memo">Netflix - America's Team (2025) | Orchestration</div>
+					</a>
+					<a href="https://www.imdb.com/title/tt33395815/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/an almost christmas story.png" alt="An Almost Christmas Story" /></div>
+						<div class="poster-memo">Disney+ An Almost Christmas Story (2024) | Orchestration</div>
+					</a>
+					<a href="https://www.imdb.com/title/tt26084136/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/being mary tyler moore.jpg" alt="Being Mary Tyler Moore" /></div>
+						<div class="poster-memo">Being Mary Tyler Moore (2023) | Orchestration</div>
+					</a>
+					<a href="https://www.imdb.com/title/tt20048582/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/canary black.png" alt="Canary Black" /></div>
+						<div class="poster-memo">Amazon - Canary Black (2024) | Orchestration</div>
+					</a>
+					<a href="https://www.imdb.com/title/tt10474162/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/commitment to life.jpg" alt="Commitment to Life" /></div>
+						<div class="poster-memo">Commitment to Life (2023) | Orchestration</div>
+					</a>
+					<a href="https://www.imdb.com/title/tt32012524/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/donn of tiki.png" alt="Donn of Tiki" /></div>
+						<div class="poster-memo">Donn of Tiki (2024) | Orchestration</div>
+					</a>
+					<a href="https://www.imdb.com/title/tt8510508/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/elizabeth taylor.png" alt="Elizabeth Taylor" /></div>
+						<div class="poster-memo">HBO Max - Elizabeth Taylor (2024) | Orchestration</div>
+					</a>
+					<a href="https://www.imdb.com/title/tt12921446/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/excorcist 2.png" alt="Exorcist 2" /></div>
+						<div class="poster-memo">Universal Pictures - Exorcist: Believer (2023) | Orchestration</div>
+					</a>
+					<a href="https://www.imdb.com/title/tt26230372/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/final girl halloween 2.png" alt="Final Girl Halloween 2" /></div>
+						<div class="poster-memo">Final Girl: Halloween (2024) | Music Supervision</div>
+					</a>
+					<a href="https://www.imdb.com/title/tt17519454/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/forked.jpg" alt="Forked" /></div>
+						<div class="poster-memo">Susan Feniger. Forked (2023) | Orchestration</div>
+					</a>
+					<a href="https://www.imdb.com/title/tt27251222/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/home is a hotel.jpg" alt="Home is a Hotel" /></div>
+						<div class="poster-memo">Home is a Hotel (2023) | Orchestration</div>
+					</a>
+					<a href="https://www.imdb.com/title/tt26683420/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/John Candy I like Me.png" alt="John Candy I Like Me" /></div>
+						<div class="poster-memo">Amazon - John Candy: I Like Me (2025) | Orchestration</div>
+					</a>
+					<a href="https://www.imdb.com/title/tt34682275/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/kings of tupelo.png" alt="Kings of Tupelo" /></div>
+						<div class="poster-memo">Netflix - Kings of Tupelo (2024) | Orchestration</div>
+					</a>
+					<a href="https://www.imdb.com/title/tt31030101/" target="_blank" class="poster-card">
 						<div class="image-wrapper"><img src="/octopus.png" alt="Octopus" /></div>
-						<div class="poster-memo">Octopus</div>
+						<div class="poster-memo">Netflix - American Conspiracy: The Octopus Murders (2024) | Music Editor</div>
 					</a>
-					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
+					<a href="https://www.imdb.com/title/tt33396423/" target="_blank" class="poster-card">
 						<div class="image-wrapper"><img src="/playing to survive.png" alt="Playing to Survive" /></div>
-						<div class="poster-memo">Playing to Survive</div>
+						<div class="poster-memo">Playing to Survive: von Cramm vs Hitler (2024) | Orchestration</div>
 					</a>
-					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
+					<a href="https://www.imdb.com/title/tt17677860/" target="_blank" class="poster-card">
 						<div class="image-wrapper"><img src="/presumed innocent.png" alt="Presumed Innocent" /></div>
-						<div class="poster-memo">Presumed Innocent</div>
+						<div class="poster-memo">AppleTV -Presumed Innocent (2024) | Orchestration</div>
 					</a>
-					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
+					<a href="https://www.imdb.com/title/tt10172266/" target="_blank" class="poster-card">
 						<div class="image-wrapper"><img src="/red white royal blue.jpg" alt="Red White & Royal Blue" /></div>
-						<div class="poster-memo">Red White & Royal Blue</div>
+						<div class="poster-memo">Amazon - Red White & Royal Blue (2023) | Orchestration</div>
 					</a>
-					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
+					<a href="https://www.imdb.com/title/tt28660814/" target="_blank" class="poster-card">
 						<div class="image-wrapper"><img src="/scouts honor.jpeg" alt="Scouts Honor" /></div>
-						<div class="poster-memo">Scouts Honor</div>
+						<div class="poster-memo">Netflix - Scouts Honor (2023) | Orchestration</div>
 					</a>
-					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
+					<a href="https://www.imdb.com/title/tt34555672/" target="_blank" class="poster-card">
 						<div class="image-wrapper"><img src="/secret lives of animals.png" alt="Secret Lives of Animals" /></div>
-						<div class="poster-memo">Secret Lives of Animals</div>
+						<div class="poster-memo">AppleTV - The Secret Lives of Animals (2024) | Orchestration</div>
 					</a>
-					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
+					<a href="https://www.imdb.com/title/tt27534307/" target="_blank" class="poster-card">
 						<div class="image-wrapper"><img src="/speak no evil 2.png" alt="Speak No Evil 2" /></div>
-						<div class="poster-memo">Speak No Evil 2</div>
+						<div class="poster-memo">Universal Pictures - Speak No Evil (2024) | Orchestration</div>
 					</a>
-					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
+					<a href="https://www.imdb.com/title/tt14153236/" target="_blank" class="poster-card">
 						<div class="image-wrapper"><img src="/terminator zero.png" alt="Terminator Zero" /></div>
-						<div class="poster-memo">Terminator Zero</div>
+						<div class="poster-memo">Netflix - Terminator Zero (2024) | Orchestration</div>
 					</a>
-					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
+					<a href="https://www.imdb.com/title/tt34718200/" target="_blank" class="poster-card">
 						<div class="image-wrapper"><img src="/the debut.png" alt="The Debut" /></div>
-						<div class="poster-memo">The Debut</div>
+						<div class="poster-memo">A24 - The Debut (2026) | Orchestration</div>
 					</a>
-					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
+					<a href="https://www.imdb.com/title/tt14445366/" target="_blank" class="poster-card">
 						<div class="image-wrapper"><img src="/the island between tides.png" alt="The Island Between Tides" /></div>
-						<div class="poster-memo">The Island Between Tides</div>
+						<div class="poster-memo">The Island Between Tides (2024) | Orchestration</div>
 					</a>
-					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
+					<a href="https://www.imdb.com/title/tt10013512/" target="_blank" class="poster-card">
 						<div class="image-wrapper"><img src="/the problem with people.png" alt="The Problem with People" /></div>
-						<div class="poster-memo">The Problem with People</div>
+						<div class="poster-memo">The Problem with People (2024) | Orchestration</div>
 					</a>
-					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
+					<a href="https://www.imdb.com/title/tt26227818/" target="_blank" class="poster-card">
 						<div class="image-wrapper"><img src="/Turning point cold war.jpeg" alt="Turning Point: Cold War" /></div>
-						<div class="poster-memo">Turning Point: Cold War</div>
+						<div class="poster-memo">Netflix - Turning Point: The Bomb and the Cold War (2024) | Orchestration</div>
 					</a>
-					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
+					<a href="https://www.imdb.com/title/tt7737224/" target="_blank" class="poster-card">
 						<div class="image-wrapper"><img src="/turtles all the way down.png" alt="Turtles All the Way Down" /></div>
-						<div class="poster-memo">Turtles All the Way Down</div>
+						<div class="poster-memo">HBO Max - Turtles All the Way Down (2024) | Orchestration</div>						
 					</a>
+					<a href="https://www.imdb.com/title/tt28613536/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/bob trevino likes it.png" alt="Bob Trevino Likes It" /></div>
+						<div class="poster-memo">Bob Trevino Likes It (2024) | Orchestration</div>
+					</a>
+					<a href="https://www.imdb.com/title/tt22853096/" target="_blank" class="poster-card">
+						<div class="image-wrapper"><img src="/dead whisper.png" alt="Dead Whisper" /></div>
+						<div class="poster-memo">Dead Whisper (2024) | Orchestration</div>
+					</a>					 
 
-					<!-- Set B -->
-					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
-						<div class="image-wrapper"><img src="/america's team.png" alt="America's Team Duplicate" /></div>
-						<div class="poster-memo">America's Team</div>
-					</a>
-					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
-						<div class="image-wrapper"><img src="/an almost christmas story.png" alt="An Almost Christmas Story Duplicate" /></div>
-						<div class="poster-memo">An Almost Christmas Story</div>
-					</a>
-					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
-						<div class="image-wrapper"><img src="/being mary tyler moore.jpg" alt="Being Mary Tyler Moore Duplicate" /></div>
-						<div class="poster-memo">Being Mary Tyler Moore</div>
-					</a>
-					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
-						<div class="image-wrapper"><img src="/bob trevino likes it.png" alt="Bob Trevino Likes It Duplicate" /></div>
-						<div class="poster-memo">Bob Trevino Likes It</div>
-					</a>
-					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
-						<div class="image-wrapper"><img src="/canary black.png" alt="Canary Black Duplicate" /></div>
-						<div class="poster-memo">Canary Black</div>
-					</a>
-					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
-						<div class="image-wrapper"><img src="/commitment to life.jpg" alt="Commitment to Life Duplicate" /></div>
-						<div class="poster-memo">Commitment to Life</div>
-					</a>
-					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
-						<div class="image-wrapper"><img src="/dead whisper.png" alt="Dead Whisper Duplicate" /></div>
-						<div class="poster-memo">Dead Whisper</div>
-					</a>
-					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
-						<div class="image-wrapper"><img src="/donn of tiki.png" alt="Donn of Tiki Duplicate" /></div>
-						<div class="poster-memo">Donn of Tiki</div>
-					</a>
-					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
-						<div class="image-wrapper"><img src="/elizabeth taylor.png" alt="Elizabeth Taylor Duplicate" /></div>
-						<div class="poster-memo">Elizabeth Taylor</div>
-					</a>
-					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
-						<div class="image-wrapper"><img src="/excorcist 2.png" alt="Exorcist 2 Duplicate" /></div>
-						<div class="poster-memo">Exorcist 2</div>
-					</a>
-					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
-						<div class="image-wrapper"><img src="/final girl halloween 2.png" alt="Final Girl Halloween 2 Duplicate" /></div>
-						<div class="poster-memo">Final Girl Halloween 2</div>
-					</a>
-					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
-						<div class="image-wrapper"><img src="/forked.jpg" alt="Forked Duplicate" /></div>
-						<div class="poster-memo">Forked</div>
-					</a>
-					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
-						<div class="image-wrapper"><img src="/home is a hotel.jpg" alt="Home is a Hotel Duplicate" /></div>
-						<div class="poster-memo">Home is a Hotel</div>
-					</a>
-					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
-						<div class="image-wrapper"><img src="/how to make a killing.png" alt="How to Make a Killing Duplicate" /></div>
-						<div class="poster-memo">How to Make a Killing</div>
-					</a>
-					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
-						<div class="image-wrapper"><img src="/John Candy I like Me.png" alt="John Candy I Like Me Duplicate" /></div>
-						<div class="poster-memo">John Candy I Like Me</div>
-					</a>
-					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
-						<div class="image-wrapper"><img src="/kings of tupelo.png" alt="Kings of Tupelo Duplicate" /></div>
-						<div class="poster-memo">Kings of Tupelo</div>
-					</a>
-					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
-						<div class="image-wrapper"><img src="/miranda's victim.jpg" alt="Miranda's Victim Duplicate" /></div>
-						<div class="poster-memo">Miranda's Victim</div>
-					</a>
-					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
-						<div class="image-wrapper"><img src="/octopus.png" alt="Octopus Duplicate" /></div>
-						<div class="poster-memo">Octopus</div>
-					</a>
-					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
-						<div class="image-wrapper"><img src="/playing to survive.png" alt="Playing to Survive Duplicate" /></div>
-						<div class="poster-memo">Playing to Survive</div>
-					</a>
-					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
-						<div class="image-wrapper"><img src="/presumed innocent.png" alt="Presumed Innocent Duplicate" /></div>
-						<div class="poster-memo">Presumed Innocent</div>
-					</a>
-					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
-						<div class="image-wrapper"><img src="/red white royal blue.jpg" alt="Red White & Royal Blue Duplicate" /></div>
-						<div class="poster-memo">Red White & Royal Blue</div>
-					</a>
-					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
-						<div class="image-wrapper"><img src="/scouts honor.jpeg" alt="Scouts Honor Duplicate" /></div>
-						<div class="poster-memo">Scouts Honor</div>
-					</a>
-					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
-						<div class="image-wrapper"><img src="/secret lives of animals.png" alt="Secret Lives of Animals Duplicate" /></div>
-						<div class="poster-memo">Secret Lives of Animals</div>
-					</a>
-					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
-						<div class="image-wrapper"><img src="/speak no evil 2.png" alt="Speak No Evil 2 Duplicate" /></div>
-						<div class="poster-memo">Speak No Evil 2</div>
-					</a>
-					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
-						<div class="image-wrapper"><img src="/terminator zero.png" alt="Terminator Zero Duplicate" /></div>
-						<div class="poster-memo">Terminator Zero</div>
-					</a>
-					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
-						<div class="image-wrapper"><img src="/the debut.png" alt="The Debut Duplicate" /></div>
-						<div class="poster-memo">The Debut</div>
-					</a>
-					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
-						<div class="image-wrapper"><img src="/the island between tides.png" alt="The Island Between Tides Duplicate" /></div>
-						<div class="poster-memo">The Island Between Tides</div>
-					</a>
-					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
-						<div class="image-wrapper"><img src="/the problem with people.png" alt="The Problem with People Duplicate" /></div>
-						<div class="poster-memo">The Problem with People</div>
-					</a>
-					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
-						<div class="image-wrapper"><img src="/Turning point cold war.jpeg" alt="Turning Point: Cold War Duplicate" /></div>
-						<div class="poster-memo">Turning Point: Cold War</div>
-					</a>
-					<a href="https://www.imdb.com/" target="_blank" class="poster-card">
-						<div class="image-wrapper"><img src="/turtles all the way down.png" alt="Turtles All the Way Down Duplicate" /></div>
-						<div class="poster-memo">Turtles All the Way Down</div>
-					</a>
 				</div>
 			</div>
 		</section>
@@ -1152,15 +1052,15 @@ const SITE_DESCRIPTION = "Composer & Score Supervisor Portfolio";
 				<h2 class="carousel-section-title">Recent Works & Current Projects</h2>
 			</div>
 		</div>
-
+		
 		<!-- TWO-COLUMN AREA FEATURING PALE CACHEXIA OVERVIEW -->
-		<section class="project-content-section">
+		<section class="project-content-section pale-cachexia-section">
 			<div class="project-grid-container">
 				<!-- Left Column: Hoverable Poster Image (3. Updated to Pal Cachexia Banner.jpeg) -->
 				<div class="project-left-col">
-					<div class="project-image-frame">
+					<div class="project-image-frame pale-cachexia">
 						<img src="/Pale Cachexia Banner.jpeg" alt="Pale Cachexia Artwork"
-						style="width: 100%; height: auto; max-height: 400px; display: block; object-fit: cover; border-radius: 8px;" />
+						style="width: 100%; height: auto; max-height: 500px; display: block; border-radius: 8px;" />
 					</div>
 				</div>
 				<!-- Right Column: Formatted Text Description & Steam Button -->
@@ -1187,15 +1087,13 @@ const SITE_DESCRIPTION = "Composer & Score Supervisor Portfolio";
 			</div>
 		</div>
 
-		<!-- 6. PROMETHEUS LAYOUT BLOCK -->
-		<section class="project-content-section" style="border-top: none; padding-top: 40px;">
+		<!-- 6-7. PROMETHEUS + ANOLDOR COMBINED BLOCK -->
+		<section class="project-content-section prometheus-anoldor-section" style="border-top: none; padding-top: 40px;">
 			<div class="project-grid-container">
 				<!-- Left Column: Prometheus Hoverable Image -->
 				<div class="project-left-col">
-					<div class="project-image-frame">
+					<div class="project-image-frame purple-border">
 						<img src="/prometheus.jpeg" alt="PROMETHEUS: Omex Rising" />
-						<h3 style="font-size: 1.5rem; margin-bottom: 10px;">Prometheus</h3>
-    <p style="font-size: 0.95rem; opacity: 0.8;">Project details and media content.</p>
 					</div>
 				</div>
 				<!-- Right Column: Info & Action Callout -->
@@ -1204,22 +1102,17 @@ const SITE_DESCRIPTION = "Composer & Score Supervisor Portfolio";
 					<p class="project-description-paragraph">
 						PROMΞTHΞUS is a singleplayer/cooperative game that takes place in the distant future, where humanity has taken an endeavor to a distant sci-fi planet, known as Orpheus.
 					</p>
-					<a href="#" target="_blank" class="store-redirect-btn">
+					<a href="https://store.steampowered.com/app/1179660/Prometheus_Omex_Rising/" target="_blank" class="store-redirect-btn">
 						<i class="fa-brands fa-steam"></i> Steam
 					</a>
 				</div>
 			</div>
-		</section>
 
-		<!-- 7. ANOLDOR LAYOUT BLOCK -->
-		<section class="project-content-section" style="border-top: 1px solid rgba(255, 255, 255, 0.03); padding-top: 80px;">
-			<div class="project-grid-container">
+			<div class="project-grid-container" style="margin-top: 48px; padding-top: 48px;">
 				<!-- Left Column: Anoldor Hoverable Image -->
 				<div class="project-left-col">
-					<div class="project-image-frame">
+					<div class="project-image-frame purple-border">
 						<img src="/anoldor.jpg" alt="ANOLDOR" />
-						<h3 style="font-size: 1.5rem; margin-bottom: 10px;">Anoldor</h3>
-    <p style="font-size: 0.95rem; opacity: 0.8;">Project details and media content.</p>
 					</div>
 				</div>
 				<!-- Right Column: Info & Itch.io Action Callout -->
@@ -1236,144 +1129,216 @@ const SITE_DESCRIPTION = "Composer & Score Supervisor Portfolio";
 		</section>
 
 		<!-- 3. PROFESSIONAL AFFILIATIONS SECTION (USING ONLINE LOGOS) -->
-<section style="padding: 80px 20px; text-align: center; background-color: #ffffff; color: #222222; border-radius: 8px; margin-top: 60px; font-family: -apple-system, BlinkMacSystemFont, sans-serif;">
-  <h2 style="font-size: 2.2rem; font-weight: 600; margin-bottom: 12px; letter-spacing: 0.5px;">Professional Affiliations</h2>
-  <div style="width: 50px; height: 2px; background-color: #222222; margin: 0 auto 50px auto;"></div>
+		<section style="padding: 80px 20px; text-align: center; background-color: #ffffff; color: #222222; border-radius: 8px; margin-top: 0; font-family: -apple-system, BlinkMacSystemFont, sans-serif;">
+			<h2 style="font-size: 2.2rem; font-weight: 600; margin-bottom: 12px; letter-spacing: 0.5px;">Professional Affiliations</h2>
+			<div style="width: 50px; height: 2px; background-color: #222222; margin: 0 auto 50px auto;"></div>
   
-  <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 50px 40px; max-width: 1100px; margin: 0 auto;">
-    
-    <!-- Bleeding Fingers Music -->
-    <div style="flex: 1 1 200px; max-width: 240px; display: flex; flex-direction: column; align-items: center; justify-content: space-between;">
-      <div style="height: 80px; display: flex; align-items: center; justify-content: center;">
-        <img src="https://images.squarespace-cdn.com/content/v1/56df16f0a3360c704da8b1ad/1471477755319-O3V7T7S0SOW7D1W564L8/BFM_LOGO_BLACK_RGB.png" alt="Bleeding Fingers Music" style="max-width: 140px; max-height: 70px; object-fit: contain;" />
-      </div>
-      <p style="font-size: 0.95rem; margin-top: 15px; line-height: 1.4;"><strong>Bleeding Fingers Music</strong><br><span style="font-size: 0.85rem; color: #666;">Composer</span></p>
-    </div>
+			<style>
+				.aff-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 50px 40px; max-width: 1100px; margin: 0 auto; }
+				.aff-item { flex: 1 1 200px; max-width: 240px; display: flex; flex-direction: column; align-items: center; justify-content: space-between; text-decoration: none; color: inherit; transition: transform 0.22s ease, box-shadow 0.22s ease; }
+				.aff-item:hover { transform: translateY(-6px) scale(1.02); box-shadow: 0 10px 30px rgba(0,0,0,0.06); }
+				.aff-image-wrap { height: 92px; display:flex; align-items:center; justify-content:center; }
+				.aff-img { transition: transform 0.22s ease, box-shadow 0.22s ease; }
+				.aff-item:hover .aff-img { transform: scale(1.06); box-shadow: 0 6px 18px rgba(0,0,0,0.12); }
+				.aff-label { font-size: 1.09rem; margin-top: 15px; line-height: 1.4; }
+				.aff-sub { font-size: 0.98rem; color: #666; font-family: inherit; }
+			</style>
 
-    <!-- Television Academy -->
-    <div style="flex: 1 1 200px; max-width: 240px; display: flex; flex-direction: column; align-items: center; justify-content: space-between;">
-      <div style="height: 80px; display: flex; align-items: center; justify-content: center;">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRp_oKoPwe1pTK1yE8cJEIR_82OjkDJfT5grIuoBTKpYA&s=10" alt="Television Academy" style="max-width: 100px; max-height: 80px; object-fit: contain;" />
-      </div>
-      <p style="font-size: 0.95rem; margin-top: 15px; line-height: 1.4;"><strong>Television Academy</strong><br><span style="font-size: 0.85rem; color: #666;">Emmy's</span></p>
-    </div>
+			<div class="aff-grid">
 
-    <!-- Recording Academy -->
-    <div style="flex: 1 1 200px; max-width: 240px; display: flex; flex-direction: column; align-items: center; justify-content: space-between;">
-      <div style="height: 80px; display: flex; align-items: center; justify-content: center;">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Recording_Academy_logo.svg/1200px-Recording_Academy_logo.svg.png" alt="Recording Academy" style="max-width: 110px; max-height: 70px; object-fit: contain;" />
-      </div>
-      <p style="font-size: 0.95rem; margin-top: 15px; line-height: 1.4;"><strong>Recording Academy</strong><br><span style="font-size: 0.85rem; color: #666;">Grammy's</span></p>
-    </div>
+				<!-- Television Academy -->
+				<a href="https://www.emmys.com" target="_blank" class="aff-item">
+					<div class="aff-image-wrap">
+						<img class="aff-img" src="https://upload.wikimedia.org/wikipedia/en/7/73/Emmy_Awards_logo.png" alt="Television Academy" style="max-width: 115px; max-height: 92px; object-fit: contain;" />
+					</div>
+					<p class="aff-label"><strong>Television Academy</strong><br><span class="aff-sub">Emmy's</span></p>
+				</a>
 
-    <!-- ASCAP -->
-    <div style="flex: 1 1 200px; max-width: 240px; display: flex; flex-direction: column; align-items: center; justify-content: space-between;">
-      <div style="height: 80px; display: flex; align-items: center; justify-content: center;">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/ASCAP_logo.svg/1200px-ASCAP_logo.svg.png" alt="ASCAP" style="max-width: 110px; max-height: 60px; object-fit: contain;" />
-      </div>
-      <p style="font-size: 0.95rem; margin-top: 15px; line-height: 1.4;"><strong>ASCAP</strong></p>
-    </div>
+				<!-- Recording Academy -->
+				<a href="https://www.grammy.com" target="_blank" class="aff-item">
+					<div class="aff-image-wrap">
+						<img class="aff-img" src="https://music-row-website-assets.s3.amazonaws.com/wp-content/uploads/2022/12/06205144/Recording-Academy-Logo-2018-Ratio-1080x720-1.jpg" alt="Recording Academy" style="max-width: 127px; max-height: 81px; object-fit: contain;" />
+					</div>
+					<p class="aff-label"><strong>Recording Academy</strong><br><span class="aff-sub">Grammy's</span></p>
+				</a>
 
-    <!-- Joy Music House -->
-    <div style="flex: 1 1 200px; max-width: 240px; display: flex; flex-direction: column; align-items: center; justify-content: space-between;">
-      <div style="height: 80px; display: flex; align-items: center; justify-content: center;">
-        <img src="https://images.squarespace-cdn.com/content/v1/59de674729f0330ec9977800/1508285513180-L1NPM77NGLVDBT4LHY1S/JMH_logo_black.png" alt="Joy Music House" style="max-width: 130px; max-height: 70px; object-fit: contain;" />
-      </div>
-      <p style="font-size: 0.95rem; margin-top: 15px; line-height: 1.4;"><strong>Joy Music House</strong></p>
-    </div>
+				<!-- ASCAP -->
+				<a href="https://www.ascap.com" target="_blank" class="aff-item">
+					<div class="aff-image-wrap">
+						<img class="aff-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAxocClcHvo5GNmzKMqaCLcuQyl487I1bPbvKInUXg6g&s=10" alt="ASCAP" style="max-width: 127px; max-height: 69px; object-fit: contain;" />
+					</div>
+					<p class="aff-label"><strong>ASCAP</strong></p>
+				</a>
 
-    <!-- Society of Composers & Lyricists -->
-    <div style="flex: 1 1 200px; max-width: 240px; display: flex; flex-direction: column; align-items: center; justify-content: space-between;">
-      <div style="height: 80px; display: flex; align-items: center; justify-content: center;">
-        <img src="https://thescl.com/wp-content/uploads/2019/11/SCL-Logo-Horizontal-GoldBlack.png" alt="Society of Composers & Lyricists" style="max-width: 140px; max-height: 70px; object-fit: contain;" />
-      </div>
-      <p style="font-size: 0.95rem; margin-top: 15px; line-height: 1.4;"><strong>Society of Composers & Lyricists</strong></p>
-    </div>
+				<!-- Joy Music House -->
+				<a href="https://www.joymusichouse.com" target="_blank" class="aff-item">
+					<div class="aff-image-wrap">
+						<img class="aff-img" src="https://static.wixstatic.com/media/6f9c9d_074e5ca9d41448178cf167cbc54e6381~mv2.jpg/v1/fill/w_465,h_465,al_c/6f9c9d_074e5ca9d41448178cf167cbc54e6381~mv2.jpg" alt="Joy Music House" style="max-width: 150px; max-height: 81px; object-fit: contain;" />
+					</div>
+					<p class="aff-label"><strong>Joy Music House</strong></p>
+				</a>
 
-    <!-- Composers Diversity Collective -->
-    <div style="flex: 1 1 200px; max-width: 240px; display: flex; flex-direction: column; align-items: center; justify-content: space-between;">
-      <div style="height: 80px; display: flex; align-items: center; justify-content: center;">
-        <img src="https://images.squarespace-cdn.com/content/v1/5b6348633c3a5796c3d9a101/1536706785834-V9L75B5Q4A1K3T4346I8/CDC_Logo_Black.png" alt="Composers Diversity Collective" style="max-width: 130px; max-height: 70px; object-fit: contain;" />
-      </div>
-      <p style="font-size: 0.95rem; margin-top: 15px; line-height: 1.4;"><strong>Composers Diversity Collective</strong></p>
-    </div>
+				<!-- Society of Composers & Lyricists -->
+				<a href="https://www.thescl.com" target="_blank" class="aff-item">
+					<div class="aff-image-wrap">
+						<img class="aff-img" src="https://deadline.com/wp-content/uploads/2025/12/SCL-Awards-logo.jpg" alt="Society of Composers & Lyricists" style="max-width: 161px; max-height: 81px; object-fit: contain;" />
+					</div>
+					<p class="aff-label"><strong>Society of Composers & Lyricists</strong></p>
+				</a>
+				<!-- Bleeding Fingers Music -->
+				<a href="https://bleedingfingersmusic.com" target="_blank" class="aff-item">
+					<div class="aff-image-wrap">
+						<img class="aff-img" src="https://media.licdn.com/dms/image/v2/D560BAQHT-j910i7Ybg/company-logo_200_200/company-logo_200_200/0/1721083808404/bleeding_fingers_music_logo?e=2147483647&v=beta&t=1S53xaHiXHct6zmhzbfVntm4RGwIIWuPUPq92ZNNyow" alt="Bleeding Fingers Music" style="max-width: 161px; max-height: 81px; object-fit: contain;" />
+					</div>
+					<p class="aff-label"><strong>Bleeding Fingers Music</strong></p>
+				</a>
+				<!-- Composers Diversity Collective -->
+				<a href="https://composersdiversitycollective.org/" target="_blank" class="aff-item">
+					<div class="aff-image-wrap">
+						<img class="aff-img" src="https://media.licdn.com/dms/image/v2/D560BAQE0HSYnjxo3EQ/company-logo_200_200/company-logo_200_200/0/1667256832179/composers_diversity_collective_logo?e=2147483647&v=beta&t=JedFmm3wRp5Jzhj1gUgJolx64VVXCB_iSg-n3vz8gyY" alt="Composers Diversity Collective" style="max-width: 150px; max-height: 81px; object-fit: contain;" />
+					</div>
+					<p class="aff-label"><strong>Composers Diversity Collective</strong></p>
+				</a>
 
-    <!-- Supporter of AWFC -->
-    <div style="flex: 1 1 200px; max-width: 240px; display: flex; flex-direction: column; align-items: center; justify-content: space-between;">
-      <div style="height: 80px; display: flex; align-items: center; justify-content: center;">
-        <img src="https://theawfc.com/wp-content/uploads/2021/04/cropped-AWFC-Logo-Seal-Gold-300x300.png" alt="AWFC" style="max-width: 80px; max-height: 80px; object-fit: contain;" />
-      </div>
-      <p style="font-size: 0.95rem; margin-top: 15px; line-height: 1.4;"><strong>Supporter of AWFC</strong></p>
-    </div>
+				<!-- Supporter of AWFC -->
+				<a href="https://www.theawfc.org/" target="_blank" class="aff-item">
+					<div class="aff-image-wrap">
+						<img class="aff-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFRf6hqwEGIZErH4AqX1u-9nQglwpjW47YzLs1aq1PRQ&s=10" alt="AWFC" style="max-width: 92px; max-height: 92px; object-fit: contain;" />
+					</div>
+					<p class="aff-label"><strong>Supporter of AWFC</strong></p>
+				</a>
 
-  </div>
+			</div>
+		</section>
+
+<section class="contact-panel" style="position:relative; padding:60px 20px; text-align:center; background: linear-gradient(180deg,#071018 0%, #0c0c0c 100%); color:#fff; border-radius:10px; margin:28px 20px 40px 20px;">
+	<div style="max-width:900px; margin:0 auto;">
+		<h2 style="font-size:1.8rem; margin-bottom:0.6rem;">Let's work together</h2>
+			<a href="#top" class="back-to-top">Back to Top</a>
+		<p style="opacity:0.88; margin-bottom:1.2rem;">I'm available for scoring, orchestration, programming, and supervision. Send a message with project details and availability.</p>
+		<div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap; margin-bottom:14px;">
+			<a href="/contact.html" class="store-redirect-btn">Contact Form</a>
+			<a href="mailto:hello@superrray.com" class="store-redirect-btn" style="background:transparent; border:1px solid rgba(255,255,255,0.08);">Email</a>
+		</div>
+		<div style="opacity:0.9; font-size:0.95rem;">Prefer quick links? Find me on <a href="https://www.imdb.com/name/nm8105113/" target="_blank" style="color:inherit; text-decoration:underline;">IMDb</a>, <a href="https://www.instagram.com/doraymekim/" target="_blank" style="color:inherit; text-decoration:underline;">Instagram</a>, and <a href="https://open.spotify.com/artist/1JHFQv8E0HG7mmKpuftPLB" target="_blank" style="color:inherit; text-decoration:underline;">Spotify</a>.</div>
+	</div>
 </section>
 
-		<!-- CLIENT SIDE SCRIPT -->
+</section>
+
+			<!-- Floating social bar (fixed center, follows scroll) -->
+			<div id="floatingSocialBar" aria-hidden="false">
+				<style>
+					#floatingSocialBar { position: fixed; top: 72px; left: 50%; transform: translateX(-50%); z-index: 120; }
+					#floatingSocialBar .fsb-inner { display:flex; gap:20px; align-items:center; background: rgba(0,0,0,0.62); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); padding:10px 14px; border-radius:999px; box-shadow: 0 10px 30px rgba(0,0,0,0.35); border: 1px solid rgba(255,255,255,0.06); }
+					#floatingSocialBar a { color: #fff; text-decoration:none; transition: transform .18s ease, color .18s ease, opacity .18s ease; opacity: 0.98; }
+					#floatingSocialBar a:hover { transform: translateY(-4px) scale(1.12); opacity: 1; }
+					#floatingSocialBar i { font-size: 38px; display:block; }
+					#floatingSocialBar a.fsb-imdb:hover { color: #f5c518; }
+					#floatingSocialBar a.fsb-instagram:hover { color: #E1306C; }
+					#floatingSocialBar a.fsb-apple:hover { color: #ff2d55; }
+					#floatingSocialBar a.fsb-spotify:hover { color: #1DB954; }
+					/* Back to top control inside contact panel (larger + smooth scroll) */
+					.contact-panel .back-to-top { position: absolute; right: 18px; top: 18px; background: rgba(255,255,255,0.06); color: #fff; padding:12px 14px; border-radius:8px; text-decoration:none; font-size:1.05rem; font-weight:600; border:1px solid rgba(255,255,255,0.08); box-shadow: 0 6px 18px rgba(0,0,0,0.45); transition: transform .18s ease, background .18s ease, box-shadow .18s ease; }
+					.contact-panel .back-to-top:hover { transform: translateY(-3px); background: rgba(255,255,255,0.12); box-shadow: 0 10px 26px rgba(0,0,0,0.5); }
+				</style>
+				<div class="fsb-inner">
+					<a class="fsb-imdb" href="https://www.imdb.com/name/nm8105113/" target="_blank" aria-label="IMDb"><i class="fa-brands fa-imdb"></i></a>
+					<a class="fsb-instagram" href="https://www.instagram.com/doraymekim/" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+					<a class="fsb-apple" href="https://music.apple.com/us/artist/ray-d-kim/780192649" target="_blank" aria-label="Apple Music"><i class="fa-brands fa-apple"></i></a>
+					<a class="fsb-spotify" href="https://open.spotify.com/artist/1JHFQv8E0HG7mmKpuftPLB?trackId=6DDJvEGIgYBg4oO6kdh1AF" target="_blank" aria-label="Spotify"><i class="fa-brands fa-spotify"></i></a>
+				</div>
+			</div>
+
+			<!-- CLIENT SIDE SCRIPT -->
 		<script>
-			// FILM REEL INTERACTION FIX 
+			// @ts-nocheck
+			// FILM REEL INTERACTION FIX
 			const video = document.getElementById('filmReelVideo');
 			const overlay = document.getElementById('videoOverlay');
 			const videoContainer = document.getElementById('videoContainer');
 
-			if (video && overlay && videoContainer) {
+			if (video instanceof HTMLVideoElement && overlay instanceof HTMLElement) {
 				const handlePlaybackToggle = (e) => {
 					e.preventDefault();
 					if (video.paused || video.ended) {
 						video.play().then(() => {
 							overlay.classList.add('hidden');
-						}).catch(err => console.log("Playback requested standard check:", err));
+						}).catch((err) => console.log('Playback requested standard check:', err));
 					} else {
 						video.pause();
 						overlay.classList.remove('hidden');
 					}
 				};
 
-				videoContainer.addEventListener('click', handlePlaybackToggle);
+				overlay.addEventListener('click', handlePlaybackToggle);
 				video.addEventListener('play', () => overlay.classList.add('hidden'));
 				video.addEventListener('pause', () => overlay.classList.remove('hidden'));
 			}
 
 			// YOUTUBE VIDEO GAME REEL OVERLAY STATE ENGINE
 			const ytOverlay = document.getElementById('ytVideoOverlay');
-			const ytContainer = document.getElementById('ytVideoContainer');
 			const ytFrame = document.getElementById('vgPlayerFrame');
+			let ytPlayer;
 
-			if (ytOverlay && ytContainer && ytFrame) {
-				ytContainer.addEventListener('click', (e) => {
+			const hideYTOverlay = () => {
+				if (ytOverlay instanceof HTMLElement) ytOverlay.classList.add('hidden');
+			};
+
+			const showYTOverlay = () => {
+				if (ytOverlay instanceof HTMLElement) ytOverlay.classList.remove('hidden');
+			};
+
+			const onYTPlayerStateChange = (event) => {
+				if (event.data === YT.PlayerState.PLAYING) {
+					hideYTOverlay();
+				} else if (event.data === YT.PlayerState.PAUSED || event.data === YT.PlayerState.ENDED) {
+					showYTOverlay();
+				}
+			};
+
+			window.onYouTubeIframeAPIReady = () => {
+				if (typeof YT !== 'undefined' && YT.Player && ytFrame instanceof HTMLIFrameElement) {
+					ytPlayer = new YT.Player('vgPlayerFrame', {
+						events: {
+							onStateChange: onYTPlayerStateChange,
+						},
+					});
+				}
+			};
+
+			if (ytOverlay instanceof HTMLElement) {
+				ytOverlay.addEventListener('click', (e) => {
 					e.preventDefault();
-					ytFrame.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
-					ytOverlay.classList.add('hidden');
+					hideYTOverlay();
+					if (ytPlayer && typeof ytPlayer.playVideo === 'function') {
+						ytPlayer.playVideo();
+					} else if (ytFrame instanceof HTMLIFrameElement) {
+						ytFrame.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+					}
 				});
 			}
 
-			// Arrow Navigation Control Function
-			function setupArrowTrackNavigation(trackId, prevBtnId, nextBtnId) {
-				const track = document.getElementById(trackId);
-				const prevBtn = document.getElementById(prevBtnId);
-				const nextBtn = document.getElementById(nextBtnId);
-				let currentOffset = 0;
-				const jumpDistance = 380; 
-
-				if (!track || !prevBtn || !nextBtn) return;
-
-				nextBtn.addEventListener('click', () => {
-					currentOffset -= jumpDistance;
-					track.style.transform = `translateX(${currentOffset}px)`;
-				});
-
-				prevBtn.addEventListener('click', () => {
-					currentOffset += jumpDistance;
-					if (currentOffset > 0) currentOffset = 0; 
-					track.style.transform = `translateX(${currentOffset}px)`;
-				});
+			if (!window.YT) {
+				const tag = document.createElement('script');
+				tag.src = 'https://www.youtube.com/iframe_api';
+				document.body.appendChild(tag);
 			}
 
-			// Initialize manual triggers safely
-			setupArrowTrackNavigation('carouselTrack', 'prevBtn', 'nextBtn');
-			setupArrowTrackNavigation('orchCarouselTrack', 'orchPrevBtn', 'orchNextBtn');
+			// Back-to-Top smooth scroll handler
+			try {
+				const backToTop = document.querySelector('.contact-panel .back-to-top');
+				if (backToTop instanceof HTMLAnchorElement) {
+					backToTop.addEventListener('click', (e) => {
+						e.preventDefault();
+						window.scrollTo({ top: 0, behavior: 'smooth' });
+					});
+				}
+			} catch (err) {
+				console.warn('Back to Top handler error', err);
+			}
+
+
 		</script>
-
-		
 	</body>
 </html>
