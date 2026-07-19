@@ -2,15 +2,24 @@
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+
+// 1. Updating the browser tab name variables here
+const SITE_TITLE = "Superrray Productions";
+const SITE_DESCRIPTION = "Composer & Score Supervisor Portfolio";
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
+		<!-- Pass the updated site title directly to your head component -->
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
 		
-		<!-- LOAD FONT AWESOME FOR THE ICONS -->
+		<!-- 1. FAVICON SOURCE UPDATE -->
+		<!-- Swap the href below to point to your new Superrray Productions icon asset -->
+		<link rel="icon" type="image/png" href="/iTunesArtwork@2x.png" />
+		<link rel="apple-touch-icon" href="/iTunesArtwork@2x.png" />
+		
+		<!-- LOAD FONT AWESOME FOR PLAY ICON & CHEVRONS -->
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
 		<style>
@@ -37,6 +46,30 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				font-family: 'Paperlogy', 'Pretendard', sans-serif;
 				background-color: #000000;
 			}
+			
+			/* NAVBAR LOGO POSITIONING */
+			.site-navbar {
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100%;
+				padding: 1.5rem 3rem;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				z-index: 100;
+				background: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0));
+			}
+			.navbar-brand {
+				color: white;
+				font-size: 1.3rem;
+				font-weight: 500;
+				text-transform: uppercase;
+				letter-spacing: 2px;
+				text-decoration: none;
+			}
+
+			/* HERO LAYER BACKGROUND */
 			.hero-container {
 				position: relative;
 				width: 100%;
@@ -52,7 +85,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 			}
 			.logo-wrapper {
 				position: absolute;
-				top: 8vh;
+				top: 12vh;
 				left: 50%;
 				transform: translateX(-50%);
 				z-index: 10;
@@ -63,10 +96,12 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				object-fit: contain;
 				filter: drop-shadow(0px 4px 12px rgba(0, 0, 0, 0.5));
 			}
+			
+			/* HERO TEXT OVERLAY & FROSTED GLASS ADJUSTMENT */
 			.text-overlay {
 				background: rgba(0, 0, 0, 0.25);
 				padding: 2.5rem 4rem;
-				border-radius: 12px;
+				border-radius: 13.2px; 
 				backdrop-filter: blur(8px);
 				-webkit-backdrop-filter: blur(8px);
 				border: 1px solid rgba(255, 255, 255, 0.1);
@@ -78,9 +113,11 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				align-items: center;
 				gap: 1.5rem;
 			}
+			
+			/* RESTORED & ENLARGED: Center heading increased by 20% from 2.1rem to 2.52rem */
 			.site-title {
 				color: white;
-				font-size: 3.5rem;
+				font-size: 2.52rem;
 				font-weight: 300;
 				text-transform: uppercase;
 				letter-spacing: 6px;
@@ -105,7 +142,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				transform: scale(1.1); 
 			}
 
-			/* VIDEO PLACEMENT */
+			/* VIDEO FRAME PLACEMENT */
 			.video-section {
 				width: 100%;
 				height: 100vh;
@@ -125,7 +162,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				border-radius: 8px;
 				overflow: hidden;
 				border: 1px solid rgba(255, 255, 255, 0.05);
-				cursor: pointer; /* Clear indication that it is interactive */
+				cursor: pointer;
 			}
 			.main-video {
 				width: 100%;
@@ -135,7 +172,6 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				background: #000000;
 			}
 			
-			/* FROSTED GLASS OVERLAY WITH EMBEDDED LOGO & PLAY BTN */
 			.video-blur-overlay {
 				position: absolute;
 				top: 0;
@@ -147,7 +183,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				flex-direction: column;
 				justify-content: center;
 				align-items: center;
-				gap: 1.5rem;
+				gap: 1.2rem;
 				backdrop-filter: blur(12px);
 				-webkit-backdrop-filter: blur(12px);
 				text-align: center;
@@ -159,12 +195,15 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				opacity: 0;
 				visibility: hidden;
 			}
+			
 			.overlay-logo {
 				width: 90px;
 				height: auto;
 				object-fit: contain;
 				filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.4));
+				margin-bottom: 0.5rem;
 			}
+			
 			.play-icon-indicator {
 				color: rgba(255, 255, 255, 0.85);
 				font-size: 4.5rem;
@@ -187,7 +226,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.4);
 			}
 
-			/* CAROUSEL SECTIONS */
+			/* CAROUSEL LAYOUTS */
 			.carousel-header-bg {
 				width: 100%;
 				height: 36vh; 
@@ -207,7 +246,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 			.carousel-title-box {
 				background: rgba(0, 0, 0, 0.4);
 				padding: 1.2rem 3rem;
-				border-radius: 8px;
+				border-radius: 8.8px;
 				backdrop-filter: blur(6px);
 				-webkit-backdrop-filter: blur(6px);
 				border: 1px solid rgba(255, 255, 255, 0.1);
@@ -223,6 +262,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				letter-spacing: 5px;
 				margin: 0;
 				text-shadow: 0px 4px 12px rgba(0, 0, 0, 0.9);
+				line-height: 1.4; /* Line height fallback for multiple lines */
 			}
 
 			.carousel-section {
@@ -239,7 +279,6 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				padding: 20px 0;
 			}
 			
-			/* Soft edge gradients covering elements background securely */
 			.carousel-container::before,
 			.carousel-container::after {
 				background: linear-gradient(to right, #050505 0%, rgba(5, 5, 5, 0) 100%);
@@ -254,13 +293,25 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 			.carousel-container::before { left: 0; }
 			.carousel-container::after { right: 0; transform: rotateZ(180deg); }
 
+			/* CAROUSEL TRACK SPEED SETTINGS */
 			.carousel-track {
 				display: flex;
 				width: max-content;
 				gap: 2.5rem;
 				animation: scroll 82.2s linear infinite; 
 				will-change: transform;
-				transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1); /* Safe fallback transition for offsets */
+				transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+			}
+			
+			/* ORCHESTRATION ANIMATION SPEED CONTROL */
+			#orchCarouselTrack {
+				animation: scroll 98.6s linear infinite;
+				transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+			}
+
+			/* RESTORED HOVER-TO-PAUSE FUNCTIONALITY */
+			.carousel-track:hover {
+				animation-play-state: paused;
 			}
 			
 			.poster-card {
@@ -311,7 +362,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				filter: brightness(0.4) contrast(0.85);
 			}
 
-			/* NAVIGATION ARROWS FIXED PRESET POSITIONING outside structural masks */
+			/* OVERLAY CHEVRON BUTTON STYLES */
 			.carousel-arrow {
 				position: absolute;
 				top: 50%;
@@ -327,7 +378,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				justify-content: center;
 				font-size: 1.25rem;
 				cursor: pointer;
-				z-index: 20; /* Layered safely above the edge masks */
+				z-index: 25; 
 				transition: all 0.3s ease;
 				backdrop-filter: blur(4px);
 				-webkit-backdrop-filter: blur(4px);
@@ -347,10 +398,12 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 			}
 
 			@media (max-width: 768px) {
-				.logo-wrapper { top: 6vh; }
+				.site-navbar { padding: 1rem 1.5rem; }
+				.navbar-brand { font-size: 1rem; }
+				.logo-wrapper { top: 10vh; }
 				.site-logo { width: 80px; }
 				.text-overlay { padding: 1.5rem 2rem; margin-top: 8vh; }
-				.site-title { font-size: 2.2rem; letter-spacing: 4px; }
+				.site-title { font-size: 1.8rem; letter-spacing: 4px; }
 				.social-link { font-size: 1.7rem; }
 				.video-section { height: auto; padding: 60px 20px; }
 				.overlay-logo { width: 65px; }
@@ -370,7 +423,12 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 		</style>
 	</head>
 	<body>
-		<!-- FIRST PAGE: LANDING HERO -->
+		<!-- TOP RIGHT BAR SHOWS CORE PORTFOLIO HEADER -->
+		<nav class="site-navbar">
+			<a href="/" class="navbar-brand">Ray D. Kim</a>
+		</nav>
+
+		<!-- FIRST PAGE: MAIN BRANDING HERO BLOCK -->
 		<main class="hero-container">
 			<div class="logo-wrapper">
 				<img src="/iTunesArtwork@2x.png" alt="Superrray Productions Logo" class="site-logo" />
@@ -387,10 +445,9 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 			</div>
 		</main>
 
-		<!-- SECOND PAGE: VIDEO PLACEMENT -->
+		<!-- SECOND PAGE: FILM REEL VIDEO -->
 		<section class="video-section">
 			<div class="video-wrapper" id="videoContainer">
-				<!-- FROSTED GLASS COVER OVERLAY WITH INTEGRATED LOGO -->
 				<div id="videoOverlay" class="video-blur-overlay">
 					<img src="/iTunesArtwork@2x.png" alt="Overlay Logo" class="overlay-logo" />
 					<i class="fa-solid fa-circle-play play-icon-indicator"></i>
@@ -403,16 +460,15 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 			</div>
 		</section>
 
-		<!-- HEADER IMAGE HERO: SECTION 1 -->
+		<!-- FILM REEL SEGMENT -->
 		<div class="carousel-header-bg">
 			<div class="carousel-title-box">
 				<h2 class="carousel-section-title">Features & Series</h2>
 			</div>
 		</div>
 
-		<!-- THIRD PAGE: SCROLLABLE AUTO-PLAY CAROUSEL -->
+		<!-- THIRD PAGE: SCROLLABLE FILM REEL CAROUSEL -->
 		<section class="carousel-section">
-			<!-- Pinned Manual Navigation Buttons outside structural masks -->
 			<button class="carousel-arrow left" id="prevBtn" aria-label="Scroll Left">
 				<i class="fa-solid fa-chevron-left"></i>
 			</button>
@@ -565,16 +621,16 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 			</div>
 		</section>
 
-		<!-- HEADER IMAGE HERO: SECTION 2 (WITH HOME IS A HOTEL BACKGROUND IMAGE) -->
+		<!-- ORCHESTRATION SEGMENT -->
 		<div class="carousel-header-bg orch-banner">
 			<div class="carousel-title-box">
-				<h2 class="carousel-section-title">Orchestration, Programming & Score Supervision</h2>
+				<!-- LINE BREAK IMPLEMENTED BELOW -->
+				<h2 class="carousel-section-title">Orchestration, Programming <br />& Score Supervision</h2>
 			</div>
 		</div>
 
 		<!-- FOURTH PAGE: CAROUSEL FOR ORCHESTRATION -->
 		<section class="carousel-section">
-			<!-- Pinned Navigation Buttons outside structural masks -->
 			<button class="carousel-arrow left" id="orchPrevBtn" aria-label="Scroll Left">
 				<i class="fa-solid fa-chevron-left"></i>
 			</button>
@@ -831,15 +887,14 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 			</div>
 		</section>
 
-		<!-- SCRIPTS -->
+		<!-- CLIENT SIDE SCRIPT -->
 		<script>
-			// Video Click and Control Manager
+			// Video Play/Pause Management
 			const video = document.getElementById('filmReelVideo');
 			const overlay = document.getElementById('videoOverlay');
 			const videoContainer = document.getElementById('videoContainer');
 
 			if (video && overlay && videoContainer) {
-				// Click anywhere on wrapper to trigger player state natively
 				videoContainer.addEventListener('click', () => {
 					if (video.paused) {
 						video.play();
@@ -852,13 +907,13 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 				video.addEventListener('pause', () => overlay.classList.remove('hidden'));
 			}
 
-			// Helper matrix script to shift layout elements independently of window masks
+			// FIXED MATRIX TRANSLATION FOR MANUAL NAVIGATION CHEVRONS
 			function setupArrowTrackNavigation(trackId, prevBtnId, nextBtnId) {
 				const track = document.getElementById(trackId);
 				const prevBtn = document.getElementById(prevBtnId);
 				const nextBtn = document.getElementById(nextBtnId);
 				let currentOffset = 0;
-				const jumpDistance = 380; // Distance logic shifted per click in px
+				const jumpDistance = 380; 
 
 				if (!track || !prevBtn || !nextBtn) return;
 
@@ -869,13 +924,12 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 
 				prevBtn.addEventListener('click', () => {
 					currentOffset += jumpDistance;
-					// Snap offset logic gracefully to avoid empty voids on startup
 					if (currentOffset > 0) currentOffset = 0; 
 					track.style.transform = `translateX(${currentOffset}px)`;
 				});
 			}
 
-			// Activate Arrow Navigation Modules securely
+			// Initialize manual triggers safely
 			setupArrowTrackNavigation('carouselTrack', 'prevBtn', 'nextBtn');
 			setupArrowTrackNavigation('orchCarouselTrack', 'orchPrevBtn', 'orchNextBtn');
 		</script>
