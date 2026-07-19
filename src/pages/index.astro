@@ -3,7 +3,7 @@ import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 
-// 1. Updating the browser tab name variables here
+// Updating the browser tab name variables here
 const SITE_TITLE = "Superrray Productions";
 const SITE_DESCRIPTION = "Composer & Score Supervisor Portfolio";
 ---
@@ -14,10 +14,9 @@ const SITE_DESCRIPTION = "Composer & Score Supervisor Portfolio";
 		<!-- Pass the updated site title directly to your head component -->
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
 		
-		<!-- 1. FAVICON SOURCE UPDATE -->
-		<!-- Swap the href below to point to your new Superrray Productions icon asset -->
-		<link rel="icon" type="image/png" href="/iTunesArtwork@2x.png" />
-		<link rel="apple-touch-icon" href="/iTunesArtwork@2x.png" />
+		<!-- FAVICON SOURCE ENFORCED -->
+		<link rel="icon" type="image/png" href="/iTunesArtwork@2x.png?v=2" />
+		<link rel="apple-touch-icon" href="/iTunesArtwork@2x.png?v=2" />
 		
 		<!-- LOAD FONT AWESOME FOR PLAY ICON & CHEVRONS -->
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
@@ -114,7 +113,6 @@ const SITE_DESCRIPTION = "Composer & Score Supervisor Portfolio";
 				gap: 1.5rem;
 			}
 			
-			/* RESTORED & ENLARGED: Center heading increased by 20% from 2.1rem to 2.52rem */
 			.site-title {
 				color: white;
 				font-size: 2.52rem;
@@ -142,7 +140,7 @@ const SITE_DESCRIPTION = "Composer & Score Supervisor Portfolio";
 				transform: scale(1.1); 
 			}
 
-			/* VIDEO FRAME PLACEMENT */
+			/* VIDEO FRAME PLACEMENT - ENLARGED BY 15% */
 			.video-section {
 				width: 100%;
 				height: 100vh;
@@ -156,7 +154,7 @@ const SITE_DESCRIPTION = "Composer & Score Supervisor Portfolio";
 			.video-wrapper {
 				position: relative; 
 				width: 100%;
-				max-width: 1250px;
+				max-width: 1437px; 
 				aspect-ratio: 16 / 9;
 				box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.7);
 				border-radius: 8px;
@@ -243,6 +241,16 @@ const SITE_DESCRIPTION = "Composer & Score Supervisor Portfolio";
 				background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(5, 5, 5, 1)), url('/home is a hotel ray kim.jpeg');
 				background-position: center 50%;
 			}
+			
+			/* 2. VIDEO GAME BANNER WITH 30% ZOOM OUT ACCENT */
+			.carousel-header-bg.vg-banner {
+				background-color: #000000;
+				background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.9)), url('/Video Game Controller.jpeg');
+				background-size: 70%;
+				background-position: center center;
+				background-repeat: no-repeat;
+			}
+
 			.carousel-title-box {
 				background: rgba(0, 0, 0, 0.4);
 				padding: 1.2rem 3rem;
@@ -262,7 +270,7 @@ const SITE_DESCRIPTION = "Composer & Score Supervisor Portfolio";
 				letter-spacing: 5px;
 				margin: 0;
 				text-shadow: 0px 4px 12px rgba(0, 0, 0, 0.9);
-				line-height: 1.4; /* Line height fallback for multiple lines */
+				line-height: 1.4; 
 			}
 
 			.carousel-section {
@@ -293,7 +301,6 @@ const SITE_DESCRIPTION = "Composer & Score Supervisor Portfolio";
 			.carousel-container::before { left: 0; }
 			.carousel-container::after { right: 0; transform: rotateZ(180deg); }
 
-			/* CAROUSEL TRACK SPEED SETTINGS */
 			.carousel-track {
 				display: flex;
 				width: max-content;
@@ -303,14 +310,13 @@ const SITE_DESCRIPTION = "Composer & Score Supervisor Portfolio";
 				transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
 			}
 			
-			/* ORCHESTRATION ANIMATION SPEED CONTROL */
 			#orchCarouselTrack {
 				animation: scroll 98.6s linear infinite;
 				transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
 			}
 
-			/* RESTORED HOVER-TO-PAUSE FUNCTIONALITY */
-			.carousel-track:hover {
+			.carousel-track:hover,
+			#orchCarouselTrack:hover {
 				animation-play-state: paused;
 			}
 			
@@ -358,11 +364,11 @@ const SITE_DESCRIPTION = "Composer & Score Supervisor Portfolio";
 				box-shadow: 0 15px 35px rgba(0, 0, 0, 0.9), 0 0 15px rgba(255, 255, 255, 0.2);
 				z-index: 10;
 			}
-			.carousel-track:hover .poster-card:not(:hover) {
+			.carousel-track:hover .poster-card:not(:hover),
+			#orchCarouselTrack:hover .poster-card:not(:hover) {
 				filter: brightness(0.4) contrast(0.85);
 			}
 
-			/* OVERLAY CHEVRON BUTTON STYLES */
 			.carousel-arrow {
 				position: absolute;
 				top: 50%;
@@ -392,9 +398,67 @@ const SITE_DESCRIPTION = "Composer & Score Supervisor Portfolio";
 			.carousel-arrow.left { left: 25px; }
 			.carousel-arrow.right { right: 25px; }
 
+			/* 1. BRAND COLORIZATION TILES (DARK GREEN SLATE THEME) */
+			.listen-section {
+				width: 100%;
+				background: #030604;
+				padding: 80px 40px;
+				box-sizing: border-box;
+				border-top: 1px solid rgba(255, 255, 255, 0.05);
+			}
+			.listen-container {
+				max-width: 1400px;
+				margin: 0 auto;
+			}
+			.listen-title-wrapper {
+				text-align: center;
+				margin-bottom: 50px;
+			}
+			.listen-main-title {
+				color: white;
+				font-family: 'Paperlogy', sans-serif;
+				font-size: 3rem;
+				font-weight: 300;
+				text-transform: uppercase;
+				letter-spacing: 6px;
+				margin: 0;
+			}
+			.spotify-grid {
+				display: grid;
+				grid-template-columns: repeat(4, 1fr);
+				gap: 2rem;
+				width: 100%;
+			}
+			.spotify-card {
+				background: #0a140e; /* Custom tint: colorful deep forest dark green slate instead of gray */
+				border-radius: 12px;
+				overflow: hidden;
+				box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6), 0 0 8px rgba(30, 215, 96, 0.2);
+				border: 1px solid rgba(30, 215, 96, 0.25); 
+				transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+			}
+			.spotify-card:hover {
+				background: #112218;
+				transform: translateY(-5px);
+				box-shadow: 0 14px 35px rgba(0, 0, 0, 0.8), 0 0 20px rgba(30, 215, 96, 0.5);
+				border-color: #1ED760; 
+			}
+
+			/* YOUTUBE IFRAME container fallback */
+			.youtube-frame {
+				width: 100%;
+				height: 100%;
+				border: none;
+				display: block;
+			}
+
 			@keyframes scroll {
 				0% { transform: translateX(0); }
 				100% { transform: translateX(calc(-50% - 1.25rem)); } 
+			}
+
+			@media (max-width: 1200px) {
+				.spotify-grid { grid-template-columns: repeat(2, 1fr); }
 			}
 
 			@media (max-width: 768px) {
@@ -411,6 +475,7 @@ const SITE_DESCRIPTION = "Composer & Score Supervisor Portfolio";
 				.video-subtitle { font-size: 1.8rem; letter-spacing: 4px; }
 				
 				.carousel-header-bg { height: 24vh; background-position: center 75%; }
+				.carousel-header-bg.vg-banner { background-size: 90%; }
 				.carousel-section { padding-bottom: 40px; }
 				.carousel-section-title { font-size: 1.8rem; letter-spacing: 3px; }
 				.carousel-title-box { padding: 0.8rem 1.5rem; }
@@ -419,6 +484,10 @@ const SITE_DESCRIPTION = "Composer & Score Supervisor Portfolio";
 				.carousel-arrow { width: 40px; height: 40px; font-size: 1rem; }
 				.carousel-arrow.left { left: 10px; }
 				.carousel-arrow.right { right: 10px; }
+
+				.listen-section { padding: 60px 20px; }
+				.listen-main-title { font-size: 2.2rem; letter-spacing: 4px; }
+				.spotify-grid { grid-template-columns: 1fr; gap: 1.5rem; }
 			}
 		</style>
 	</head>
@@ -453,7 +522,8 @@ const SITE_DESCRIPTION = "Composer & Score Supervisor Portfolio";
 					<i class="fa-solid fa-circle-play play-icon-indicator"></i>
 					<h2 class="video-subtitle">Film Reel</h2>
 				</div>
-				<video id="filmReelVideo" controls preload="metadata" class="main-video" poster="/Ray Conduct.JPG">
+				<!-- 4. RESOLVED INTERACTION PLAYBACK CONSTRAINTS HERE -->
+				<video id="filmReelVideo" controls preload="auto" class="main-video" poster="/la session2.jpeg">
 					<source src="https://www.dropbox.com/scl/fi/99aszddtu6zz9e2v2yrmr/Film-Reel-250705-24-rf23.mp4?rlkey=gbv08rw12a2w8r72eowok3hpt&st=6hj8hsfb&raw=1" type="video/mp4" />
 					Your browser does not support the video tag.
 				</video>
@@ -624,7 +694,6 @@ const SITE_DESCRIPTION = "Composer & Score Supervisor Portfolio";
 		<!-- ORCHESTRATION SEGMENT -->
 		<div class="carousel-header-bg orch-banner">
 			<div class="carousel-title-box">
-				<!-- LINE BREAK IMPLEMENTED BELOW -->
 				<h2 class="carousel-section-title">Orchestration, Programming <br />& Score Supervision</h2>
 			</div>
 		</div>
@@ -887,27 +956,114 @@ const SITE_DESCRIPTION = "Composer & Score Supervisor Portfolio";
 			</div>
 		</section>
 
+		<!-- FIFTH PAGE: NEW LISTEN SPOTIFY SECTION -->
+		<section class="listen-section">
+			<div class="listen-container">
+				<div class="listen-title-wrapper">
+					<h2 class="listen-main-title">Listen</h2>
+				</div>
+				<div class="spotify-grid">
+					<!-- Hacks -->
+					<div class="spotify-card">
+						<iframe style="border-radius:12px" src="https://open.spotify.com/embed/album/6SCMaaxakgzykc4Ujjxg5x?utm_source=generator&theme=0" width="100%" height="352" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+					</div>
+					<!-- They Will Kill You -->
+					<div class="spotify-card">
+						<iframe style="border-radius:12px" src="https://open.spotify.com/embed/album/4zI0xlmNa7wJGKx31W4jHU?utm_source=generator&theme=0" width="100%" height="352" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+					</div>
+					<!-- Dept. Q -->
+					<div class="spotify-card">
+						<iframe style="border-radius:12px" src="https://open.spotify.com/embed/album/1e5HzQzwRsdWNh2m5kDOUy?utm_source=generator&theme=0" width="100%" height="352" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+					</div>
+					<!-- Lessons in Chemistry -->
+					<div class="spotify-card">
+						<iframe style="border-radius:12px" src="https://open.spotify.com/embed/album/23xn7eZgOf41WYCfKj2LjP?utm_source=generator&theme=0" width="100%" height="352" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+					</div>
+					<!-- Ezra -->
+					<div class="spotify-card">
+						<iframe style="border-radius:12px" src="https://open.spotify.com/embed/album/2UbyTUN7UOsnV6lT9ecAky?utm_source=generator&theme=0" width="100%" height="352" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+					</div>
+					<!-- Monsieur Spade -->
+					<div class="spotify-card">
+						<iframe style="border-radius:12px" src="https://open.spotify.com/embed/album/4xHv6i545xZKmZR2J5ui1u?utm_source=generator&theme=0" width="100%" height="352" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+					</div>
+					<!-- CORRECT CHUPA EMBED LINK APPLIED -->
+					<div class="spotify-card">
+						<iframe style="border-radius:12px" src="https://open.spotify.com/embed/album/6GGqqXXRUwPfbkLaUD65mm?utm_source=generator&theme=0" width="100%" height="352" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+					</div>
+					<!-- Griselda -->
+					<div class="spotify-card">
+						<iframe style="border-radius:12px" src="https://open.spotify.com/embed/album/7LJJir3kuYjfwX020ZSQWw?utm_source=generator&theme=0" width="100%" height="352" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- VIDEO GAME BANNER SECTION WITH 30% OVERLAY ZOOM -->
+		<div class="carousel-header-bg vg-banner">
+			<div class="carousel-title-box">
+				<h2 class="carousel-section-title">Video Game</h2>
+			</div>
+		</div>
+
+		<!-- 3. IDENTICAL VIDEO GAME REEL SECTION WITH YOUTUBE PLAYER -->
+		<section class="video-section">
+			<div class="video-wrapper" id="ytVideoContainer">
+				<div id="ytVideoOverlay" class="video-blur-overlay">
+					<img src="/iTunesArtwork@2x.png" alt="Overlay Logo" class="overlay-logo" />
+					<i class="fa-solid fa-circle-play play-icon-indicator"></i>
+					<h2 class="video-subtitle">Video Game Reel</h2>
+				</div>
+				<iframe 
+					id="vgPlayerFrame" 
+					class="youtube-frame" 
+					src="https://www.youtube.com/embed/gi1MkC3B5Zo?enablejsapi=1&rel=0&showinfo=0" 
+					allow="autoplay; encrypted-media" 
+					allowfullscreen>
+				</iframe>
+			</div>
+		</section>
+
 		<!-- CLIENT SIDE SCRIPT -->
 		<script>
-			// Video Play/Pause Management
+			// 4. FILM REEL INTERACTION FIX (Resolves standard browser asynchronous lockouts)
 			const video = document.getElementById('filmReelVideo');
 			const overlay = document.getElementById('videoOverlay');
 			const videoContainer = document.getElementById('videoContainer');
 
 			if (video && overlay && videoContainer) {
-				videoContainer.addEventListener('click', () => {
-					if (video.paused) {
-						video.play();
+				const handlePlaybackToggle = (e) => {
+					e.preventDefault();
+					if (video.paused || video.ended) {
+						video.play().then(() => {
+							overlay.classList.add('hidden');
+						}).catch(err => console.log("Playback requested standard check:", err));
 					} else {
 						video.pause();
+						overlay.classList.remove('hidden');
 					}
-				});
+				};
 
+				videoContainer.addEventListener('click', handlePlaybackToggle);
 				video.addEventListener('play', () => overlay.classList.add('hidden'));
 				video.addEventListener('pause', () => overlay.classList.remove('hidden'));
 			}
 
-			// FIXED MATRIX TRANSLATION FOR MANUAL NAVIGATION CHEVRONS
+			// 3. YOUTUBE VIDEO GAME REEL OVERLAY STATE ENGINE
+			const ytOverlay = document.getElementById('ytVideoOverlay');
+			const ytContainer = document.getElementById('ytVideoContainer');
+			const ytFrame = document.getElementById('vgPlayerFrame');
+
+			if (ytOverlay && ytContainer && ytFrame) {
+				ytContainer.addEventListener('click', (e) => {
+					e.preventDefault();
+					// Triggers YouTube postMessage system API play signal directly
+					ytFrame.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+					ytOverlay.classList.add('hidden');
+				});
+			}
+
+			// Arrow Navigation Control Function
 			function setupArrowTrackNavigation(trackId, prevBtnId, nextBtnId) {
 				const track = document.getElementById(trackId);
 				const prevBtn = document.getElementById(prevBtnId);
