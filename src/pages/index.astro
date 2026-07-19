@@ -18,7 +18,7 @@ const SITE_DESCRIPTION = "Composer & Score Supervisor Portfolio";
 		<link rel="icon" type="image/png" href="/iTunesArtwork@2x.png?v=2" />
 		<link rel="apple-touch-icon" href="/iTunesArtwork@2x.png?v=2" />
 		
-		<!-- LOAD FONT AWESOME FOR PLAY ICON, CHEVRONS, & STEAM ICON -->
+		<!-- LOAD FONT AWESOME FOR ICONS -->
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
 		<style>
@@ -242,9 +242,9 @@ const SITE_DESCRIPTION = "Composer & Score Supervisor Portfolio";
 				background-position: center 50%;
 			}
 			
-			/* 1. REVERTED VIDEO GAME BANNER AT 52VH FAT HEIGHT AND COVER OPTION */
+			/* 1. LOWERED VIDEO GAME BANNER BY 30% -> 36.4VH HEIGHT */
 			.carousel-header-bg.vg-banner {
-				height: 52vh;
+				height: 36.4vh;
 				background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.9)), url('/Video Game Controller.jpeg');
 				background-size: cover;
 				background-position: center center;
@@ -444,7 +444,7 @@ const SITE_DESCRIPTION = "Composer & Score Supervisor Portfolio";
 				border-color: #1ED760; 
 			}
 
-			/* YOUTUBE IFRAME container fallback */
+			/* YOUTUBE IFRAME CONTAINER FALLBACK */
 			.youtube-frame {
 				width: 100%;
 				height: 100%;
@@ -452,7 +452,7 @@ const SITE_DESCRIPTION = "Composer & Score Supervisor Portfolio";
 				display: block;
 			}
 
-			/* 2. RECENT WORKS & CURRENT PROJECTS LAYOUT AREA */
+			/* PROJECT ARCHITECTURE LAYOUT WRAPPERS */
 			.project-content-section {
 				width: 100%;
 				background: #080808;
@@ -517,7 +517,9 @@ const SITE_DESCRIPTION = "Composer & Score Supervisor Portfolio";
 				color: rgba(255, 255, 255, 0.85);
 				word-break: keep-all;
 			}
-			.steam-redirect-btn {
+			
+			/* REDIRECT PLATFORM ACTION BUTTONS */
+			.store-redirect-btn {
 				display: inline-flex;
 				align-items: center;
 				gap: 0.85rem;
@@ -535,19 +537,33 @@ const SITE_DESCRIPTION = "Composer & Score Supervisor Portfolio";
 				box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
 				transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
 			}
-			.steam-redirect-btn:hover {
+			.store-redirect-btn:hover {
 				background: linear-gradient(135deg, #143660 0%, #1b2838 100%);
 				border-color: #66c0f4;
 				transform: translateY(-2px);
 				box-shadow: 0 10px 25px rgba(102, 192, 244, 0.25);
 			}
-			.steam-redirect-btn i {
+			.store-redirect-btn i {
 				font-size: 1.35rem;
 				color: #66c0f4;
 				transition: transform 0.3s ease;
 			}
-			.steam-redirect-btn:hover i {
+			.store-redirect-btn:hover i {
 				transform: scale(1.15);
+			}
+
+			/* ITCH IO SPECIFIC ACTION OVERRIDES */
+			.store-redirect-btn.itch-theme {
+				background: linear-gradient(135deg, #332222 0%, #141414 100%);
+				border-color: rgba(250, 92, 92, 0.3);
+			}
+			.store-redirect-btn.itch-theme:hover {
+				background: linear-gradient(135deg, #5c2c2c 0%, #2b1616 100%);
+				border-color: #fa5c5c;
+				box-shadow: 0 10px 25px rgba(250, 92, 92, 0.25);
+			}
+			.store-redirect-btn.itch-theme i {
+				color: #fa5c5c;
 			}
 
 			@keyframes scroll {
@@ -1105,7 +1121,7 @@ const SITE_DESCRIPTION = "Composer & Score Supervisor Portfolio";
 			</div>
 		</section>
 
-		<!-- 1. FATTER VIDEO GAME BANNER WITH COVER SPECIFICATION -->
+		<!-- 1. ADJUSTED VIDEO GAME BANNER -> HEIGHT TRIMMED 30% DOWN TO 36.4VH -->
 		<div class="carousel-header-bg vg-banner">
 			<div class="carousel-title-box">
 				<h2 class="carousel-section-title">Video Game</h2>
@@ -1130,20 +1146,20 @@ const SITE_DESCRIPTION = "Composer & Score Supervisor Portfolio";
 			</div>
 		</section>
 
-		<!-- 2. NEW HEADER BANNER SECTION -->
-		<div class="carousel-header-bg" style="background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(5, 5, 5, 1)); background-color: #0b0b0b;">
+		<!-- 2. RECENT WORKS BANNER MAPPED TO KEYBOARD.JPEG -->
+		<div class="carousel-header-bg" style="background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(5, 5, 5, 1)), url('/keyboard.jpeg');">
 			<div class="carousel-title-box">
 				<h2 class="carousel-section-title">Recent Works & Current Projects</h2>
 			</div>
 		</div>
 
-		<!-- 2. TWO-COLUMN AREA FEATURING PALE CACHEXIA OVERVIEW -->
+		<!-- TWO-COLUMN AREA FEATURING PALE CACHEXIA OVERVIEW -->
 		<section class="project-content-section">
 			<div class="project-grid-container">
-				<!-- Left Column: Hoverable Poster Image -->
+				<!-- Left Column: Hoverable Poster Image (3. Updated to Palen Cachexia Banner.jpeg) -->
 				<div class="project-left-col">
 					<div class="project-image-frame">
-						<img src="/Pale Cachexia.png" alt="Pale Cachexia Artwork" />
+						<img src="/Palen Cachexia Banner.jpeg" alt="Pale Cachexia Artwork" />
 					</div>
 				</div>
 				<!-- Right Column: Formatted Text Description & Steam Button -->
@@ -1155,8 +1171,60 @@ const SITE_DESCRIPTION = "Composer & Score Supervisor Portfolio";
 						But when Esther meets Seina, who lives all alone in a towering manor, the two girls are drawn to each other in a tale of friendship, sorrow, and bitter loneliness. 
 						Their story is shadowed by the dark secrets of the manor and its graveyard, which haunts Esther even in her deepest dreams.
 					</p>
-					<a href="https://store.steampowered.com/app/847680/Pale_Cachexia/" target="_blank" class="steam-redirect-btn">
-						<i class="fa-brands fa-steam"></i> Buy on Steam
+					<!-- 4. Removed "Buy On" From Button Display -->
+					<a href="https://store.steampowered.com/app/847680/Pale_Cachexia/" target="_blank" class="store-redirect-btn">
+						<i class="fa-brands fa-steam"></i> Steam
+					</a>
+				</div>
+			</div>
+		</section>
+
+		<!-- 5. NEW SECTION: IN DEVELOPMENT HEADER BANNER -->
+		<div class="carousel-header-bg" style="background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(5, 5, 5, 1)); background-color: #0c0c0c;">
+			<div class="carousel-title-box">
+				<h2 class="carousel-section-title">In Development</h2>
+			</div>
+		</div>
+
+		<!-- 6. PROMETHEUS LAYOUT BLOCK -->
+		<section class="project-content-section" style="border-top: none; padding-top: 40px;">
+			<div class="project-grid-container">
+				<!-- Left Column: Prometheus Hoverable Image -->
+				<div class="project-left-col">
+					<div class="project-image-frame">
+						<img src="/prometheus.jpeg" alt="PROMETHEUS: Omex Rising" />
+					</div>
+				</div>
+				<!-- Right Column: Info & Action Callout -->
+				<div class="project-right-col">
+					<h3 class="project-header-title">PROMΞTHΞUS: Omex Rising</h3>
+					<p class="project-description-paragraph">
+						PROMΞTHΞUS is a singleplayer/cooperative game that takes place in the distant future, where humanity has taken an endeavor to a distant sci-fi planet, known as Orpheus.
+					</p>
+					<a href="#" target="_blank" class="store-redirect-btn">
+						<i class="fa-brands fa-steam"></i> Steam
+					</a>
+				</div>
+			</div>
+		</section>
+
+		<!-- 7. ANOLDOR LAYOUT BLOCK -->
+		<section class="project-content-section" style="border-top: 1px solid rgba(255, 255, 255, 0.03); padding-top: 80px;">
+			<div class="project-grid-container">
+				<!-- Left Column: Anoldor Hoverable Image -->
+				<div class="project-left-col">
+					<div class="project-image-frame">
+						<img src="/anoldor.jpg" alt="ANOLDOR" />
+					</div>
+				</div>
+				<!-- Right Column: Info & Itch.io Action Callout -->
+				<div class="project-right-col">
+					<h3 class="project-header-title">ANOLDOR</h3>
+					<p class="project-description-paragraph">
+						As the 31st Chosen One of Anoldor, rule over your country, negotiate with gods, tame magick and forge the destiny of your people as much as your own. Having so many lives to protect and guide during this time of political chaos is a heavy burden, but you don’t have to carry it alone. You may rely on your friends and true love, as long you don’t mistake your enemies for your allies…
+					</p>
+					<a href="https://anoldor.itch.io/anoldor" target="_blank" class="store-redirect-btn itch-theme">
+						<i class="fa-solid fa-gamepad"></i> Itch.io
 					</a>
 				</div>
 			</div>
