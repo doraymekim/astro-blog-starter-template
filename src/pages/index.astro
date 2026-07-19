@@ -18,7 +18,7 @@ const SITE_DESCRIPTION = "Composer & Score Supervisor Portfolio";
 		<link rel="icon" type="image/png" href="/iTunesArtwork@2x.png?v=2" />
 		<link rel="apple-touch-icon" href="/iTunesArtwork@2x.png?v=2" />
 		
-		<!-- LOAD FONT AWESOME FOR PLAY ICON & CHEVRONS -->
+		<!-- LOAD FONT AWESOME FOR PLAY ICON, CHEVRONS, & STEAM ICON -->
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
 		<style>
@@ -242,11 +242,11 @@ const SITE_DESCRIPTION = "Composer & Score Supervisor Portfolio";
 				background-position: center 50%;
 			}
 			
-			/* 2. VIDEO GAME BANNER WITH 30% ZOOM OUT ACCENT */
+			/* 1. REVERTED VIDEO GAME BANNER AT 52VH FAT HEIGHT AND COVER OPTION */
 			.carousel-header-bg.vg-banner {
-				background-color: #000000;
+				height: 52vh;
 				background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.9)), url('/Video Game Controller.jpeg');
-				background-size: 70%;
+				background-size: cover;
 				background-position: center center;
 				background-repeat: no-repeat;
 			}
@@ -398,7 +398,7 @@ const SITE_DESCRIPTION = "Composer & Score Supervisor Portfolio";
 			.carousel-arrow.left { left: 25px; }
 			.carousel-arrow.right { right: 25px; }
 
-			/* 1. BRAND COLORIZATION TILES (DARK GREEN SLATE THEME) */
+			/* BRAND COLORIZATION TILES (DARK GREEN SLATE THEME) */
 			.listen-section {
 				width: 100%;
 				background: #030604;
@@ -430,7 +430,7 @@ const SITE_DESCRIPTION = "Composer & Score Supervisor Portfolio";
 				width: 100%;
 			}
 			.spotify-card {
-				background: #0a140e; /* Custom tint: colorful deep forest dark green slate instead of gray */
+				background: #0a140e; 
 				border-radius: 12px;
 				overflow: hidden;
 				box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6), 0 0 8px rgba(30, 215, 96, 0.2);
@@ -452,6 +452,104 @@ const SITE_DESCRIPTION = "Composer & Score Supervisor Portfolio";
 				display: block;
 			}
 
+			/* 2. RECENT WORKS & CURRENT PROJECTS LAYOUT AREA */
+			.project-content-section {
+				width: 100%;
+				background: #080808;
+				padding: 90px 40px;
+				box-sizing: border-box;
+				border-top: 1px solid rgba(255, 255, 255, 0.03);
+			}
+			.project-grid-container {
+				max-width: 1250px;
+				margin: 0 auto;
+				display: grid;
+				grid-template-columns: 4.5fr 7.5fr;
+				gap: 4.5rem;
+				align-items: center;
+			}
+			.project-left-col {
+				width: 100%;
+				display: flex;
+				justify-content: center;
+			}
+			.project-image-frame {
+				width: 100%;
+				max-width: 370px;
+				aspect-ratio: 2 / 3;
+				border-radius: 10px;
+				overflow: hidden;
+				box-shadow: 0 12px 35px rgba(0, 0, 0, 0.85);
+				border: 1px solid rgba(255, 255, 255, 0.08);
+				transition: transform 0.45s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.45s ease;
+			}
+			.project-image-frame:hover {
+				transform: scale(1.05) translateY(-5px);
+				box-shadow: 0 20px 45px rgba(0, 0, 0, 0.95), 0 0 15px rgba(255, 255, 255, 0.1);
+			}
+			.project-image-frame img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				display: block;
+			}
+			.project-right-col {
+				display: flex;
+				flex-direction: column;
+				align-items: flex-start;
+				color: #e0e0e0;
+			}
+			.project-header-title {
+				color: #ffffff;
+				font-family: 'Paperlogy', sans-serif;
+				font-size: 2.85rem;
+				font-weight: 500;
+				margin: 0 0 1.8rem 0;
+				letter-spacing: 1px;
+				text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+			}
+			.project-description-paragraph {
+				font-family: 'Pretendard', sans-serif;
+				font-size: 1.15rem;
+				font-weight: 300;
+				line-height: 1.95;
+				margin: 0 0 2.5rem 0;
+				color: rgba(255, 255, 255, 0.85);
+				word-break: keep-all;
+			}
+			.steam-redirect-btn {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.85rem;
+				background: linear-gradient(135deg, #10253f 0%, #171a21 100%);
+				color: #ffffff;
+				padding: 1.05rem 2.2rem;
+				font-family: 'Paperlogy', sans-serif;
+				font-size: 1.05rem;
+				font-weight: 500;
+				letter-spacing: 1px;
+				text-transform: uppercase;
+				text-decoration: none;
+				border-radius: 6px;
+				border: 1px solid rgba(102, 192, 244, 0.3);
+				box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+				transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+			}
+			.steam-redirect-btn:hover {
+				background: linear-gradient(135deg, #143660 0%, #1b2838 100%);
+				border-color: #66c0f4;
+				transform: translateY(-2px);
+				box-shadow: 0 10px 25px rgba(102, 192, 244, 0.25);
+			}
+			.steam-redirect-btn i {
+				font-size: 1.35rem;
+				color: #66c0f4;
+				transition: transform 0.3s ease;
+			}
+			.steam-redirect-btn:hover i {
+				transform: scale(1.15);
+			}
+
 			@keyframes scroll {
 				0% { transform: translateX(0); }
 				100% { transform: translateX(calc(-50% - 1.25rem)); } 
@@ -459,6 +557,8 @@ const SITE_DESCRIPTION = "Composer & Score Supervisor Portfolio";
 
 			@media (max-width: 1200px) {
 				.spotify-grid { grid-template-columns: repeat(2, 1fr); }
+				.project-grid-container { gap: 3rem; }
+				.project-header-title { font-size: 2.3rem; }
 			}
 
 			@media (max-width: 768px) {
@@ -475,7 +575,7 @@ const SITE_DESCRIPTION = "Composer & Score Supervisor Portfolio";
 				.video-subtitle { font-size: 1.8rem; letter-spacing: 4px; }
 				
 				.carousel-header-bg { height: 24vh; background-position: center 75%; }
-				.carousel-header-bg.vg-banner { background-size: 90%; }
+				.carousel-header-bg.vg-banner { height: 32vh; background-size: cover; }
 				.carousel-section { padding-bottom: 40px; }
 				.carousel-section-title { font-size: 1.8rem; letter-spacing: 3px; }
 				.carousel-title-box { padding: 0.8rem 1.5rem; }
@@ -488,6 +588,13 @@ const SITE_DESCRIPTION = "Composer & Score Supervisor Portfolio";
 				.listen-section { padding: 60px 20px; }
 				.listen-main-title { font-size: 2.2rem; letter-spacing: 4px; }
 				.spotify-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+
+				.project-content-section { padding: 60px 20px; }
+				.project-grid-container { grid-template-columns: 1fr; gap: 3rem; text-align: center; }
+				.project-left-col { order: 1; }
+				.project-right-col { order: 2; align-items: center; }
+				.project-header-title { font-size: 2rem; margin-bottom: 1.2rem; }
+				.project-description-paragraph { font-size: 1.05rem; line-height: 1.8; margin-bottom: 2rem; }
 			}
 		</style>
 	</head>
@@ -522,7 +629,6 @@ const SITE_DESCRIPTION = "Composer & Score Supervisor Portfolio";
 					<i class="fa-solid fa-circle-play play-icon-indicator"></i>
 					<h2 class="video-subtitle">Film Reel</h2>
 				</div>
-				<!-- 4. RESOLVED INTERACTION PLAYBACK CONSTRAINTS HERE -->
 				<video id="filmReelVideo" controls preload="auto" class="main-video" poster="/la session2.jpeg">
 					<source src="https://www.dropbox.com/scl/fi/99aszddtu6zz9e2v2yrmr/Film-Reel-250705-24-rf23.mp4?rlkey=gbv08rw12a2w8r72eowok3hpt&st=6hj8hsfb&raw=1" type="video/mp4" />
 					Your browser does not support the video tag.
@@ -956,7 +1062,7 @@ const SITE_DESCRIPTION = "Composer & Score Supervisor Portfolio";
 			</div>
 		</section>
 
-		<!-- FIFTH PAGE: NEW LISTEN SPOTIFY SECTION -->
+		<!-- FIFTH PAGE: LISTEN SPOTIFY SECTION -->
 		<section class="listen-section">
 			<div class="listen-container">
 				<div class="listen-title-wrapper">
@@ -999,14 +1105,14 @@ const SITE_DESCRIPTION = "Composer & Score Supervisor Portfolio";
 			</div>
 		</section>
 
-		<!-- VIDEO GAME BANNER SECTION WITH 30% OVERLAY ZOOM -->
+		<!-- 1. FATTER VIDEO GAME BANNER WITH COVER SPECIFICATION -->
 		<div class="carousel-header-bg vg-banner">
 			<div class="carousel-title-box">
 				<h2 class="carousel-section-title">Video Game</h2>
 			</div>
 		</div>
 
-		<!-- 3. IDENTICAL VIDEO GAME REEL SECTION WITH YOUTUBE PLAYER -->
+		<!-- IDENTICAL VIDEO GAME REEL SECTION WITH YOUTUBE PLAYER -->
 		<section class="video-section">
 			<div class="video-wrapper" id="ytVideoContainer">
 				<div id="ytVideoOverlay" class="video-blur-overlay">
@@ -1024,9 +1130,41 @@ const SITE_DESCRIPTION = "Composer & Score Supervisor Portfolio";
 			</div>
 		</section>
 
+		<!-- 2. NEW HEADER BANNER SECTION -->
+		<div class="carousel-header-bg" style="background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(5, 5, 5, 1)); background-color: #0b0b0b;">
+			<div class="carousel-title-box">
+				<h2 class="carousel-section-title">Recent Works & Current Projects</h2>
+			</div>
+		</div>
+
+		<!-- 2. TWO-COLUMN AREA FEATURING PALE CACHEXIA OVERVIEW -->
+		<section class="project-content-section">
+			<div class="project-grid-container">
+				<!-- Left Column: Hoverable Poster Image -->
+				<div class="project-left-col">
+					<div class="project-image-frame">
+						<img src="/Pale Cachexia.png" alt="Pale Cachexia Artwork" />
+					</div>
+				</div>
+				<!-- Right Column: Formatted Text Description & Steam Button -->
+				<div class="project-right-col">
+					<h3 class="project-header-title">Pale Cachexia (2021)</h3>
+					<p class="project-description-paragraph">
+						In this Gothic story of deep bonds and chilling mystery, a young girl named Esther ventures deep within a forgotten forest. 
+						There, she seeks out a potential cure for her mysterious illness: a life-leeching plague known as the Pale Cachexia. 
+						But when Esther meets Seina, who lives all alone in a towering manor, the two girls are drawn to each other in a tale of friendship, sorrow, and bitter loneliness. 
+						Their story is shadowed by the dark secrets of the manor and its graveyard, which haunts Esther even in her deepest dreams.
+					</p>
+					<a href="https://store.steampowered.com/app/847680/Pale_Cachexia/" target="_blank" class="steam-redirect-btn">
+						<i class="fa-brands fa-steam"></i> Buy on Steam
+					</a>
+				</div>
+			</div>
+		</section>
+
 		<!-- CLIENT SIDE SCRIPT -->
 		<script>
-			// 4. FILM REEL INTERACTION FIX (Resolves standard browser asynchronous lockouts)
+			// FILM REEL INTERACTION FIX 
 			const video = document.getElementById('filmReelVideo');
 			const overlay = document.getElementById('videoOverlay');
 			const videoContainer = document.getElementById('videoContainer');
@@ -1049,7 +1187,7 @@ const SITE_DESCRIPTION = "Composer & Score Supervisor Portfolio";
 				video.addEventListener('pause', () => overlay.classList.remove('hidden'));
 			}
 
-			// 3. YOUTUBE VIDEO GAME REEL OVERLAY STATE ENGINE
+			// YOUTUBE VIDEO GAME REEL OVERLAY STATE ENGINE
 			const ytOverlay = document.getElementById('ytVideoOverlay');
 			const ytContainer = document.getElementById('ytVideoContainer');
 			const ytFrame = document.getElementById('vgPlayerFrame');
@@ -1057,7 +1195,6 @@ const SITE_DESCRIPTION = "Composer & Score Supervisor Portfolio";
 			if (ytOverlay && ytContainer && ytFrame) {
 				ytContainer.addEventListener('click', (e) => {
 					e.preventDefault();
-					// Triggers YouTube postMessage system API play signal directly
 					ytFrame.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
 					ytOverlay.classList.add('hidden');
 				});
