@@ -1230,6 +1230,230 @@ const SITE_DESCRIPTION = "Composer & Score Supervisor Portfolio";
 			</div>
 		</section>
 
+		<!-- ========================================== -->
+<!-- 1 & 3. VIDEO GAMES SECTION (HORIZONTAL + BACKGROUND) -->
+<!-- ========================================== -->
+<section class="games-horizontal-container">
+  
+  <!-- Prometheus Card -->
+  <div class="game-flex-card">
+    <div class="game-card-content">
+      <h3>Prometheus</h3>
+      <p>Project details, score description, or media player goes here.</p>
+    </div>
+  </div> 
+
+  <!-- Anoldor Card -->
+  <div class="game-flex-card">
+    <div class="game-card-content">
+      <h3>Anoldor</h3>
+      <p>Project details, score description, or media player goes here.</p>
+    </div>
+  </div>
+
+</section>
+
+<!-- ========================================== -->
+<!-- 2. PALE CACHEXIA BANNER SECTION            -->
+<!-- ========================================== -->
+<section class="banner-fullwidth-container">
+  <img src="/Pale Cachexia Banner.jpeg" class="banner-horizontal-img" alt="Pale Cachexia Banner" />
+</section>
+
+<!-- ========================================== -->
+<!-- 4. PROFESSIONAL AFFILIATIONS & CONTACT SECTION -->
+<!-- ========================================== -->
+<section class="affiliations-main-section">
+  <h2>Professional Affiliations</h2>
+  <div class="section-accent-line"></div>
+  
+  <!-- Flexbox Grid for Affiliations -->
+  <div class="affiliations-flex-grid">
+    
+    <div class="affiliation-grid-item">
+      <img src="/logos/bleeding-fingers.png" alt="Bleeding Fingers Music Logo" />
+      <p><strong>Bleeding Fingers Music</strong><br><span class="affiliation-role-text">Composer</span></p>
+    </div>
+
+    <div class="affiliation-grid-item">
+      <img src="/logos/television-academy.png" alt="Television Academy Logo" />
+      <p><strong>Television Academy</strong><br><span class="affiliation-role-text">Emmy's</span></p>
+    </div>
+
+    <div class="affiliation-grid-item">
+      <img src="/logos/recording-academy.png" alt="Recording Academy Logo" />
+      <p><strong>Recording Academy</strong><br><span class="affiliation-role-text">Grammy's</span></p>
+    </div>
+
+    <div class="affiliation-grid-item">
+      <img src="/logos/ascap.png" alt="ASCAP Logo" />
+      <p><strong>ASCAP</strong></p>
+    </div>
+
+    <div class="affiliation-grid-item">
+      <img src="/logos/joy-music-house.png" alt="Joy Music House Logo" />
+      <p><strong>Joy Music House</strong></p>
+    </div>
+
+    <div class="affiliation-grid-item">
+      <img src="/logos/scl.png" alt="Society of Composers & Lyricists Logo" />
+      <p><strong>Society of Composers & Lyricists</strong></p>
+    </div>
+
+    <div class="affiliation-grid-item">
+      <img src="/logos/cdc.png" alt="Composers Diversity Collective Logo" />
+      <p><strong>Composers Diversity Collective</strong></p>
+    </div>
+
+    <div class="affiliation-grid-item">
+      <img src="/logos/awfc.png" alt="AWFC Logo" />
+      <p><strong>Supporter of AWFC</strong></p>
+    </div>
+
+  </div>
+
+  <!-- Contact Action Button Element -->
+  <div class="contact-action-wrapper">
+    <a href="/contact" class="portfolio-contact-btn">Get In Touch</a>
+  </div>
+</section>
+
+<!-- ========================================== -->
+<!-- SCOPED STYLES (No external CSS file needed) -->
+<!-- ========================================== -->
+<style>
+  /* Games Row Styles */
+  .games-horizontal-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: stretch;
+    gap: 40px;
+    padding: 80px 40px;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), url('/blog-placeholder-2.jpg');
+    background-size: cover;
+    background-position: center;
+  }
+  .game-flex-card {
+    flex: 1;
+    max-width: 520px;
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 8px;
+    color: #ffffff;
+  }
+  .game-card-content {
+    padding: 35px;
+  }
+  .game-card-content h3 {
+    margin-bottom: 15px;
+    font-size: 1.8rem;
+    letter-spacing: 0.5px;
+  }
+
+  /* Full Width Horizontal Banner Styles */
+  .banner-fullwidth-container {
+    width: 100%;
+    overflow: hidden;
+  }
+  .banner-horizontal-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+  }
+
+  /* Affiliations Grid Styles */
+  .affiliations-main-section {
+    padding: 90px 40px;
+    text-align: center;
+    background-color: #ffffff;
+    color: #222222;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+  .affiliations-main-section h2 {
+    font-size: 2.2rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+    letter-spacing: 0.5px;
+  }
+  .section-accent-line {
+    width: 50px;
+    height: 2px;
+    background-color: #222222;
+    margin: 0 auto 60px auto;
+  }
+  .affiliations-flex-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 55px 35px;
+    max-width: 1150px;
+    margin: 0 auto;
+  }
+  .affiliation-grid-item {
+    flex: 1 1 210px;
+    max-width: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .affiliation-grid-item img {
+    max-width: 110px;
+    height: auto;
+    margin-bottom: 20px;
+    display: block;
+  }
+  .affiliation-grid-item p {
+    font-size: 0.95rem;
+    line-height: 1.4;
+    color: #333333;
+    margin: 0;
+  }
+  .affiliation-role-text {
+    font-size: 0.85rem;
+    color: #666666;
+  }
+
+  /* Global Contact Form / Button Trigger Link */
+  .contact-action-wrapper {
+    margin-top: 65px;
+  }
+  .portfolio-contact-btn {
+    display: inline-block;
+    padding: 15px 38px;
+    background-color: #111111;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    border-radius: 4px;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+  }
+  .portfolio-contact-btn:hover {
+    background-color: #2a2a2a;
+  }
+
+  /* Responsive breakpoints for clean tablet/mobile displays */
+  @media (max-width: 768px) {
+    .games-horizontal-container {
+      flex-direction: column;
+      align-items: center;
+      gap: 25px;
+      padding: 60px 20px;
+    }
+    .game-flex-card {
+      width: 100%;
+    }
+    .affiliations-main-section {
+      padding: 60px 20px;
+    }
+  }
+</style>
+
 		<!-- CLIENT SIDE SCRIPT -->
 		<script>
 			// FILM REEL INTERACTION FIX 
