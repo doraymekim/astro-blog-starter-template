@@ -721,9 +721,6 @@ const SITE_DESCRIPTION = "Composer & Score Supervisor Portfolio";
 			<div class="nav-left">
 					<a href="/bio/" class="nav-link">Bio</a>
 					<a href="/contact/" class="nav-link">Contact</a>
-				<a href="/" aria-label="Home">
-					<img src="/iTunesArtwork@2x.png" alt="Superrray Productions Logo" class="site-logo" />
-				</a>
 			</div>
 		</nav>
 
@@ -1321,6 +1318,74 @@ const SITE_DESCRIPTION = "Composer & Score Supervisor Portfolio";
 				tag.src = 'https://www.youtube.com/iframe_api';
 				document.body.appendChild(tag);
 			}
+		</script>
+		<script>
+		// Touch / pointer drag support for carousels (#carouselTrack, #orchCarouselTrack)
+		(function(){
+		  const ids = ['carouselTrack','orchCarouselTrack'];
+		  ids.forEach(id => {
+		    const track = document.getElementById(id);
+		    if (!track) return;
+		    let isDown = false;
+		    let startX = 0;
+		    let currentX = 0;
+		    let pointerId = null;
+
+		    const getTranslateX = (el) => {
+		      const style = getComputedStyle(el);
+		      const tf = style.transform || '';
+		      if (tf && tf !== 'none') {
+		        const m = tf.match(/matrix\(([-0-9., ]+)\)/);
+		        if (m) {
+		          const parts = m[1].split(',').map(s => parseFloat(s));
+		          return parts.length === 6 ? parts[4] : 0;
+		        }
+		      }
+		      return 0;
+		    };
+
+		    const onDown = (e) => {
+		      // only left mouse or touch
+		      if (e.pointerType === 'mouse' && e.button !== 0) return;
+		      isDown = true;
+		      pointerId = e.pointerId;
+		      track.setPointerCapture && track.setPointerCapture(pointerId);
+		      startX = e.clientX;
+		      currentX = getTranslateX(track);
+		      track.style.animationPlayState = 'paused';
+		      track.style.cursor = 'grabbing';
+		      e.preventDefault();
+		    };
+
+		    const onMove = (e) => {
+		      if (!isDown) return;
+		      const dx = e.clientX - startX;
+		      track.style.transform = `translateX(${currentX + dx}px)`;
+		      e.preventDefault();
+		    };
+
+		    const onUp = (e) => {
+		      if (!isDown) return;
+		      isDown = false;
+		      try { track.releasePointerCapture && track.releasePointerCapture(pointerId); } catch(_){}
+		      // briefly keep current dragged position then resume auto scroll
+		      setTimeout(() => {
+		        track.style.transform = '';
+		        track.style.animationPlayState = 'running';
+		        track.style.cursor = '';
+		      }, 120);
+		      e.preventDefault();
+		    };
+
+		    track.addEventListener('pointerdown', onDown, {passive:false});
+		    window.addEventListener('pointermove', onMove, {passive:false});
+		    window.addEventListener('pointerup', onUp, {passive:false});
+		    track.addEventListener('pointerleave', onUp, {passive:false});
+
+		    // prevent image dragging inside cards
+		    track.querySelectorAll('img').forEach(img => img.addEventListener('dragstart', e => e.preventDefault()));
+		  });
+		})();
 		</script>
 	</body>
 </html>
