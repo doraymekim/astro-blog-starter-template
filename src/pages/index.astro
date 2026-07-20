@@ -494,87 +494,142 @@ const SITE_DESCRIPTION = "Composer & Score Supervisor Portfolio";
 				width: 100%;
 			}
 			.spotify-card {
-					background: #0a140e;
-					border-radius: 12px;
-					overflow: hidden;
-					display: flex;
-					flex-direction: column;
-					justify-content: center;
-					align-items: center;
-					padding: 2rem;
-					min-height: 160px;
-					box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6), 0 0 8px rgba(30, 215, 96, 0.2);
-					border: 1px solid rgba(30, 215, 96, 0.25);
-					transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
-					text-decoration: none;
-					color: #ffffff;
-				}
-				.spotify-card:hover {
-					background: #112218;
-					transform: translateY(-5px);
-					box-shadow: 0 14px 35px rgba(0, 0, 0, 0.8), 0 0 20px rgba(30, 215, 96, 0.5);
-					border-color: #1ED760;
-				}
-				.spotify-card-title {
-					font-size: 1.15rem;
-					font-weight: 600;
-					text-transform: uppercase;
-					letter-spacing: 1px;
-					margin-bottom: 0.5rem;
-				}
-				.spotify-card-subtitle {
-					font-size: 0.95rem;
-					font-weight: 300;
-					color: rgba(255, 255, 255, 0.8);
-				}
-				.spotify-frame-wrapper {
-					position: relative;
-					width: 100%;
-					height: 100%;
-					display: flex;
-					justify-content: center;
-					align-items: center;
-				}
-				.spotify-embed {
-					width: 100%;
-					height: 100%;
-					display: block;
-					border-radius: 12px;
-					overflow: hidden;
-				}
-				.spotify-fallback {
-					position: absolute;
-					inset: 0;
-					background: rgba(0, 0, 0, 0.82);
-					display: flex;
-					flex-direction: column;
-					justify-content: center;
-					align-items: center;
-					padding: 1.5rem;
-					text-align: center;
-					opacity: 0;
-					visibility: hidden;
-					transition: opacity 0.3s ease, visibility 0.3s ease;
-					color: #fff;
-				}
-				.spotify-fallback.visible {
-					opacity: 1;
-					visibility: visible;
-				}
-				.spotify-fallback-title {
-					font-size: 1.1rem;
-					font-weight: 600;
-					margin-bottom: 0.65rem;
-				}
-				.spotify-fallback a {
-					color: #1ED760;
-					text-decoration: none;
-					font-weight: 500;
-					border-bottom: 1px solid rgba(30, 215, 96, 0.6);
-				}
-				.spotify-fallback a:hover {
-					color: #8cff96;
-				}
+				position: relative;
+				isolation: isolate;
+				background:
+					linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.03)),
+					var(--card-gradient, linear-gradient(135deg, #0d2114, #07110a));
+				border-radius: 16px;
+				overflow: hidden;
+				display: flex;
+				flex-direction: column;
+				justify-content: flex-end;
+				align-items: flex-start;
+				padding: 1.25rem;
+				min-height: 220px;
+				box-shadow: 0 10px 24px rgba(0, 0, 0, 0.55), 0 0 10px rgba(30, 215, 96, 0.16);
+				border: 1px solid rgba(30, 215, 96, 0.22);
+				transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+				color: #ffffff;
+			}
+			.spotify-card::before {
+				content: "";
+				position: absolute;
+				inset: 0;
+				background: var(--card-art, linear-gradient(180deg, rgba(0,0,0,0.12), rgba(0,0,0,0.4)));
+				background-size: cover;
+				background-position: center;
+				transform: scale(1.04);
+				filter: saturate(1.12) brightness(0.78);
+				opacity: 0.9;
+				z-index: -2;
+				transition: transform 0.35s ease, filter 0.35s ease;
+			}
+			.spotify-card::after {
+				content: "";
+				position: absolute;
+				inset: 0;
+				background: linear-gradient(180deg, rgba(0,0,0,0.08) 0%, rgba(0,0,0,0.45) 60%, rgba(0,0,0,0.78) 100%);
+				z-index: -1;
+			}
+			.spotify-card:hover {
+				transform: translateY(-5px);
+				box-shadow: 0 16px 36px rgba(0, 0, 0, 0.7), 0 0 20px rgba(30, 215, 96, 0.34);
+				border-color: #1ED760;
+			}
+			.spotify-card:hover::before {
+				transform: scale(1.06);
+				filter: blur(8px) brightness(0.66) saturate(0.92);
+			}
+			.spotify-card-content {
+				position: relative;
+				z-index: 1;
+				display: flex;
+				flex-direction: column;
+				gap: 0.35rem;
+				transition: opacity 0.25s ease, transform 0.25s ease;
+			}
+			.spotify-card:hover .spotify-card-content {
+				opacity: 0.18;
+				transform: translateY(6px) scale(0.98);
+			}
+			.spotify-card-title {
+				font-size: 1.03rem;
+				font-weight: 600;
+				text-transform: uppercase;
+				letter-spacing: 1.4px;
+				text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+			}
+			.spotify-card-subtitle {
+				font-size: 0.9rem;
+				font-weight: 300;
+				color: rgba(255, 255, 255, 0.84);
+				letter-spacing: 0.4px;
+			}
+			.spotify-hover-actions {
+				position: absolute;
+				inset: 0;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				gap: 0.9rem;
+				opacity: 0;
+				pointer-events: none;
+				transform: translateY(14px) scale(0.96);
+				transition: opacity 0.28s cubic-bezier(.2,.9,.3,1), transform 0.28s cubic-bezier(.2,.9,.3,1);
+				z-index: 2;
+			}
+			.spotify-card:hover .spotify-hover-actions {
+				opacity: 1;
+				pointer-events: auto;
+				transform: translateY(0) scale(1);
+			}
+			.spotify-hover-actions::before {
+				content: "";
+				position: absolute;
+				inset: 0;
+				backdrop-filter: blur(24px) saturate(1.2);
+				background: linear-gradient(135deg, rgba(7, 12, 15, 0.34), rgba(18, 25, 30, 0.45));
+				border: 1px solid rgba(255, 255, 255, 0.16);
+			}
+			.spotify-action-link {
+				position: relative;
+				z-index: 1;
+				width: 50px;
+				height: 50px;
+				padding: 0;
+				border-radius: 999px;
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				text-decoration: none;
+				box-shadow: 0 9px 22px rgba(0, 0, 0, 0.32);
+				transition: transform 0.24s cubic-bezier(.2,.9,.3,1), box-shadow 0.24s ease, filter 0.24s ease, background 0.24s ease;
+			}
+			.spotify-action-link:hover {
+				transform: translateY(-3px) scale(1.04);
+				box-shadow: 0 14px 28px rgba(0, 0, 0, 0.38);
+				filter: brightness(1.05);
+			}
+			.spotify-action-link i {
+				font-size: 1.05rem;
+				line-height: 1;
+			}
+			.spotify-action-link.spotify-action {
+				background: linear-gradient(135deg, #1ed760, #13b54f);
+				color: #07110a;
+			}
+			.spotify-action-link.apple-action {
+				background: linear-gradient(135deg, #ffffff, #ececec);
+				color: #111111;
+			}
+			.spotify-action-link.apple-action:hover {
+				background: linear-gradient(135deg, #ff2d55, #ff0f3c);
+				color: #ffffff;
+			}
+			.spotify-action-link.apple-action:hover i {
+				color: #ffffff;
+			}
 
 			/* YOUTUBE IFRAME CONTAINER FALLBACK */
 			.youtube-frame {
@@ -1053,76 +1108,116 @@ const SITE_DESCRIPTION = "Composer & Score Supervisor Portfolio";
 					<h2 class="listen-main-title">Listen</h2>
 				</div>
 				<div class="spotify-grid">
-					<div class="spotify-card">
-						<div class="spotify-frame-wrapper">
-							<iframe class="spotify-embed" src="https://open.spotify.com/embed/album/6SCMaaxakgzykc4Ujjxg5x?utm_source=generator&theme=0" width="100%" height="352" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-							<div class="spotify-fallback">
-								<div class="spotify-fallback-title">Hacks</div>
-								<a href="https://open.spotify.com/album/6SCMaaxakgzykc4Ujjxg5x" target="_blank" rel="noopener noreferrer">Open in Spotify</a>
-							</div>
+					<div class="spotify-card" style="--card-art: url('https://i.scdn.co/image/ab67616d0000b27397c8bda4cbb4e415752ed4dc'); --card-gradient: linear-gradient(135deg, rgba(10, 33, 22, 0.95), rgba(2, 11, 8, 0.95));">
+						<div class="spotify-card-content">
+							<div class="spotify-card-title">Hacks</div>
+							<div class="spotify-card-subtitle">Spotify & Apple Music</div>
+						</div>
+						<div class="spotify-hover-actions" aria-label="Listen on Spotify or Apple Music">
+							<a class="spotify-action-link spotify-action" href="https://open.spotify.com/album/6SCMaaxakgzykc4Ujjxg5x" target="_blank" rel="noopener noreferrer" aria-label="Open Hacks on Spotify">
+								<i class="fa-brands fa-spotify" aria-hidden="true"></i>
+							</a>
+							<a class="spotify-action-link apple-action" href="https://music.apple.com/us/search?term=Hacks" target="_blank" rel="noopener noreferrer" aria-label="Search Hacks on Apple Music">
+								<i class="fa-brands fa-apple" aria-hidden="true"></i>
+							</a>
 						</div>
 					</div>
-					<div class="spotify-card">
-						<div class="spotify-frame-wrapper">
-							<iframe class="spotify-embed" src="https://open.spotify.com/embed/album/4zI0xlmNa7wJGKx31W4jHU?utm_source=generator&theme=0" width="100%" height="352" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-							<div class="spotify-fallback">
-								<div class="spotify-fallback-title">They Will Kill You</div>
-								<a href="https://open.spotify.com/album/4zI0xlmNa7wJGKx31W4jHU" target="_blank" rel="noopener noreferrer">Open in Spotify</a>
-							</div>
+					<div class="spotify-card" style="--card-art: url('https://i.scdn.co/image/ab67616d0000b273aee486d0fafc6bcf7a2c895c'); --card-gradient: linear-gradient(135deg, rgba(52, 20, 24, 0.95), rgba(17, 7, 12, 0.95));">
+						<div class="spotify-card-content">
+							<div class="spotify-card-title">They Will Kill You</div>
+							<div class="spotify-card-subtitle">Spotify & Apple Music</div>
+						</div>
+						<div class="spotify-hover-actions" aria-label="Listen on Spotify or Apple Music">
+							<a class="spotify-action-link spotify-action" href="https://open.spotify.com/album/4zI0xlmNa7wJGKx31W4jHU" target="_blank" rel="noopener noreferrer" aria-label="Open They Will Kill You on Spotify">
+								<i class="fa-brands fa-spotify" aria-hidden="true"></i>
+							</a>
+							<a class="spotify-action-link apple-action" href="https://music.apple.com/us/search?term=They%20Will%20Kill%20You" target="_blank" rel="noopener noreferrer" aria-label="Search They Will Kill You on Apple Music">
+								<i class="fa-brands fa-apple" aria-hidden="true"></i>
+							</a>
 						</div>
 					</div>
-					<div class="spotify-card">
-						<div class="spotify-frame-wrapper">
-							<iframe class="spotify-embed" src="https://open.spotify.com/embed/album/1e5HzQzwRsdWNh2m5kDOUy?utm_source=generator&theme=0" width="100%" height="352" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-							<div class="spotify-fallback">
-								<div class="spotify-fallback-title">Dept. Q</div>
-								<a href="https://open.spotify.com/album/1e5HzQzwRsdWNh2m5kDOUy" target="_blank" rel="noopener noreferrer">Open in Spotify</a>
-							</div>
+					<div class="spotify-card" style="--card-art: url('https://i.scdn.co/image/ab67616d0000b273bef9ed6e8e800f487cd0a42c'); --card-gradient: linear-gradient(135deg, rgba(27, 37, 57, 0.95), rgba(8, 12, 20, 0.95));">
+						<div class="spotify-card-content">
+							<div class="spotify-card-title">Dept. Q</div>
+							<div class="spotify-card-subtitle">Spotify & Apple Music</div>
+						</div>
+						<div class="spotify-hover-actions" aria-label="Listen on Spotify or Apple Music">
+							<a class="spotify-action-link spotify-action" href="https://open.spotify.com/album/1e5HzQzwRsdWNh2m5kDOUy" target="_blank" rel="noopener noreferrer" aria-label="Open Dept. Q on Spotify">
+								<i class="fa-brands fa-spotify" aria-hidden="true"></i>
+							</a>
+							<a class="spotify-action-link apple-action" href="https://music.apple.com/us/search?term=Dept%20Q" target="_blank" rel="noopener noreferrer" aria-label="Search Dept. Q on Apple Music">
+								<i class="fa-brands fa-apple" aria-hidden="true"></i>
+							</a>
 						</div>
 					</div>
-					<div class="spotify-card">
-						<div class="spotify-frame-wrapper">
-							<iframe class="spotify-embed" src="https://open.spotify.com/embed/album/23xn7eZgOf41WYCfKj2LjP?utm_source=generator&theme=0" width="100%" height="352" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-							<div class="spotify-fallback">
-								<div class="spotify-fallback-title">Lessons in Chemistry</div>
-								<a href="https://open.spotify.com/album/23xn7eZgOf41WYCfKj2LjP" target="_blank" rel="noopener noreferrer">Open in Spotify</a>
-							</div>
+					<div class="spotify-card" style="--card-art: url('https://i.scdn.co/image/ab67616d0000b273e3c39a0cfae3f222e10868ea'); --card-gradient: linear-gradient(135deg, rgba(49, 32, 12, 0.95), rgba(14, 8, 4, 0.95));">
+						<div class="spotify-card-content">
+							<div class="spotify-card-title">Lessons in Chemistry</div>
+							<div class="spotify-card-subtitle">Spotify & Apple Music</div>
+						</div>
+						<div class="spotify-hover-actions" aria-label="Listen on Spotify or Apple Music">
+							<a class="spotify-action-link spotify-action" href="https://open.spotify.com/album/23xn7eZgOf41WYCfKj2LjP" target="_blank" rel="noopener noreferrer" aria-label="Open Lessons in Chemistry on Spotify">
+								<i class="fa-brands fa-spotify" aria-hidden="true"></i>
+							</a>
+							<a class="spotify-action-link apple-action" href="https://music.apple.com/us/search?term=Lessons%20in%20Chemistry" target="_blank" rel="noopener noreferrer" aria-label="Search Lessons in Chemistry on Apple Music">
+								<i class="fa-brands fa-apple" aria-hidden="true"></i>
+							</a>
 						</div>
 					</div>
-					<div class="spotify-card">
-						<div class="spotify-frame-wrapper">
-							<iframe class="spotify-embed" src="https://open.spotify.com/embed/album/2UbyTUN7UOsnV6lT9ecAky?utm_source=generator&theme=0" width="100%" height="352" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-							<div class="spotify-fallback">
-								<div class="spotify-fallback-title">Ezra</div>
-								<a href="https://open.spotify.com/album/2UbyTUN7UOsnV6lT9ecAky" target="_blank" rel="noopener noreferrer">Open in Spotify</a>
-							</div>
+					<div class="spotify-card" style="--card-art: url('https://i.scdn.co/image/ab67616d0000b27321ed87aaa67468ee4adb1065'); --card-gradient: linear-gradient(135deg, rgba(50, 46, 20, 0.95), rgba(16, 14, 8, 0.95));">
+						<div class="spotify-card-content">
+							<div class="spotify-card-title">Ezra</div>
+							<div class="spotify-card-subtitle">Spotify & Apple Music</div>
+						</div>
+						<div class="spotify-hover-actions" aria-label="Listen on Spotify or Apple Music">
+							<a class="spotify-action-link spotify-action" href="https://open.spotify.com/album/2UbyTUN7UOsnV6lT9ecAky" target="_blank" rel="noopener noreferrer" aria-label="Open Ezra on Spotify">
+								<i class="fa-brands fa-spotify" aria-hidden="true"></i>
+							</a>
+							<a class="spotify-action-link apple-action" href="https://music.apple.com/us/search?term=Ezra" target="_blank" rel="noopener noreferrer" aria-label="Search Ezra on Apple Music">
+								<i class="fa-brands fa-apple" aria-hidden="true"></i>
+							</a>
 						</div>
 					</div>
-					<div class="spotify-card">
-						<div class="spotify-frame-wrapper">
-							<iframe class="spotify-embed" src="https://open.spotify.com/embed/album/4xHv6i545xZKmZR2J5ui1u?utm_source=generator&theme=0" width="100%" height="352" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-							<div class="spotify-fallback">
-								<div class="spotify-fallback-title">Monsieur Spade</div>
-								<a href="https://open.spotify.com/album/4xHv6i545xZKmZR2J5ui1u" target="_blank" rel="noopener noreferrer">Open in Spotify</a>
-							</div>
+					<div class="spotify-card" style="--card-art: url('https://i.scdn.co/image/ab67616d0000b273686a06f95589379b236da1f5'); --card-gradient: linear-gradient(135deg, rgba(29, 45, 38, 0.95), rgba(7, 14, 11, 0.95));">
+						<div class="spotify-card-content">
+							<div class="spotify-card-title">Monsieur Spade</div>
+							<div class="spotify-card-subtitle">Spotify & Apple Music</div>
+						</div>
+						<div class="spotify-hover-actions" aria-label="Listen on Spotify or Apple Music">
+							<a class="spotify-action-link spotify-action" href="https://open.spotify.com/album/4xHv6i545xZKmZR2J5ui1u" target="_blank" rel="noopener noreferrer" aria-label="Open Monsieur Spade on Spotify">
+								<i class="fa-brands fa-spotify" aria-hidden="true"></i>
+							</a>
+							<a class="spotify-action-link apple-action" href="https://music.apple.com/us/search?term=Monsieur%20Spade" target="_blank" rel="noopener noreferrer" aria-label="Search Monsieur Spade on Apple Music">
+								<i class="fa-brands fa-apple" aria-hidden="true"></i>
+							</a>
 						</div>
 					</div>
-					<div class="spotify-card">
-						<div class="spotify-frame-wrapper">
-							<iframe class="spotify-embed" src="https://open.spotify.com/embed/album/6GGqqXXRUwPfbkLaUD65mm?utm_source=generator&theme=0" width="100%" height="352" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-							<div class="spotify-fallback">
-								<div class="spotify-fallback-title">Chupa</div>
-								<a href="https://open.spotify.com/album/6GGqqXXRUwPfbkLaUD65mm" target="_blank" rel="noopener noreferrer">Open in Spotify</a>
-							</div>
+					<div class="spotify-card" style="--card-art: url('https://i.scdn.co/image/ab67616d0000b273d5310ca9b5e89d1ec047eb88'); --card-gradient: linear-gradient(135deg, rgba(34, 25, 48, 0.95), rgba(10, 8, 15, 0.95));">
+						<div class="spotify-card-content">
+							<div class="spotify-card-title">Chupa</div>
+							<div class="spotify-card-subtitle">Spotify & Apple Music</div>
+						</div>
+						<div class="spotify-hover-actions" aria-label="Listen on Spotify or Apple Music">
+							<a class="spotify-action-link spotify-action" href="https://open.spotify.com/album/6GGqqXXRUwPfbkLaUD65mm" target="_blank" rel="noopener noreferrer" aria-label="Open Chupa on Spotify">
+								<i class="fa-brands fa-spotify" aria-hidden="true"></i>
+							</a>
+							<a class="spotify-action-link apple-action" href="https://music.apple.com/us/search?term=Chupa" target="_blank" rel="noopener noreferrer" aria-label="Search Chupa on Apple Music">
+								<i class="fa-brands fa-apple" aria-hidden="true"></i>
+							</a>
 						</div>
 					</div>
-					<div class="spotify-card">
-						<div class="spotify-frame-wrapper">
-							<iframe class="spotify-embed" src="https://open.spotify.com/embed/album/7LJJir3kuYjfwX020ZSQWw?utm_source=generator&theme=0" width="100%" height="352" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-							<div class="spotify-fallback">
-								<div class="spotify-fallback-title">Griselda</div>
-								<a href="https://open.spotify.com/album/7LJJir3kuYjfwX020ZSQWw" target="_blank" rel="noopener noreferrer">Open in Spotify</a>
-							</div>
+					<div class="spotify-card" style="--card-art: url('https://i.scdn.co/image/ab67616d0000b27318adbb6420d6bbe69bfa709f'); --card-gradient: linear-gradient(135deg, rgba(35, 21, 29, 0.95), rgba(12, 8, 12, 0.95));">
+						<div class="spotify-card-content">
+							<div class="spotify-card-title">Griselda</div>
+							<div class="spotify-card-subtitle">Spotify & Apple Music</div>
+						</div>
+						<div class="spotify-hover-actions" aria-label="Listen on Spotify or Apple Music">
+							<a class="spotify-action-link spotify-action" href="https://open.spotify.com/album/7LJJir3kuYjfwX020ZSQWw" target="_blank" rel="noopener noreferrer" aria-label="Open Griselda on Spotify">
+								<i class="fa-brands fa-spotify" aria-hidden="true"></i>
+							</a>
+							<a class="spotify-action-link apple-action" href="https://music.apple.com/us/search?term=Griselda" target="_blank" rel="noopener noreferrer" aria-label="Search Griselda on Apple Music">
+								<i class="fa-brands fa-apple" aria-hidden="true"></i>
+							</a>
 						</div>
 					</div>
 				</div>
@@ -1485,24 +1580,6 @@ const SITE_DESCRIPTION = "Composer & Score Supervisor Portfolio";
 			// recompute contentWidth on resize
 			window.addEventListener('resize', () => { contentWidth = computeContentWidth(); });
 		  });
-	})();
-	</script>
-	<script>
-	(function() {
-	  const iframes = document.querySelectorAll('.spotify-embed');
-	  iframes.forEach((iframe) => {
-	    const wrapper = iframe.closest('.spotify-frame-wrapper');
-	    if (!wrapper) return;
-	    const fallback = wrapper.querySelector('.spotify-fallback');
-	    let loaded = false;
-	    iframe.addEventListener('load', () => {
-	      loaded = true;
-	      if (fallback) fallback.classList.remove('visible');
-	    });
-	    setTimeout(() => {
-	      if (!loaded && fallback) fallback.classList.add('visible');
-	    }, 6000);
-	  });
 	})();
 	</script>
 	</body>

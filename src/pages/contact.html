@@ -213,15 +213,21 @@
       }
 
       .info-panel .meta {
+        display: flex;
+        flex-direction: column;
+        gap: 0.2rem;
         color: rgba(244,247,255,0.78);
-        line-height: 1.8;
+        line-height: 1.7;
         margin-bottom: 1rem;
       }
 
       .info-panel .meta strong {
         display: block;
         color: #fff;
-        margin-bottom: 0.6rem;
+        margin: 0;
+        font-size: 0.95rem;
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
       }
 
       .socials {
@@ -289,7 +295,7 @@
     <main class="page-shell">
       <section class="hero-panel">
         <div class="eyebrow">Contact</div>
-        <h1 class="page-title"><strong>Contact</strong> for composition, orchestration, and scoring collaborations.</h1>
+        <h1 class="page-title"><strong>Contact</strong></h1>
         <p class="hero-copy">Send a message for project inquiries, scoring requests, or press. Ray supports film, television, games, and premium media with cinematic music, and orchestration.</p>
       </section>
 
@@ -320,9 +326,9 @@
 
         <aside class="panel info-panel" aria-label="Contact details">
           <h3>Contact details</h3>
-          <div class="meta"><strong>Ray D. Kim</strong>Composer | Orchestrator | Producer</div>
-          <div class="meta"><strong>Email</strong><br /><a href="mailto:superrray@gmail.com">superrray@gmail.com</a></div>
-          <div class="meta"><strong>Location</strong><br />Los Angeles, CA</div>
+          <div class="meta"><strong>Ray D. Kim</strong><span>Composer | Orchestrator | Producer</span></div>
+          <div class="meta"><strong>Email</strong><a href="mailto:superrray@gmail.com">superrray@gmail.com</a></div>
+          <div class="meta"><strong>Location</strong><span>Los Angeles, CA</span></div>
           <div class="socials">
             <a href="https://www.imdb.com/name/nm8105113/" target="_blank" aria-label="IMDb"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/imdb.svg" alt="IMDb"></a>
             <a href="https://www.instagram.com/doraymekim/" target="_blank" aria-label="Instagram"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/instagram.svg" alt="Instagram"></a>
