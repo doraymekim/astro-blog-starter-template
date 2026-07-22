@@ -590,12 +590,12 @@ const SITE_DESCRIPTION = "Composer & Score Supervisor Portfolio";
 			}
 			@media (hover: none) and (pointer: coarse) {
 				.spotify-card .spotify-hover-actions {
-					opacity: 1;
-					pointer-events: auto;
-					transform: translateY(0) scale(1);
+					opacity: 0;
+					pointer-events: none;
+					transform: translateY(14px) scale(0.96);
 				}
 				.spotify-card .spotify-card-content {
-					opacity: 0.92;
+					opacity: 1;
 					transform: none;
 				}
 			}
@@ -835,16 +835,17 @@ const SITE_DESCRIPTION = "Composer & Score Supervisor Portfolio";
 				.site-logo { width: 80px; }
 				.text-overlay { padding: 1.5rem 2rem; margin-top: 8vh; }
 				.site-title { font-size: 1.8rem; letter-spacing: 4px; }
+				.hero-name { font-size: calc(3.6rem * 0.8); }
 				.social-link { font-size: 1.7rem; }
 				.video-section { height: auto; padding: 60px 20px; }
 				.overlay-logo { width: 65px; }
 				.play-icon-indicator { font-size: 3.2rem; }
-				.video-subtitle { font-size: 1.8rem; letter-spacing: 4px; }
+				.video-subtitle { font-size: calc(2.8rem * 0.8); letter-spacing: 4px; }
 				
 				.carousel-header-bg { height: 24vh; background-position: center 75%; }
 				.carousel-header-bg.vg-banner { height: 32vh; background-size: cover; }
 				.carousel-section { padding-bottom: 40px; }
-				.carousel-section-title { font-size: 1.8rem; letter-spacing: 3px; }
+				.carousel-section-title { font-size: calc(2.5rem * 0.8); letter-spacing: 3px; }
 				.carousel-title-box { padding: 0.8rem 1.5rem; }
 				.poster-card { width: 160px; }
 				.poster-memo { font-size: 0.6rem; padding: 0.4rem 0.2rem; }
@@ -853,14 +854,14 @@ const SITE_DESCRIPTION = "Composer & Score Supervisor Portfolio";
 				.carousel-arrow.right { right: 10px; }
 
 				.listen-section { padding: 60px 20px; }
-				.listen-main-title { font-size: 2.2rem; letter-spacing: 4px; }
+				.listen-main-title { font-size: calc(2.5rem * 0.8); letter-spacing: 4px; }
 				.spotify-grid { grid-template-columns: 1fr; gap: 1.5rem; }
 
 				.project-content-section { padding: 60px 20px; }
 				.project-grid-container { grid-template-columns: 1fr; gap: 3rem; text-align: center; }
 				.project-left-col { order: 1; }
 				.project-right-col { order: 2; align-items: center; }
-				.project-header-title { font-size: 2rem; margin-bottom: 1.2rem; }
+				.project-header-title { font-size: calc(2.5rem * 0.8); margin-bottom: 1.2rem; }
 				.project-description-paragraph { font-size: 1.05rem; line-height: 1.8; margin-bottom: 2rem; }
 			}
 		</style>
@@ -1431,7 +1432,7 @@ const SITE_DESCRIPTION = "Composer & Score Supervisor Portfolio";
 <section class="contact-panel" style="position:relative; padding:60px 20px; text-align:center; background: linear-gradient(180deg,#071018 0%, #0c0c0c 100%); color:#fff; border-radius:10px; margin:28px 20px 40px 20px;">
 	<div style="max-width:900px; margin:0 auto;">
 		<h2 style="font-size:1.8rem; margin-bottom:0.6rem;">Let's work together</h2>
-		<p style="opacity:0.88; margin-bottom:1.2rem;">I'm available for scoring, orchestration, programming, and supervision. Send a message with project details and availability.</p>
+		<p style="opacity:0.88; margin-bottom:1.2rem;">Please feel free to send a message with project details and availability!</p>
 		<div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap; margin-bottom:14px;">
 			<a href="/contact/" class="store-redirect-btn">Contact Form</a>
 			<a href="mailto:hello@superrray.com" class="store-redirect-btn" style="background:transparent; border:1px solid rgba(255,255,255,0.08);">Email</a>
