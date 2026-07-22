@@ -549,7 +549,9 @@ const SITE_DESCRIPTION = "Composer & Score Supervisor Portfolio";
 				gap: 0.35rem;
 				transition: opacity 0.25s ease, transform 0.25s ease;
 			}
-			.spotify-card:hover .spotify-card-content {
+			.spotify-card:hover .spotify-card-content,
+			.spotify-card:focus-within .spotify-card-content,
+			.spotify-card:active .spotify-card-content {
 				opacity: 0.18;
 				transform: translateY(6px) scale(0.98);
 			}
@@ -579,10 +581,23 @@ const SITE_DESCRIPTION = "Composer & Score Supervisor Portfolio";
 				transition: opacity 0.28s cubic-bezier(.2,.9,.3,1), transform 0.28s cubic-bezier(.2,.9,.3,1);
 				z-index: 2;
 			}
-			.spotify-card:hover .spotify-hover-actions {
+			.spotify-card:hover .spotify-hover-actions,
+			.spotify-card:focus-within .spotify-hover-actions,
+			.spotify-card:active .spotify-hover-actions {
 				opacity: 1;
 				pointer-events: auto;
 				transform: translateY(0) scale(1);
+			}
+			@media (hover: none) and (pointer: coarse) {
+				.spotify-card .spotify-hover-actions {
+					opacity: 1;
+					pointer-events: auto;
+					transform: translateY(0) scale(1);
+				}
+				.spotify-card .spotify-card-content {
+					opacity: 0.92;
+					transform: none;
+				}
 			}
 			.spotify-hover-actions::before {
 				content: "";
@@ -595,8 +610,8 @@ const SITE_DESCRIPTION = "Composer & Score Supervisor Portfolio";
 			.spotify-action-link {
 				position: relative;
 				z-index: 1;
-				width: 50px;
-				height: 50px;
+				width: 62px;
+				height: 62px;
 				padding: 0;
 				border-radius: 999px;
 				display: inline-flex;
@@ -612,11 +627,18 @@ const SITE_DESCRIPTION = "Composer & Score Supervisor Portfolio";
 				filter: brightness(1.05);
 			}
 			.spotify-action-link i {
-				font-size: 1.05rem;
+				font-size: 2.0rem;
 				line-height: 1;
 			}
 			.spotify-action-link.spotify-action {
+				background: linear-gradient(135deg, #f2f2f2, #d8d8d8);
+				color: #111111;
+			}
+			.spotify-action-link.spotify-action:hover {
 				background: linear-gradient(135deg, #1ed760, #13b54f);
+				color: #07110a;
+			}
+			.spotify-action-link.spotify-action:hover i {
 				color: #07110a;
 			}
 			.spotify-action-link.apple-action {
@@ -1117,7 +1139,7 @@ const SITE_DESCRIPTION = "Composer & Score Supervisor Portfolio";
 							<a class="spotify-action-link spotify-action" href="https://open.spotify.com/album/6SCMaaxakgzykc4Ujjxg5x" target="_blank" rel="noopener noreferrer" aria-label="Open Hacks on Spotify">
 								<i class="fa-brands fa-spotify" aria-hidden="true"></i>
 							</a>
-							<a class="spotify-action-link apple-action" href="https://music.apple.com/us/search?term=Hacks" target="_blank" rel="noopener noreferrer" aria-label="Search Hacks on Apple Music">
+							<a class="spotify-action-link apple-action" href="https://music.apple.com/us/album/hacks-seasons-2-5-original-series-soundtrack/6773800422" target="_blank" rel="noopener noreferrer" aria-label="Search Hacks on Apple Music">
 								<i class="fa-brands fa-apple" aria-hidden="true"></i>
 							</a>
 						</div>
@@ -1131,7 +1153,7 @@ const SITE_DESCRIPTION = "Composer & Score Supervisor Portfolio";
 							<a class="spotify-action-link spotify-action" href="https://open.spotify.com/album/4zI0xlmNa7wJGKx31W4jHU" target="_blank" rel="noopener noreferrer" aria-label="Open They Will Kill You on Spotify">
 								<i class="fa-brands fa-spotify" aria-hidden="true"></i>
 							</a>
-							<a class="spotify-action-link apple-action" href="https://music.apple.com/us/search?term=They%20Will%20Kill%20You" target="_blank" rel="noopener noreferrer" aria-label="Search They Will Kill You on Apple Music">
+							<a class="spotify-action-link apple-action" href="https://music.apple.com/us/album/they-will-kill-you-original-motion-picture-soundtrack/1879682750" target="_blank" rel="noopener noreferrer" aria-label="Search They Will Kill You on Apple Music">
 								<i class="fa-brands fa-apple" aria-hidden="true"></i>
 							</a>
 						</div>
@@ -1145,7 +1167,7 @@ const SITE_DESCRIPTION = "Composer & Score Supervisor Portfolio";
 							<a class="spotify-action-link spotify-action" href="https://open.spotify.com/album/1e5HzQzwRsdWNh2m5kDOUy" target="_blank" rel="noopener noreferrer" aria-label="Open Dept. Q on Spotify">
 								<i class="fa-brands fa-spotify" aria-hidden="true"></i>
 							</a>
-							<a class="spotify-action-link apple-action" href="https://music.apple.com/us/search?term=Dept%20Q" target="_blank" rel="noopener noreferrer" aria-label="Search Dept. Q on Apple Music">
+							<a class="spotify-action-link apple-action" href="https://music.apple.com/us/album/department-q-soundtrack-from-the-netflix-series/1814675587" target="_blank" rel="noopener noreferrer" aria-label="Search Dept. Q on Apple Music">
 								<i class="fa-brands fa-apple" aria-hidden="true"></i>
 							</a>
 						</div>
@@ -1159,7 +1181,7 @@ const SITE_DESCRIPTION = "Composer & Score Supervisor Portfolio";
 							<a class="spotify-action-link spotify-action" href="https://open.spotify.com/album/23xn7eZgOf41WYCfKj2LjP" target="_blank" rel="noopener noreferrer" aria-label="Open Lessons in Chemistry on Spotify">
 								<i class="fa-brands fa-spotify" aria-hidden="true"></i>
 							</a>
-							<a class="spotify-action-link apple-action" href="https://music.apple.com/us/search?term=Lessons%20in%20Chemistry" target="_blank" rel="noopener noreferrer" aria-label="Search Lessons in Chemistry on Apple Music">
+							<a class="spotify-action-link apple-action" href="https://music.apple.com/us/album/lessons-in-chemistry-season-1-apple-original-series/1707433833" target="_blank" rel="noopener noreferrer" aria-label="Search Lessons in Chemistry on Apple Music">
 								<i class="fa-brands fa-apple" aria-hidden="true"></i>
 							</a>
 						</div>
@@ -1173,7 +1195,7 @@ const SITE_DESCRIPTION = "Composer & Score Supervisor Portfolio";
 							<a class="spotify-action-link spotify-action" href="https://open.spotify.com/album/2UbyTUN7UOsnV6lT9ecAky" target="_blank" rel="noopener noreferrer" aria-label="Open Ezra on Spotify">
 								<i class="fa-brands fa-spotify" aria-hidden="true"></i>
 							</a>
-							<a class="spotify-action-link apple-action" href="https://music.apple.com/us/search?term=Ezra" target="_blank" rel="noopener noreferrer" aria-label="Search Ezra on Apple Music">
+							<a class="spotify-action-link apple-action" href="https://music.apple.com/us/album/ezra-original-motion-picture-soundtrack/1748885217" target="_blank" rel="noopener noreferrer" aria-label="Search Ezra on Apple Music">
 								<i class="fa-brands fa-apple" aria-hidden="true"></i>
 							</a>
 						</div>
@@ -1187,7 +1209,7 @@ const SITE_DESCRIPTION = "Composer & Score Supervisor Portfolio";
 							<a class="spotify-action-link spotify-action" href="https://open.spotify.com/album/4xHv6i545xZKmZR2J5ui1u" target="_blank" rel="noopener noreferrer" aria-label="Open Monsieur Spade on Spotify">
 								<i class="fa-brands fa-spotify" aria-hidden="true"></i>
 							</a>
-							<a class="spotify-action-link apple-action" href="https://music.apple.com/us/search?term=Monsieur%20Spade" target="_blank" rel="noopener noreferrer" aria-label="Search Monsieur Spade on Apple Music">
+							<a class="spotify-action-link apple-action" href="https://music.apple.com/us/album/monsieur-spade-original-series-soundtrack/1724271884" target="_blank" rel="noopener noreferrer" aria-label="Search Monsieur Spade on Apple Music">
 								<i class="fa-brands fa-apple" aria-hidden="true"></i>
 							</a>
 						</div>
@@ -1201,7 +1223,7 @@ const SITE_DESCRIPTION = "Composer & Score Supervisor Portfolio";
 							<a class="spotify-action-link spotify-action" href="https://open.spotify.com/album/6GGqqXXRUwPfbkLaUD65mm" target="_blank" rel="noopener noreferrer" aria-label="Open Chupa on Spotify">
 								<i class="fa-brands fa-spotify" aria-hidden="true"></i>
 							</a>
-							<a class="spotify-action-link apple-action" href="https://music.apple.com/us/search?term=Chupa" target="_blank" rel="noopener noreferrer" aria-label="Search Chupa on Apple Music">
+							<a class="spotify-action-link apple-action" href="https://music.apple.com/us/album/chupa-soundtrack-from-the-netflix-film/1676346745" target="_blank" rel="noopener noreferrer" aria-label="Search Chupa on Apple Music">
 								<i class="fa-brands fa-apple" aria-hidden="true"></i>
 							</a>
 						</div>
@@ -1215,7 +1237,7 @@ const SITE_DESCRIPTION = "Composer & Score Supervisor Portfolio";
 							<a class="spotify-action-link spotify-action" href="https://open.spotify.com/album/7LJJir3kuYjfwX020ZSQWw" target="_blank" rel="noopener noreferrer" aria-label="Open Griselda on Spotify">
 								<i class="fa-brands fa-spotify" aria-hidden="true"></i>
 							</a>
-							<a class="spotify-action-link apple-action" href="https://music.apple.com/us/search?term=Griselda" target="_blank" rel="noopener noreferrer" aria-label="Search Griselda on Apple Music">
+							<a class="spotify-action-link apple-action" href="https://music.apple.com/us/album/griselda-soundtrack-from-the-netflix-series/1715063162" target="_blank" rel="noopener noreferrer" aria-label="Search Griselda on Apple Music">
 								<i class="fa-brands fa-apple" aria-hidden="true"></i>
 							</a>
 						</div>
@@ -1355,14 +1377,6 @@ const SITE_DESCRIPTION = "Composer & Score Supervisor Portfolio";
 						<img class="aff-img" src="https://upload.wikimedia.org/wikipedia/en/7/73/Emmy_Awards_logo.png" alt="Television Academy" style="max-width: 115px; max-height: 92px; object-fit: contain;" />
 					</div>
 					<p class="aff-label"><strong>Television Academy</strong><br><span class="aff-sub">Emmy's</span></p>
-				</a>
-
-				<!-- Recording Academy -->
-				<a href="https://www.grammy.com" target="_blank" class="aff-item">
-					<div class="aff-image-wrap">
-						<img class="aff-img" src="https://music-row-website-assets.s3.amazonaws.com/wp-content/uploads/2022/12/06205144/Recording-Academy-Logo-2018-Ratio-1080x720-1.jpg" alt="Recording Academy" style="max-width: 127px; max-height: 81px; object-fit: contain;" />
-					</div>
-					<p class="aff-label"><strong>Recording Academy</strong><br><span class="aff-sub">Grammy's</span></p>
 				</a>
 
 				<!-- ASCAP -->
