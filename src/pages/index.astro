@@ -551,7 +551,8 @@ const SITE_DESCRIPTION = "Composer & Score Supervisor Portfolio";
 			}
 			.spotify-card:hover .spotify-card-content,
 			.spotify-card:focus-within .spotify-card-content,
-			.spotify-card:active .spotify-card-content {
+			.spotify-card:active .spotify-card-content,
+			.spotify-card.is-active .spotify-card-content {
 				opacity: 0.18;
 				transform: translateY(6px) scale(0.98);
 			}
@@ -583,7 +584,8 @@ const SITE_DESCRIPTION = "Composer & Score Supervisor Portfolio";
 			}
 			.spotify-card:hover .spotify-hover-actions,
 			.spotify-card:focus-within .spotify-hover-actions,
-			.spotify-card:active .spotify-hover-actions {
+			.spotify-card:active .spotify-hover-actions,
+			.spotify-card.is-active .spotify-hover-actions {
 				opacity: 1;
 				pointer-events: auto;
 				transform: translateY(0) scale(1);
@@ -594,9 +596,18 @@ const SITE_DESCRIPTION = "Composer & Score Supervisor Portfolio";
 					pointer-events: none;
 					transform: translateY(14px) scale(0.96);
 				}
+				.spotify-card.is-active .spotify-hover-actions {
+					opacity: 1;
+					pointer-events: auto;
+					transform: translateY(0) scale(1);
+				}
 				.spotify-card .spotify-card-content {
 					opacity: 1;
 					transform: none;
+				}
+				.spotify-card.is-active .spotify-card-content {
+					opacity: 0.18;
+					transform: translateY(6px) scale(0.98);
 				}
 			}
 			.spotify-hover-actions::before {
@@ -1539,6 +1550,30 @@ const SITE_DESCRIPTION = "Composer & Score Supervisor Portfolio";
 				const tag = document.createElement('script');
 				tag.src = 'https://www.youtube.com/iframe_api';
 				document.body.appendChild(tag);
+			}
+
+			const listenCards = document.querySelectorAll('.spotify-card');
+			const isTouchDevice = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+
+			if (isTouchDevice) {
+				listenCards.forEach((card) => {
+					card.addEventListener('click', (event) => {
+						if (event.target instanceof Element && event.target.closest('.spotify-action-link')) {
+							return;
+						}
+
+						event.preventDefault();
+						listenCards.forEach((otherCard) => otherCard.classList.remove('is-active'));
+						card.classList.toggle('is-active');
+					});
+				});
+
+				document.addEventListener('click', (event) => {
+					if (event.target instanceof Element && event.target.closest('.spotify-card')) {
+						return;
+					}
+					listenCards.forEach((card) => card.classList.remove('is-active'));
+				});
 			}
 		</script>
 		<script>
